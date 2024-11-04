@@ -1,0 +1,1 @@
+ E:\\Android\\ship_5BV_app\\.dart_tool\\flutter_build\\2338e33307cbd07f4a6c89059e02b5a9\\native_assets.yaml: 
