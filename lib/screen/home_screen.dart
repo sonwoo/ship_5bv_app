@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen>{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        title: Text('선용품 이행 완료 보고'),
+        title: const Text('선용품 이행 완료 보고'),
         centerTitle: true,
       ),
     );

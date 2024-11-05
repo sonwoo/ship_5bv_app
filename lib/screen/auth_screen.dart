@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,7 +48,7 @@ class _AuthScreenState extends State<AuthScreen>{
 
     if (businessNumber.isEmpty || username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('모든 항목을 입력해주세요.')),
+        const SnackBar(content: Text('모든 항목을 입력해주세요.')),
       );
       return;
     }
@@ -66,7 +65,7 @@ class _AuthScreenState extends State<AuthScreen>{
     //여기에 로그인 인증 서비스를 호출
     //로그인 잘 되었다 치고..
 
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomeScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
   }
 
 
@@ -74,7 +73,7 @@ class _AuthScreenState extends State<AuthScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('로그인 화면'),
+        title: const Text('로그인 화면'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -82,7 +81,7 @@ class _AuthScreenState extends State<AuthScreen>{
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('사용구분'),
+            const Text('사용구분'),
             Row(
               children: [
                 Radio<String>(
@@ -94,7 +93,7 @@ class _AuthScreenState extends State<AuthScreen>{
                     });
                   },
                 ),
-                Text('조건부 신고'),
+                const Text('조건부 신고'),
                 Radio<String>(
                   value: 'CS',
                   groupValue: _userType,
@@ -104,22 +103,22 @@ class _AuthScreenState extends State<AuthScreen>{
                     });
                   },
                 ),
-                Text('EDI 선용품'),
+                const Text('EDI 선용품'),
               ],
             ),
             TextField(
               controller: _businessNumberController,
-              decoration: InputDecoration(labelText: '사업자번호'),
+              decoration: const InputDecoration(labelText: '사업자번호'),
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly], // 숫자만 입력 가능
             ),
             TextField(
               controller: _usernameController,
-              decoration: InputDecoration(labelText: '아이디'),
+              decoration: const InputDecoration(labelText: '아이디'),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: '패스워드'),
+              decoration: const InputDecoration(labelText: '패스워드'),
               obscureText: true,
             ),
             Row(
@@ -132,13 +131,13 @@ class _AuthScreenState extends State<AuthScreen>{
                     });
                   },
                 ),
-                Text('로그인 정보 저장'),
+                const Text('로그인 정보 저장'),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _login,
-              child: Text('로그인'),
+              child: const Text('로그인'),
             ),
           ],
         ),

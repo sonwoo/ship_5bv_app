@@ -5,7 +5,7 @@ void main() {
   runApp(
     //시작 테스트4
     //시작 테스트1
-    MaterialApp(
+    const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AuthScreen(),
     )
