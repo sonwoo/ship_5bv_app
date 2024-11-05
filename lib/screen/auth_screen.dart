@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ship_5bv_app/screen/home_screen.dart';
 
 enum Type {edi,cs}
 
@@ -61,6 +62,11 @@ class _AuthScreenState extends State<AuthScreen>{
       await prefs.setString('password', password);
       await prefs.setBool('saveLoginInfo', _saveLoginInfo);
     }
+
+    //여기에 로그인 인증 서비스를 호출
+    //로그인 잘 되었다 치고..
+
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomeScreen()));
   }
 
 
