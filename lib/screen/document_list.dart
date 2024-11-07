@@ -19,17 +19,20 @@ class _DocumentList extends State<DocumentList>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 5.0,
+              color: Colors.white54
+            )
+          ),
+          child:  Column(
           children: [
             Row(
               children: [
                 Padding(padding: EdgeInsets.all(15)),
-                Container(
-                  height: 30,
-                  width: 60,
-                  child: Text('신고일자'),
-                ),
-                SizedBox( height: 30, width: 30,),
+                Text('신고일자'),
+                const SizedBox( height: 30, width: 30,),
                 ElevatedButton(
                   onPressed: () async {
                     final selectedDate = await showDatePicker(
@@ -69,15 +72,30 @@ class _DocumentList extends State<DocumentList>{
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Row(
               children: [
                 Padding(padding: EdgeInsets.all(15)),
+                Text('제출번호'),
+                const SizedBox( height: 30, width: 30,),
                 Container(
-                  height: 30,
-                  width: 60,
-                  child: Text('제출번호'),
-                ),
+                  width: 250, // 원하는 너비 설정
+                  height: 35,
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white54,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 10,),
+            Row(
+              children: [
+                Padding(padding: EdgeInsets.all(15)),
+                Text('선박이름'),
                 SizedBox( height: 30, width: 30,),
                 Container(
                   width: 250, // 원하는 너비 설정
@@ -92,34 +110,13 @@ class _DocumentList extends State<DocumentList>{
                 )
               ],
             ),
-            SizedBox(height: 10,),
-            Row(
-              children: [
-                Padding(padding: EdgeInsets.all(15)),
-                Container(
-                  height: 30,
-                  width: 60,
-                  child: Text('선박이름'),
-                ),
-                SizedBox( height: 30, width: 30,),
-                Container(
-                  width: 250, // 원하는 너비 설정
-                  height: 35,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.white54,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 10,),
+
+            const SizedBox(height: 10,),
             ElevatedButton(onPressed: () {  },
             child: Text("   검 색   "),),
           ],
         ),
+     )
 
     );
   }
