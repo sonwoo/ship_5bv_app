@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ship_5bv_app/component/custom_text_field.dart';
 
 
 class DocumentList extends StatefulWidget{
@@ -18,19 +19,9 @@ class _DocumentList extends State<DocumentList>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('신고서 목록 화면'),
-        centerTitle: true,
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      body: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(padding: EdgeInsets.all(15)),
                 Container(
@@ -77,10 +68,59 @@ class _DocumentList extends State<DocumentList>{
                   child: Text("${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}"),
                 ),
               ],
-            )
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Padding(padding: EdgeInsets.all(15)),
+                Container(
+                  height: 30,
+                  width: 60,
+                  child: Text('제출번호'),
+                ),
+                SizedBox( height: 30, width: 30,),
+                Container(
+                  width: 250, // 원하는 너비 설정
+                  height: 35,
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white54,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Padding(padding: EdgeInsets.all(15)),
+                Container(
+                  height: 30,
+                  width: 60,
+                  child: Text('선박이름'),
+                ),
+                SizedBox( height: 30, width: 30,),
+                Container(
+                  width: 250, // 원하는 너비 설정
+                  height: 35,
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white54,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {  },
+            child: Text("   검 색   "),),
           ],
         ),
-      ),
+
     );
   }
 
