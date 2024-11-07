@@ -29,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen>{
           centerTitle: true,
           bottom: const TabBar(
              tabs: [
-               Tab(icon: Icon(Icons.home), text: '적재'),
-               Tab(icon: Icon(Icons.favorite), text: '하선'),
-               Tab(icon: Icon(Icons.person), text: '환적'),
+               Tab(text: '적재'),
+               Tab(text: '하선'),
+               Tab(text: '환적'),
              ],
           ),
         ),
