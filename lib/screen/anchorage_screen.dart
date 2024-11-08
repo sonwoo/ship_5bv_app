@@ -1,21 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Anchorage_screen extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Anchorage(),
-    );
-  }
-}
-
 class Anchorage extends StatefulWidget {
+  const Anchorage({super.key});
   @override
   _AnchorageState createState() => _AnchorageState();
 }
@@ -49,7 +35,7 @@ class _AnchorageState extends State<Anchorage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MINOKUMA - FLUTTER'),
+        title: Text('코드'),
       ),
       body: ListView.separated(
         padding: EdgeInsets.all(8),
@@ -74,7 +60,9 @@ class _AnchorageState extends State<Anchorage> {
                     TextButton(
                       child: Text('확인'),
                       onPressed: () {},
-                      style: TextButton.styleFrom(backgroundColor: Colors.purple),
+                      style: TextButton.styleFrom(
+                        textStyle: TextStyle(fontWeight: FontWeight.bold,),
+                        backgroundColor: Colors.amberAccent),
                     )
                   ],
                 )
