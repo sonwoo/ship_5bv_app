@@ -210,8 +210,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     Text('대리인'),
                   ]),
                   Row (children: [
-                    Text('세관/정박항'),
-                    SizedBox( height: 30, width: 10,),
+                    SizedBox( height: 30, width: 80,),
                     SizedBox(
                       width: 50, // 원하는 너비 설정
                       height: 35,
