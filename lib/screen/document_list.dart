@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ship_5bv_app/component/custom_text_field.dart';
+import 'package:ship_5bv_app/screen/govcbr5JI_contents.dart';
 
 
 class DocumentList extends StatefulWidget{
@@ -30,8 +30,8 @@ class _DocumentList extends State<DocumentList>{
           children: [
             Row(
               children: [
-                Padding(padding: EdgeInsets.all(15)),
-                Text('신고일자'),
+                const Padding(padding: EdgeInsets.all(15)),
+                const Text('신고일자'),
                 const SizedBox( height: 30, width: 30,),
                 ElevatedButton(
                   onPressed: () async {
@@ -51,7 +51,7 @@ class _DocumentList extends State<DocumentList>{
                   },
                   child: Text("${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
                 ),
-                Icon(Icons.accessibility_new),
+                const Icon(Icons.accessibility_new),
                 ElevatedButton(
                   onPressed: () async {
                     final selectedDate = await showDatePicker(
@@ -73,15 +73,15 @@ class _DocumentList extends State<DocumentList>{
               ],
             ),
             const SizedBox(height: 10,),
-            Row(
+            const Row(
               children: [
                 Padding(padding: EdgeInsets.all(15)),
                 Text('제출번호'),
-                const SizedBox( height: 30, width: 30,),
-                Container(
+                SizedBox( height: 30, width: 30,),
+                SizedBox(
                   width: 250, // 원하는 너비 설정
                   height: 35,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       filled: true,
@@ -92,15 +92,15 @@ class _DocumentList extends State<DocumentList>{
               ],
             ),
             const SizedBox(height: 10,),
-            Row(
+            const Row(
               children: [
                 Padding(padding: EdgeInsets.all(15)),
                 Text('선박이름'),
                 SizedBox( height: 30, width: 30,),
-                Container(
+                SizedBox(
                   width: 250, // 원하는 너비 설정
                   height: 35,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       filled: true,
@@ -112,8 +112,12 @@ class _DocumentList extends State<DocumentList>{
             ),
 
             const SizedBox(height: 10,),
-            ElevatedButton(onPressed: () {  },
-            child: Text("   검 색   "),),
+            SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder:(context) => const Govcbr5jiContents()),);
+                },
+                child: const Text("   검 색   "),)),
           ],
         ),
      )
