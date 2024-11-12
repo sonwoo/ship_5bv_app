@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Anchorage extends StatefulWidget {
-  const Anchorage({super.key});
+class StmstScreen extends StatefulWidget {
+  const StmstScreen({super.key});
   @override
-  _AnchorageState createState() => _AnchorageState();
+  _StmstScreenState createState() => _StmstScreenState();
 }
 
-class _AnchorageState extends State<Anchorage> {
+class _StmstScreenState extends State<StmstScreen> {
   final List<String> comments = <String>[
     '최신 음악 무제한',
     '뮤직비디오 무제한',
