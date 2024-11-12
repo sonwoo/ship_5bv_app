@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ship_5bv_app/component/custom_text_field.dart';
-
+import 'package:ship_5bv_app/component/custom_popup_buttons.dart';
+import 'package:ship_5bv_app/screen/stmst_screen.dart';
+import 'package:ship_5bv_app/screen/anchorage_screen.dart';
 
 class Govcbrdb6Contents extends StatefulWidget{
 
@@ -15,7 +17,8 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      resizeToAvoidBottomInset : false,
+      body: SingleChildScrollView(child:  SafeArea(
         child: Container(
           color: Colors.white,
           width: MediaQuery.of(context).size.width,
@@ -81,6 +84,40 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                    ]),
                   SizedBox( height: 5),
                   Row (children: [
+                    Text('환적일시'),
+                    SizedBox( height: 30, width: 30,),
+                    SizedBox(
+                      width: 100, // 원하는 너비 설정
+                      height: 35,
+                      child: CustomTextField(
+                        isTime: false,
+                        onSaved: (String? val){
+                          //startTime = int.parse(val!);
+                        },
+                        validator:  (String? val){
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 5,),
+                    SizedBox(
+                      width: 80, // 원하는 너비 설정
+                      height: 35,
+                      child: CustomTextField(
+                        isTime: false,
+                        onSaved: (String? val){
+                          //startTime = int.parse(val!);
+                        },
+                        validator:  (String? val){
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox( height: 30, width: 5,),
+                    Text('(HHMM~4자리)'),
+                  ]),
+                  SizedBox( height: 5),
+                  Row (children: [
                     Text('하선일시'),
                     SizedBox( height: 30, width: 30,),
                     SizedBox(
@@ -131,6 +168,24 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                   ]),
+                  SizedBox( height: 5),
+                  Row (children: [
+                    Text('차량번호'),
+                    SizedBox( height: 30, width: 30,),
+                    SizedBox(
+                      width: 100, // 원하는 너비 설정
+                      height: 35,
+                      child: CustomTextField(
+                        isTime: false,
+                        onSaved: (String? val){
+                          //startTime = int.parse(val!);
+                        },
+                        validator:  (String? val){
+                          return null;
+                        },
+                      ),
+                    ),
+                  ]),
                   Row (children: [
                     Text('세관/정박항'),
                     SizedBox( height: 30, width: 10,),
@@ -161,7 +216,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    ElevatedButton(onPressed: () {  }, child: Text('조회'),),
+                    CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -207,7 +262,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    ElevatedButton(onPressed: () {  }, child: Text('조회'),),
+                    CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회"),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
@@ -250,6 +305,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
               ),
             )
         ),
+      ),
       ),
     );
   }
