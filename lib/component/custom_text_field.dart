@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ship_5bv_app/const/colors.dart';
 
 class CustomTextField extends StatelessWidget {
 
@@ -25,7 +26,7 @@ class CustomTextField extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 filled: true,
-                fillColor: Colors.grey[300],
+                fillColor: TEXT_FIELD_FILL_COLOR,
                 suffixText: isTime ? "시":null,
               ),
             )
