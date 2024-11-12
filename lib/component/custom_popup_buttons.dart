@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ship_5bv_app/screen/anchorage_screen.dart';
+import 'package:ship_5bv_app/screen/stmst_screen.dart';
 
 class CustomPopupButtons extends StatelessWidget {
 
   final String title;
   final String name;
-  final String type;
+  final Widget type;
 
   const CustomPopupButtons({super.key, required this.title, required this.type, required this.name});
 
@@ -19,6 +21,7 @@ class CustomPopupButtons extends StatelessWidget {
              return AlertDialog(
               insetPadding: EdgeInsets.fromLTRB(0,80,0, 80),
               title: Text(title),
+              content: type,
                actions: [
                  TextButton(onPressed: () {
                    Navigator.of(context).pop();
@@ -31,6 +34,7 @@ class CustomPopupButtons extends StatelessWidget {
        child: Text(name),
      );
   }
+
 
 
 }
