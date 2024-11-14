@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:ship_5bv_app/util.dart';
 import 'package:ship_5bv_app/screen/home_screen.dart';
 
 enum Type {edi,cs}
@@ -16,9 +20,11 @@ class _AuthScreenState extends State<AuthScreen>{
 
   String _userType = 'EDI'; // 초기값으로 'EDI' 설정
   final TextEditingController _businessNumberController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _userIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _saveLoginInfo = false;
+
+  final _targetUrl = "http://192.168.200.38:3000/api/mobileUserAuth";
 
   @override
   void initState()
@@ -33,7 +39,7 @@ class _AuthScreenState extends State<AuthScreen>{
     setState(() {
       _userType = prefs.getString('userType') ?? 'EDI';
       _businessNumberController.text = prefs.getString('businessNumber') ?? '';
-      _usernameController.text = prefs.getString('username') ?? '';
+      _userIdController.text = prefs.getString('username') ?? '';
       _passwordController.text = prefs.getString('password') ?? '';
       _saveLoginInfo = prefs.getBool('saveLoginInfo') ?? false;
     });
@@ -43,12 +49,19 @@ class _AuthScreenState extends State<AuthScreen>{
   Future<void> _login() async {
 
     String businessNumber = _businessNumberController.text.trim();
-    String username = _usernameController.text.trim();
+    String userId = _userIdController.text.trim();
     String password = _passwordController.text.trim();
 
-    if (businessNumber.isEmpty || username.isEmpty || password.isEmpty) {
+    if (businessNumber.isEmpty || userId.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('모든 항목을 입력해주세요.')),
+      );
+      return;
+    }
+
+    if(!isBusinessRegistrationNumber(businessNumber)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('사업자번호 형식이 맞지 않습니다.')),
       );
       return;
     }
@@ -57,33 +70,65 @@ class _AuthScreenState extends State<AuthScreen>{
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('userType', _userType);
       await prefs.setString('businessNumber', businessNumber);
-      await prefs.setString('username', username);
+      await prefs.setString('username', userId);
       await prefs.setString('password', password);
       await prefs.setBool('saveLoginInfo', _saveLoginInfo);
     }
 
-    //여기에 로그인 인증 서비스를 호출
-    //로그인 잘 되었다 치고..
+    final data = jsonEncode({
+      'USERID' : userId,
+      'PASSWORD' : password,
+      'PLATFORM' : _userType,
+      'COMPANY_NO':businessNumber
+    });
 
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
+    Dio dio = Dio();
+    dio.options.headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    try {
+
+      var response = await dio.post(_targetUrl, data: data, );
+
+      if(response.statusMessage != 'OK') {
+        showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다.");
+      } else
+      {
+        String ret =  response.data["Message"];
+        if(ret == "인증이 성공하였습니다."){
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
+          }
+          else {
+          showCustomAlertPopup(context, "로그인 실패", ret);
+        }
+      }
+    }
+    catch(ex){
+      showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다.");
+    }
+
   }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       appBar: AppBar(
-        title: const Text('로그인 화면'),
+        title: const Text('선용품 이행완료보고'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text('사용구분'),
+            const SizedBox(height: 30,),
             Row(
               children: [
+                const Text('사용구분'),
                 Radio<String>(
                   value: 'EDI',
                   groupValue: _userType,
@@ -113,7 +158,7 @@ class _AuthScreenState extends State<AuthScreen>{
               inputFormatters: [FilteringTextInputFormatter.digitsOnly], // 숫자만 입력 가능
             ),
             TextField(
-              controller: _usernameController,
+              controller: _userIdController,
               decoration: const InputDecoration(labelText: '아이디'),
             ),
             TextField(
@@ -145,6 +190,14 @@ class _AuthScreenState extends State<AuthScreen>{
     );
   }
 
+  static bool isBusinessRegistrationNumber(String value) {
+    RegExp regExp = RegExp(
+      r'^\d{3}\d{2}\d{5}$',
+      caseSensitive: false,
+      multiLine: false,
+    );
 
+    return regExp.hasMatch(value);
+  }
 
 }
