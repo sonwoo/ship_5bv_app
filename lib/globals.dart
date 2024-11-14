@@ -2,4 +2,4 @@
 String CORP_ID = "";
 String PLATFORM = "";
 String WORK_DIV = "";
-String SANO = "";
+String COMPANY_NO = "";
