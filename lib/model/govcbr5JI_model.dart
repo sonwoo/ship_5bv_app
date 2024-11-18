@@ -1,17 +1,17 @@
 
 class Govcbr5jiModel {
 
- final String TMPSSD_KEY;
- final String SSD_USERID;
- final String SSD_SUN_NAME;
- final String WORK_DIV;
- final String SND_CHK;
- final String TMPSSD_FD_GBN;
- final String SSD_SIN_SANGHO;
- final String SSD_SIN_DAY;
- final String TMPSSD_SND_GBN;
- final String TMPSSD_SND_GBN2;
- final String TMPSSD_SND_GBN3;
+  final String TMPSSD_KEY;
+  final String SSD_USERID;
+  final String SSD_SUN_NAME;
+  final String WORK_DIV;
+  final String SND_CHK;
+  final String TMPSSD_FD_GBN;
+  final String SSD_SIN_SANGHO;
+  final String SSD_SIN_DAY;
+  final String TMPSSD_SND_GBN;
+  final String TMPSSD_SND_GBN2;
+  final String TMPSSD_SND_GBN3;
 
   Govcbr5jiModel({
     required this.TMPSSD_KEY,
@@ -27,5 +27,20 @@ class Govcbr5jiModel {
     required this.TMPSSD_SND_GBN3,
   });
 
+  factory Govcbr5jiModel.fromJson(Map<String, dynamic> json) {
+    return Govcbr5jiModel(
+        TMPSSD_KEY :  json['TMPSSD_KEY'] ?? "",
+        SSD_USERID : json['SSD_USERID'] ?? "",
+        SSD_SUN_NAME : json['SSD_SUN_NAME'] ?? "",
+        WORK_DIV : json['WORK_DIV'] ?? "",
+        SND_CHK : json['SND_CHK'] ?? "",
+        TMPSSD_FD_GBN : json['TMPSSD_FD_GBN'] ?? "",
+        SSD_SIN_SANGHO : json['SSD_SIN_SANGHO'] ?? "",
+        SSD_SIN_DAY : json['SSD_SIN_DAY'] ?? "",
+        TMPSSD_SND_GBN : json['TMPSSD_SND_GBN'] ?? "",
+        TMPSSD_SND_GBN2 : json['TMPSSD_SND_GBN2'] ?? "",
+        TMPSSD_SND_GBN3 : json['TMPSSD_SND_GBN3'] ?? ""
+    );
+  }
 
 }
