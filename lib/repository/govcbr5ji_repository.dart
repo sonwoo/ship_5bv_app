@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:ship_5bv_app/model/govcbr5JI_model.dart';
 import 'package:dio/dio.dart';
 
@@ -11,7 +12,7 @@ class Govcbr5jiRepository {
     required String CORP_ID,
     required String START_SIN_DAY,
     required String END_SIN_DAY,
-    required String SELECT_VALUE,
+    required int SELECT_VALUE,
     required String SEARCH_WORDS,
     required String PLATFORM,
   }) async {
@@ -24,7 +25,9 @@ class Govcbr5jiRepository {
           "PLATFORM" : PLATFORM,
           },);
 
-        return resp.data.map<Govcbr5jiModel>((x)=>Govcbr5jiModel.fromJson(json: x,),).toList();
+        List<dynamic> jsonData = jsonDecode(resp.toString());
+
+        return jsonData.map((item) => Govcbr5jiModel.fromJson(item)).toList();
 
       }
 
