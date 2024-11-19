@@ -116,7 +116,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                     const SizedBox( height: 30, width: 5,),
-                    const Text('(HHMM~4자리)'),
+                    const Text('(HHMM)'),
                   ]),
                   const SizedBox( height: 5),
                   Row (children: [
@@ -150,7 +150,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                     const SizedBox( height: 30, width: 5,),
-                    const Text('(HHMM~4자리)'),
+                    const Text('(HHMM)'),
                   ]),
                   const SizedBox( height: 5),
                   Row (children: [
@@ -219,8 +219,11 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                     const CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
+                  ]),
+                  Row (children: [
+                    const SizedBox( height: 30, width: 80,),
                     SizedBox(
-                      width: 100, // 원하는 너비 설정
+                      width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
                         isTime: false,
@@ -279,8 +282,11 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                     const SizedBox(width: 5,),
+                  ]),
+                  Row (children: [
+                    const SizedBox( height: 30, width: 80,),
                     SizedBox(
-                      width: 100, // 원하는 너비 설정
+                      width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
                         isTime: false,

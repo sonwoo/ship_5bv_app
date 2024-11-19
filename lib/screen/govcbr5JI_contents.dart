@@ -104,7 +104,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     ),
                     const SizedBox(width: 5,),
                     SizedBox(
-                      width: 80, // 원하는 너비 설정
+                      width: 60, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
                         isTime: false,
@@ -117,7 +117,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       ),
                     ),
                     const SizedBox( height: 30, width: 5,),
-                    const Text('(HHMM~4자리)'),
+                    const Text('(HHMM)'),
                   ]),
                   const SizedBox( height: 5),
                   Row (children: [
@@ -168,8 +168,11 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       ),
                     ),
                     const CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
+                  ]),
+                  Row (children: [
+                    const SizedBox( height: 30, width: 80,),
                     SizedBox(
-                      width: 100, // 원하는 너비 설정
+                      width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
                         isTime: false,
@@ -182,6 +185,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       ),
                     ),
                   ]),
+                  const SizedBox( height: 5),
                   Row (children: [
                     const Text('선내장치장소'),
                     const SizedBox( height: 30, width: 5,),
@@ -245,8 +249,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       ),
                     ),
                     const SizedBox(width: 5,),
+                  ]),
+                  const SizedBox( height: 5),
+                  Row (children: [
+                    const SizedBox( height: 30, width: 80,),
                     SizedBox(
-                      width: 100, // 원하는 너비 설정
+                      width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
                         isTime: false,
@@ -259,7 +267,6 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       ),
                     ),
                   ]),
-                  const SizedBox( height: 5),
                   Row (
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
