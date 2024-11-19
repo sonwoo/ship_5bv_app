@@ -307,7 +307,9 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                     const SizedBox(width: 10,),
                     ElevatedButton(onPressed: () {  }, child: const Text('송신'),),
                     const SizedBox(width: 10,),
-                    ElevatedButton(onPressed: () {  }, child: const Text('목록'),),
+                    ElevatedButton(onPressed: () {
+                      Navigator.pop(context);
+                    }, child: const Text('목록'),),
                   ]),
                 ],
               ),

@@ -1,5 +1,5 @@
 
-class Govcbr5jiModel {
+class DocumentListModel {
 
   final String TMPSSD_KEY;
   final String SSD_USERID;
@@ -13,7 +13,7 @@ class Govcbr5jiModel {
   final String TMPSSD_SND_GBN2;
   final String TMPSSD_SND_GBN3;
 
-  Govcbr5jiModel({
+  DocumentListModel({
     required this.TMPSSD_KEY,
     required this.SSD_USERID,
     required this.SSD_SUN_NAME,
@@ -27,8 +27,8 @@ class Govcbr5jiModel {
     required this.TMPSSD_SND_GBN3,
   });
 
-  factory Govcbr5jiModel.fromJson(Map<String, dynamic> json) {
-    return Govcbr5jiModel(
+  factory DocumentListModel.fromJson(Map<String, dynamic> json) {
+    return DocumentListModel(
         TMPSSD_KEY :  json['TMPSSD_KEY'] ?? "",
         SSD_USERID : json['SSD_USERID'] ?? "",
         SSD_SUN_NAME : json['SSD_SUN_NAME'] ?? "",

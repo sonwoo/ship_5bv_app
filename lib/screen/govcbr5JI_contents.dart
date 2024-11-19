@@ -274,7 +274,9 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     const SizedBox(width: 10,),
                     ElevatedButton(onPressed: () {  }, child: const Text('송신'),),
                     const SizedBox(width: 10,),
-                    ElevatedButton(onPressed: () {  }, child: const Text('목록'),),
+                    ElevatedButton(onPressed: () {
+                      Navigator.pop(context);
+                    }, child: const Text('목록'),),
                   ]),
                 ],
               ),

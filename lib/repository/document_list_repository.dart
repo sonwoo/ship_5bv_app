@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:ship_5bv_app/model/govcbr5JI_model.dart';
+import 'package:ship_5bv_app/model/document_list_model.dart';
 import 'package:dio/dio.dart';
 
-class Govcbr5jiRepository {
+class DocumentListRepository {
 
   final _dio = Dio();
   final _targetUrl = "http://192.168.200.38:3000/api/";
 
-  Future<List<Govcbr5jiModel>> getGovcbr5jiList({
+  Future<List<DocumentListModel>> getDocumentList({
     required String CORP_ID,
     required String START_SIN_DAY,
     required String END_SIN_DAY,
@@ -29,7 +29,7 @@ class Govcbr5jiRepository {
 
         List<dynamic> jsonData = jsonDecode(resp.toString());
 
-        return jsonData.map((item) => Govcbr5jiModel.fromJson(item)).toList();
+        return jsonData.map((item) => DocumentListModel.fromJson(item)).toList();
 
       }
 

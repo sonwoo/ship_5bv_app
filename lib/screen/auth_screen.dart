@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'dart:convert';
+import 'package:ship_5bv_app/globals.dart';
 import 'package:ship_5bv_app/util.dart';
 import 'package:ship_5bv_app/screen/home_screen.dart';
 
@@ -97,8 +98,15 @@ class _AuthScreenState extends State<AuthScreen>{
       } else
       {
         String ret =  response.data["Message"];
-        if(ret == "인증이 성공하였습니다."){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
+        if(ret.contains("인증이 성공하였습니다.")){
+
+          CORP_ID = ret.split('/')[2];
+          PLATFORM = _userType;
+          COMPANY_NO = businessNumber;
+          WORK_DIV = ret.split('/')[1];
+
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
+
           }
           else {
           showCustomAlertPopup(context, "로그인 실패", ret);
