@@ -83,7 +83,6 @@ class _AnchorageState extends State<Anchorage> {
     );
   }
 
-
   void _performSearch() async {
     setState(() {
       _isLoading = true;
