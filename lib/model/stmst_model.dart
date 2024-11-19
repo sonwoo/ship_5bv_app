@@ -16,14 +16,17 @@ class StmstModel{
     required this.CUST_NM
   });
 
-  StmstModel.fromJson({
-    required Map<String, dynamic> json,
-  })
-      : USER_ERP_ID = json['USER_ERP_ID'],
-        CUST_CD = json['CUST_CD'],
-        SUPL_CD = json['SUPL_CD'],
-        ETPR_NO = json['ETPR_NO'],
-        RPST_NM = json['RPST_NM'],
-        CUST_NM = json['CUST_NM'];
+  factory StmstModel.fromJson(Map<String, dynamic> json) {
+    return StmstModel(
+      USER_ERP_ID: json['USER_ERP_ID'] ?? "",
+      CUST_CD: json['CUST_CD'] ?? "",
+      SUPL_CD: json['SUPL_CD'] ?? "",
+      ETPR_NO: json['ETPR_NO'] ?? "",
+      RPST_NM: json['RPST_NM'] ?? "",
+      CUST_NM: json['CUST_NM'] ?? "",
+    );
+  }
+
+
 
 }
