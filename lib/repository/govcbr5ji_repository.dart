@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class Govcbr5jiRepository {
 
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/GOVCBR5JIList";
+  final _targetUrl = "http://192.168.200.38:3000/api/";
 
   Future<List<Govcbr5jiModel>> getGovcbr5jiList({
     required String CORP_ID,
@@ -17,7 +17,8 @@ class Govcbr5jiRepository {
     required String PLATFORM,
     required String docdiv,
   }) async {
-        final resp = await _dio.get(_targetUrl, queryParameters: {
+        final resp = await _dio.get(
+          _targetUrl + docdiv, queryParameters: {
           "CORP_ID" : CORP_ID,
           "START_SIN_DAY" : START_SIN_DAY,
           "END_SIN_DAY" : END_SIN_DAY,
@@ -31,6 +32,7 @@ class Govcbr5jiRepository {
         return jsonData.map((item) => Govcbr5jiModel.fromJson(item)).toList();
 
       }
+
 
   }
 
