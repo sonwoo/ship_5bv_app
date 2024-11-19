@@ -15,6 +15,7 @@ class Govcbr5jiRepository {
     required int SELECT_VALUE,
     required String SEARCH_WORDS,
     required String PLATFORM,
+    required String docdiv,
   }) async {
         final resp = await _dio.get(_targetUrl, queryParameters: {
           "CORP_ID" : CORP_ID,
