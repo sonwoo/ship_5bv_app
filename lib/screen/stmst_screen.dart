@@ -65,18 +65,10 @@ class _StmstScreenState extends State<StmstScreen> {
                               Text('대표자: ${item.RPST_NM}'),
                             ],
                           ),
+                          onTap: () {
+                            Navigator.pop(context,{'SSD_AGNT_CD': item.CUST_CD,'SSD_AGNT_MK' : item.SUPL_CD,'SSD_AGNT_NM':item.CUST_NM});
+                          } ,
                         ),
-                        ButtonBar(
-                          children: <Widget>[
-                            TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                  textStyle: const TextStyle(fontWeight: FontWeight.bold,),
-                                  backgroundColor: Colors.amberAccent),
-                              child: const Text('확인'),
-                            )
-                          ],
-                        )
                       ],
                     ),
                   );
