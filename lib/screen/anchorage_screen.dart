@@ -65,18 +65,10 @@ class _AnchorageState extends State<Anchorage> {
                               Text('세관: ${item.CUSTOMS_CD}'),
                             ],
                           ),
+                        onTap: () {
+                          Navigator.pop(context,{'SSD_SE': item.CUSTOMS_CD,'SSD_JUNGBAK_COD' : item.ANCH_CD,'TMPPORT_CD':item.PORT_CD});
+                          } ,
                         ),
-                        ButtonBar(
-                          children: <Widget>[
-                            TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                  textStyle: const TextStyle(fontWeight: FontWeight.bold,),
-                                  backgroundColor: Colors.amberAccent),
-                              child: const Text('확인'),
-                            )
-                          ],
-                        )
                       ],
                     ),
                   );
