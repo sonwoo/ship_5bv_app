@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ship_5bv_app/globals.dart';
+import 'package:ship_5bv_app/model/document_list_model.dart';
+import 'package:ship_5bv_app/repository/document_list_repository.dart';
 import 'package:ship_5bv_app/screen/govcbr5JI_contents.dart';
-
+import 'package:ship_5bv_app/screen/govcbrDB5_contents.dart';
+import 'package:ship_5bv_app/screen/govcbrDB6_contents.dart';
 
 class DocumentList extends StatefulWidget{
 
-  const DocumentList({super.key});
+  final String docdiv;
+
+  const DocumentList({super.key , required this.docdiv});
 
   @override
   State<StatefulWidget> createState()  => _DocumentList();
@@ -13,116 +19,210 @@ class DocumentList extends StatefulWidget{
 
 class _DocumentList extends State<DocumentList>{
 
+  final TextEditingController _searchController1 = TextEditingController();
+  final DocumentListRepository _documentListRepository = DocumentListRepository();
+  List<DocumentListModel> _searchResults = [];
+
+  bool _isLoading = false;
+
   DateTime start_date = DateTime.now().subtract(const Duration(days: 6));
   DateTime end_date = DateTime.now();
 
   @override
+  void initState()
+  {
+    super.initState();
+    _performSearch();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 5.0,
-              color: Colors.white54
-            )
+      body: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(width: 1.0, color: Colors.white54)),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const Text('신고일자'),
+                    const SizedBox(
+                      height: 30,
+                      width: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final selectedDate = await showDatePicker(
+                          context: context,
+                          initialDate: start_date,
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime.now(),
+                          initialEntryMode: DatePickerEntryMode.calendarOnly,
+                          locale: const Locale('ko', 'KR'),
+                        );
+                        if (selectedDate != null) {
+                          setState(() {
+                            start_date = selectedDate;
+                          });
+                        }
+                      },
+                      child: Text(
+                          "${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
+                    ),
+                    const Icon(Icons.accessibility_new),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final selectedDate = await showDatePicker(
+                          context: context,
+                          initialDate: end_date,
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime.now(),
+                          initialEntryMode: DatePickerEntryMode.calendarOnly,
+                          locale: const Locale('ko', 'KR'),
+                        );
+                        if (selectedDate != null) {
+                          setState(() {
+                            end_date = selectedDate;
+                          });
+                        }
+                      },
+                      child: Text(
+                          "${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}"),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    const Text('선박이름'),
+                    const SizedBox(
+                      height: 30,
+                      width: 30,
+                    ),
+                    SizedBox(
+                      width: 250, // 원하는 너비 설정
+                      height: 35,
+                      child: TextField(
+                        controller: _searchController1,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white54,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _performSearch();
+                      },
+                      child: const Text("   검 색   "),
+                    )),
+              ],
+            ),
           ),
-          child:  Column(
-          children: [
-            Row(
-              children: [
-                const Padding(padding: EdgeInsets.all(15)),
-                const Text('신고일자'),
-                const SizedBox( height: 30, width: 30,),
-                ElevatedButton(
-                  onPressed: () async {
-                    final selectedDate = await showDatePicker(
-                      context: context,
-                      initialDate: start_date,
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime.now(),
-                      initialEntryMode: DatePickerEntryMode.calendarOnly,
-                      locale: const Locale('ko','KR'),
-                    );
-                    if(selectedDate != null){
-                      setState(() {
-                        start_date = selectedDate;
-                      });
-                    }
-                  },
-                  child: Text("${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
-                ),
-                const Icon(Icons.accessibility_new),
-                ElevatedButton(
-                  onPressed: () async {
-                    final selectedDate = await showDatePicker(
-                      context: context,
-                      initialDate: end_date,
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime.now(),
-                      initialEntryMode: DatePickerEntryMode.calendarOnly,
-                      locale: const Locale('ko','KR'),
-                    );
-                    if(selectedDate != null){
-                      setState(() {
-                        end_date = selectedDate;
-                      });
-                    }
-                  },
-                  child: Text("${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}"),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10,),
-            const Row(
-              children: [
-                Padding(padding: EdgeInsets.all(15)),
-                Text('제출번호'),
-                SizedBox( height: 30, width: 30,),
-                SizedBox(
-                  width: 250, // 원하는 너비 설정
-                  height: 35,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.white54,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 10,),
-            const Row(
-              children: [
-                Padding(padding: EdgeInsets.all(15)),
-                Text('선박이름'),
-                SizedBox( height: 30, width: 30,),
-                SizedBox(
-                  width: 250, // 원하는 너비 설정
-                  height: 35,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.white54,
-                    ),
-                  ),
-                )
-              ],
-            ),
 
-            const SizedBox(height: 10,),
-            SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder:(context) => const Govcbr5jiContents()),);
-                },
-                child: const Text("   검 색   "),)),
-          ],
-        ),
-     )
-
+          Expanded(
+            child: _isLoading ? Center(child: CircularProgressIndicator())
+              : ListView.separated(
+              padding: EdgeInsets.all(8),
+              itemCount: _searchResults.length,
+              itemBuilder: (context, index) {
+                final item = _searchResults[index];
+                return Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('제출번호: ${item.TMPSSD_KEY}'),
+                            Text('구분: ${item.TMPSSD_FD_GBN}'),
+                          ],
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('선명: ${item.SSD_SUN_NAME}'),
+                            Text('신고일자: ${item.SSD_SIN_DAY}'),
+                            Text('상태: ${item.TMPSSD_SND_GBN}'),
+                            Text('이행: ${item.TMPSSD_SND_GBN2}'),
+                            Text('완료: ${item.TMPSSD_SND_GBN3}'),
+                          ],
+                        ),
+                        onTap: (){
+                          switch(widget.docdiv)
+                          {
+                            case "GOVCBR5JIList":
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => Govcbr5jiContents(
+                                  docNo: item.TMPSSD_KEY,
+                                )
+                              ));
+                              break;
+                            case "GOVCBRDB5List":
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => Govcbrdb5Contents(
+                                    docNo: item.TMPSSD_KEY,
+                                  )
+                              ));
+                              break;
+                            case "GOVCBRDB6List":
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => Govcbrdb6Contents(
+                                    docNo: item.TMPSSD_KEY,
+                                  )
+                              ));
+                              break;
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return Divider();
+              },
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  void _performSearch() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final results = await _documentListRepository.getDocumentList(
+        CORP_ID: CORP_ID,
+        START_SIN_DAY : start_date.toString(),
+        END_SIN_DAY: end_date.toString(),
+        SELECT_VALUE: 2,
+        SEARCH_WORDS: _searchController1.text,
+        PLATFORM: PLATFORM,
+        docdiv: widget.docdiv,
+    );
+
+    setState(() {
+      _searchResults = results;
+      _isLoading = false;
+    });
+
+
   }
 
 }

@@ -14,13 +14,16 @@ class AnchorageModel{
     required this.CUSTOMS_CD
   });
 
-  AnchorageModel.fromJson({
-    required Map<String, dynamic> json,
-  })
-      : USER_ERP_ID = json['USER_ERP_ID'],
-        PORT_CD = json['PORT_CD'],
-        ANCH_CD = json['ANCH_CD'],
-        ANCH_NM = json['ANCH_NM'],
-        CUSTOMS_CD = json['CUSTOMS_CD'];
+  factory AnchorageModel.fromJson(Map<String, dynamic> json) {
+    return AnchorageModel(
+      USER_ERP_ID: json['USER_ERP_ID'] ?? "",
+      PORT_CD: json['PORT_CD'] ?? "",
+      ANCH_CD: json['ANCH_CD'] ?? "",
+      ANCH_NM: json['ANCH_NM'] ?? "",
+      CUSTOMS_CD: json['CUSTOMS_CD'] ?? "",
+    );
+  }
+
+
 
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ship_5bv_app/globals.dart';
+import 'package:ship_5bv_app/model/stmst_model.dart';
+import 'package:ship_5bv_app/repository/stmst_repository.dart';
 
 class StmstScreen extends StatefulWidget {
   const StmstScreen({super.key});
@@ -7,73 +10,103 @@ class StmstScreen extends StatefulWidget {
 }
 
 class _StmstScreenState extends State<StmstScreen> {
-  final List<String> comments = <String>[
-    '최신 음악 무제한',
-    '뮤직비디오 무제한',
-    '음악 라이브러리 공유',
-    '뮤직비디오 업로드',
-    '뮤직비디오 공유 무제한'
-  ];
-
-  final List<IconData> icons = <IconData>[
-    Icons.music_note,
-    Icons.music_video,
-    Icons.library_music,
-    Icons.videocam,
-    Icons.video_library
-  ];
-
-  final List<String> wons = <String>[
-    "5,000",
-    "7,000",
-    "9,000",
-    "10,000",
-    "15,000",
-  ];
+  final StmstRepository _stmstrepository = StmstRepository();
+  final TextEditingController _searchController = TextEditingController();
+  bool _isLoading = false;
+  List<StmstModel> _searchResults = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('코드'),
+        title: const Text('대리인업체'),
       ),
-      body: ListView.separated(
-        padding: EdgeInsets.all(8),
-        itemCount: comments.length,  // 카드뷰 갯수
-        itemBuilder: (context, index) {
-          return Card(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(
-                    icons[index],
-                    color: Colors.redAccent,
-                  ),
-                  title: Text('${comments[index]}'),
-                  subtitle: Text(
-                    '가격 : ${wons[index]} 원',
-                  ),
-                ),
-                ButtonBar(
-                  children: <Widget>[
-                    TextButton(
-                      child: Text('확인'),
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                          textStyle: TextStyle(fontWeight: FontWeight.bold,),
-                          backgroundColor: Colors.amberAccent),
-                    )
-                  ],
-                )
-              ],
+      body: Column(
+          children: [
+            TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: "상호를 입력하세요",
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white54,
+              ),
             ),
-          );
-        },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
-      ),
+            SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(onPressed: () {
+                  _performSearch();
+                },
+             child: const Text("   검 색   "),)),
+            const SizedBox(height: 10),
+            Expanded(
+              child: _isLoading ? Center(child: CircularProgressIndicator())
+              : ListView.separated(
+                padding: const EdgeInsets.all(8),
+                itemCount: _searchResults.length,  // 카드뷰 갯수
+                itemBuilder: (context, index) {
+                  final item = _searchResults[index];
+                  return Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('코드: ${item.CUST_CD}'),
+                              Text('사업자 번호: ${item.ETPR_NO}'),
+                            ],
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('상호: ${item.CUST_NM}'),
+                              Text('대표자: ${item.RPST_NM}'),
+                            ],
+                          ),
+                        ),
+                        ButtonBar(
+                          children: <Widget>[
+                            TextButton(
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                  textStyle: const TextStyle(fontWeight: FontWeight.bold,),
+                                  backgroundColor: Colors.amberAccent),
+                              child: const Text('확인'),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider();
+                },
+              ),
+            )
+          ],
+        )
     );
   }
+
+  void _performSearch() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final results = await _stmstrepository.getStmstList(
+        CORP_ID: CORP_ID,
+        SELECT_VALUE: 1,
+        SEARCH_WORDS: _searchController.text,
+        PLATFORM: PLATFORM);
+
+    setState(() {
+      _searchResults = results;
+      _isLoading = false;
+    });
+
+  }
+
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ship_5bv_app/screen/auth_screen.dart';
 import 'package:ship_5bv_app/screen/document_list.dart';
 
 
@@ -13,9 +12,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>{
 
   final List<Widget> _tabs = [
-    DocumentList(),
-    DocumentList(),
-    DocumentList()
+    const DocumentList(docdiv: 'GOVCBR5JIList'),
+    const DocumentList(docdiv: 'GOVCBRDB5List'),
+    const DocumentList(docdiv: 'GOVCBRDB6List')
   ];
 
   @override
@@ -23,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen>{
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
           backgroundColor: Colors.amber,
           title: const Text('선용품 이행 완료 보고'),
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen>{
           ),
         ),
         body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           children: _tabs,
         ),
       )
