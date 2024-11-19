@@ -6,7 +6,9 @@ import 'package:ship_5bv_app/screen/anchorage_screen.dart';
 
 class Govcbrdb6Contents extends StatefulWidget{
 
-  const Govcbrdb6Contents({super.key});
+  final String docNo;
+
+  const Govcbrdb6Contents({super.key, required this.docNo});
 
   @override
   State<Govcbrdb6Contents> createState() => _Govcbrdb6Contents();
@@ -18,7 +20,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset : false,
-      body: SingleChildScrollView(child:  SafeArea(
+      body: SafeArea(
         child: Container(
           color: Colors.white,
           width: MediaQuery.of(context).size.width,
@@ -28,8 +30,8 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
               child: Column(
                 children: [
                   Row (children: [
-                  Text('문서기능'),
-                  SizedBox( height: 30, width: 30,),
+                  const Text('문서기능'),
+                  const SizedBox( height: 30, width: 30,),
                   SizedBox(
                     width: 50, // 원하는 너비 설정
                     height: 35,
@@ -43,12 +45,12 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       },
                     ),
                   ),
-                  SizedBox(width: 5,),
-                  Text('[9:원본, 35:재전송]'),]),
-                  SizedBox( height: 5),
+                  const SizedBox(width: 5,),
+                  const Text('[9:원본, 35:재전송]'),]),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('문서구분'),
-                    SizedBox( height: 30, width: 30,),
+                    const Text('문서구분'),
+                    const SizedBox( height: 30, width: 30,),
                     SizedBox(
                       width: 50, // 원하는 너비 설정
                       height: 35,
@@ -62,12 +64,12 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox(width: 5,),
-                    Text('[1:완료보고, 2:이행확인]'),]),
-                  SizedBox( height: 5),
+                    const SizedBox(width: 5,),
+                    const Text('[1:완료보고, 2:이행확인]'),]),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('보고일자'),
-                    SizedBox( height: 30, width: 30,),
+                    const Text('보고일자'),
+                    const SizedBox( height: 30, width: 30,),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -82,10 +84,10 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                    ]),
-                  SizedBox( height: 5),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('환적일시'),
-                    SizedBox( height: 30, width: 30,),
+                    const Text('환적일시'),
+                    const SizedBox( height: 30, width: 30,),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -99,7 +101,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(width: 5,),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
@@ -113,13 +115,13 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox( height: 30, width: 5,),
-                    Text('(HHMM~4자리)'),
+                    const SizedBox( height: 30, width: 5,),
+                    const Text('(HHMM~4자리)'),
                   ]),
-                  SizedBox( height: 5),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('하선일시'),
-                    SizedBox( height: 30, width: 30,),
+                    const Text('하선일시'),
+                    const SizedBox( height: 30, width: 30,),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -133,7 +135,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(width: 5,),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
@@ -147,13 +149,13 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox( height: 30, width: 5,),
-                    Text('(HHMM~4자리)'),
+                    const SizedBox( height: 30, width: 5,),
+                    const Text('(HHMM~4자리)'),
                   ]),
-                  SizedBox( height: 5),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('작업선명'),
-                    SizedBox( height: 30, width: 30,),
+                    const Text('작업선명'),
+                    const SizedBox( height: 30, width: 30,),
                     SizedBox(
                       width: 200, // 원하는 너비 설정
                       height: 35,
@@ -168,10 +170,10 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                   ]),
-                  SizedBox( height: 5),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('차량번호'),
-                    SizedBox( height: 30, width: 30,),
+                    const Text('차량번호'),
+                    const SizedBox( height: 30, width: 30,),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -187,8 +189,8 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                     ),
                   ]),
                   Row (children: [
-                    Text('세관/정박항'),
-                    SizedBox( height: 30, width: 10,),
+                    const Text('세관/정박항'),
+                    const SizedBox( height: 30, width: 10,),
                     SizedBox(
                       width: 50, // 원하는 너비 설정
                       height: 35,
@@ -202,7 +204,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(width: 5,),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
@@ -216,7 +218,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
+                    const CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -231,24 +233,24 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                   ]),
-                  SizedBox( height: 5),
+                  const SizedBox( height: 5),
                   Row (children: [
-                    Text('보고업체'),
-                    SizedBox( height: 30, width: 20,),
+                    const Text('보고업체'),
+                    const SizedBox( height: 30, width: 20,),
                     SizedBox(
                       height: 35,
                       child: Radio<String>(value: '신고인', groupValue: '신고인', onChanged: (String? value) {  },),
                     ),
-                    Text('신고인'),
+                    const Text('신고인'),
                     SizedBox(
                       width: 50, // 원하는 너비 설정
                       height: 35,
                       child: Radio<String>(value: '대리인', groupValue: '', onChanged: (String? value) {  },),
                     ),
-                    Text('대리인'),
+                    const Text('대리인'),
                   ]),
                   Row (children: [
-                    SizedBox( height: 30, width: 80,),
+                    const SizedBox( height: 30, width: 80,),
                     SizedBox(
                       width: 50, // 원하는 너비 설정
                       height: 35,
@@ -262,7 +264,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회"),
+                    const CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회"),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
@@ -276,7 +278,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                         },
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(width: 5,),
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
@@ -291,21 +293,20 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents>{
                       ),
                     ),
                   ]),
-                  SizedBox( height: 5),
+                  const SizedBox( height: 5),
                   Row (
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    ElevatedButton(onPressed: () {  }, child: Text('저장'),),
-                    SizedBox(width: 10,),
-                    ElevatedButton(onPressed: () {  }, child: Text('송신'),),
-                    SizedBox(width: 10,),
-                    ElevatedButton(onPressed: () {  }, child: Text('목록'),),
+                    ElevatedButton(onPressed: () {  }, child: const Text('저장'),),
+                    const SizedBox(width: 10,),
+                    ElevatedButton(onPressed: () {  }, child: const Text('송신'),),
+                    const SizedBox(width: 10,),
+                    ElevatedButton(onPressed: () {  }, child: const Text('목록'),),
                   ]),
                 ],
               ),
             )
         ),
-      ),
       ),
     );
   }
