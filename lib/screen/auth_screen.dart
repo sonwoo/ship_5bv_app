@@ -20,7 +20,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   String _userType = 'EDI'; // 초기값으로 'EDI' 설정
   final TextEditingController _businessNumberController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController _userIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _saveLoginInfo = false;
@@ -116,42 +116,41 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
-        child: AppBar(
-          backgroundColor: Colors.blueAccent,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/img/ship.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(80),
+      //   child: AppBar(
+      //     backgroundColor: Colors.blueAccent,
 
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(20),
+      //     ),
 
-          title: Padding(
-              padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-              child: Text(
-                '선박용품 이행착수(완료) 보고서 App',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  color: Colors.red[200],
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Arial',
-                ),
-              )),
-          centerTitle: true, //title center 정렬
-          elevation: 0, //appbar 그림자 없애기
+      //     title: Padding(
+      //         padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+      //         child: Text(
+      //           '선박용품 이행착수(완료) 보고서 App',
+      //           style: TextStyle(
+      //             fontSize: 24.0,
+      //             color: Colors.red[200],
+      //             fontWeight: FontWeight.bold,
+      //             fontFamily: 'Arial',
+      //           ),
+      //         )),
+      //     centerTitle: true, //title center 정렬
+      //     elevation: 0, //appbar 그림자 없애기
 
-          //appbar 배경 이미지 삽입
-        ),
-      ),
+      //     //appbar 배경 이미지 삽입
+      //   ),
+      // ),
       body: Container(
-        color: Colors.green[50],
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/img/login_bg.jpg'),
+            fit: BoxFit.fill, //
+          ),
+        ),
+
+        //color: Colors.green[50],
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -160,7 +159,29 @@ class _AuthScreenState extends State<AuthScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 10,
+                height: 45,
+              ),
+              Text(
+                '선박용품 이행착수(완료)',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Arial',
+                ),
+              ),
+              Text(
+                '보고서 Application',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Arial',
+                ),
+              ),
+
+              const SizedBox(
+                height: 55,
               ),
               // Row(
               //   children: [
@@ -187,42 +208,57 @@ class _AuthScreenState extends State<AuthScreen> {
               //     const Text('EDI 선용품'),
               //   ],
               // ),
-              TextField(
-                controller: _businessNumberController,
-                decoration: const InputDecoration(labelText: '사업자번호'),
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly
-                ], // 숫자만 입력 가능
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: TextField(
+                  controller: _businessNumberController,
+                  decoration: const InputDecoration(labelText: '사업자번호'),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly
+                  ], // 숫자만 입력 가능
+                ),
               ),
-              TextField(
-                controller: _userIdController,
-                decoration: const InputDecoration(labelText: '아이디'),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: TextField(
+                  controller: _userIdController,
+                  decoration: const InputDecoration(labelText: '아이디'),
+                ),
               ),
-              TextField(
-                controller: _passwordController,
-                decoration: const InputDecoration(labelText: '패스워드'),
-                obscureText: true,
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: TextField(
+                  controller: _passwordController,
+                  decoration: const InputDecoration(labelText: '패스워드'),
+                  obscureText: true,
+                ),
               ),
-              Row(
-                children: [
-                  Checkbox(
-                    value: _saveLoginInfo,
-                    onChanged: (value) {
-                      setState(() {
-                        _saveLoginInfo = value!;
-                      });
-                    },
-                  ),
-                  const Text('로그인 정보 저장'),
-                ],
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Checkbox(
+                      value: _saveLoginInfo,
+                      onChanged: (value) {
+                        setState(() {
+                          _saveLoginInfo = value!;
+                        });
+                      },
+                    ),
+                    const Text('로그인 정보 저장'),
+                  ],
+                ),
               ),
               const SizedBox(height: 5),
+
               ElevatedButton(
                 onPressed: _login,
                 child: const Text('로그인'),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size.fromHeight(50), // 버튼 높이 설정
+                  minimumSize: Size(
+                      MediaQuery.of(context).size.width * 0.7, 50), // 버튼 높이 설정
+
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // 모서리 둥글기를 조절
                   ),
@@ -250,7 +286,7 @@ class _AuthScreenState extends State<AuthScreen> {
       //   ],
       // ),
       bottomNavigationBar: Container(
-        color: Colors.lightGreen[200],
+        color: Colors.grey[300],
         height: 50,
         child: Center(
           child: Text(
