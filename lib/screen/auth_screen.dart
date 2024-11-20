@@ -143,7 +143,7 @@ class _AuthScreenState extends State<AuthScreen> {
       //   ),
       // ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/img/login_bg.jpg'),
             fit: BoxFit.fill, //
@@ -159,9 +159,9 @@ class _AuthScreenState extends State<AuthScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 45,
+                height: 30,
               ),
-              Text(
+              const Text(
                 '선박용품 이행착수(완료)',
                 style: TextStyle(
                   fontSize: 24.0,
@@ -170,8 +170,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   fontFamily: 'Arial',
                 ),
               ),
-              Text(
-                '보고서 Application',
+              const Text(
+                '보고서 Application1',
                 style: TextStyle(
                   fontSize: 24.0,
                   color: Colors.white,
@@ -181,7 +181,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
 
               const SizedBox(
-                height: 55,
+                height: 70,
               ),
               // Row(
               //   children: [
@@ -208,7 +208,7 @@ class _AuthScreenState extends State<AuthScreen> {
               //     const Text('EDI 선용품'),
               //   ],
               // ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: TextField(
                   controller: _businessNumberController,
@@ -219,14 +219,14 @@ class _AuthScreenState extends State<AuthScreen> {
                   ], // 숫자만 입력 가능
                 ),
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: TextField(
                   controller: _userIdController,
                   decoration: const InputDecoration(labelText: '아이디'),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: TextField(
                   controller: _passwordController,
@@ -288,7 +288,7 @@ class _AuthScreenState extends State<AuthScreen> {
       bottomNavigationBar: Container(
         color: Colors.grey[300],
         height: 50,
-        child: Center(
+        child: const Center(
           child: Text(
             '부산시 동구 중앙대로 240(초량동)현대해상빌딩 6층\nTel.051-966-7000 Fax.051-966-8000',
             style: TextStyle(
