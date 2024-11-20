@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:ship_5bv_app/util.dart';
 import 'package:ship_5bv_app/screen/home_screen.dart';
+import 'package:ship_5bv_app/globals.dart';
 
 enum Type { edi, cs }
 
@@ -96,7 +97,10 @@ class _AuthScreenState extends State<AuthScreen> {
         showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다.");
       } else {
         String ret = response.data["Message"];
-        if (ret == "인증이 성공하였습니다.") {
+        if (ret.contains("인증이 성공하였습니다.")) {
+          WORK_DIV = ret.split('/')[1];
+          CORP_ID = ret.split('/')[2];
+          PLATFORM = ret.split('/')[3];
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (_) => const HomeScreen()));
         } else {
