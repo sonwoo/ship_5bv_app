@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ship_5bv_app/component/custom_text_field.dart';
 import 'package:ship_5bv_app/component/custom_popup_buttons.dart';
+import 'package:ship_5bv_app/component/custom_text_field.dart';
+import 'package:ship_5bv_app/model/govcbr5JI_contents_model.dart';
+import 'package:ship_5bv_app/repository/govcbr5JI_repository.dart';
 import 'package:ship_5bv_app/screen/stmst_screen.dart';
 import 'package:ship_5bv_app/screen/anchorage_screen.dart';
-
+import 'package:ship_5bv_app/globals.dart';
+import 'package:intl/intl.dart';
+import 'package:ship_5bv_app/util.dart';
 
 class Govcbr5jiContents extends StatefulWidget{
 
@@ -17,17 +21,56 @@ class Govcbr5jiContents extends StatefulWidget{
 
 class _Govcbr5jiContents extends State<Govcbr5jiContents>{
 
+  final Govcbr5jiRepository _govcbr5jiRepository = Govcbr5jiRepository();
+  List<Govcbr5jiContentsModel> _contentsModel = [];
+  Govcbr5jiContentsModel? item;
+  String initDate = '${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}';
+
+  final TextEditingController txtSSD_JUNGBAK_COD = TextEditingController();
+  final TextEditingController txtSSD_SE = TextEditingController();
+  final TextEditingController txtTMPPORT_CD = TextEditingController();
+
+  final TextEditingController txtSSD_AGNT_CD = TextEditingController();
+  final TextEditingController txtSSD_AGNT_MK = TextEditingController();
+  final TextEditingController txtSSD_AGNT_NM = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState()
+  {
+    super.initState();
+    _getContents();
+
+  }
+
+  @override
+  void dispose() {
+    // TextEditingController 해제
+    txtSSD_SE.dispose();
+    txtTMPPORT_CD.dispose();
+    txtSSD_JUNGBAK_COD.dispose();
+    txtSSD_AGNT_CD.dispose();
+    txtSSD_AGNT_MK.dispose();
+    txtSSD_AGNT_NM.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset : false,
-      body: SafeArea(
+      body: item == null ? const Center(child: CircularProgressIndicator()) :
+        SafeArea(
         child: Container(
           color: Colors.white,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
             child: Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, top: 8,bottom: 8),
+              child: Form(
+              key: formKey,
               child: Column(
                 children: [
                   Row (children: [
@@ -37,9 +80,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     width: 50, // 원하는 너비 설정
                     height: 35,
                     child: CustomTextField(
+                      initialValue: item?.SSD_MSG_GI2,
                       isTime: false,
-                      onSaved: (String? val){
-                        //startTime = int.parse(val!);
+                      onSaved: (val){
+                        setState(() {
+                          item?.SSD_MSG_GI2 = val;
+                        });
                       },
                       validator:  (String? val){
                         return null;
@@ -56,9 +102,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       width: 50, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        initialValue: item?.SSD_F_GBN,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_F_GBN = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
@@ -74,15 +123,31 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
-                      child: CustomTextField(
-                        isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime.now(),
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
+                            locale: const Locale('ko', 'KR'),
+                          );
+                          if (selectedDate != null) {
+                            setState(() {
+                              item?.SSD_RPT_DAY = DateFormat('yyyy-MM-dd').format(selectedDate);
+                            });
+                          }
                         },
-                        validator:  (String? val){
-                          return null;
-                        },
-                      ),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(40, 30),
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ), child: Text(item?.SSD_RPT_DAY ?? initDate),
+                      )
                     ),
                    ]),
                   const SizedBox( height: 5),
@@ -92,24 +157,43 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     SizedBox(
                       width: 100, // 원하는 너비 설정
                       height: 35,
-                      child: CustomTextField(
-                        isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime.now(),
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
+                            locale: const Locale('ko', 'KR'),
+                          );
+                          if (selectedDate != null) {
+                            setState(() {
+                              item?.SSD_5BV_DAY = DateFormat('yyyy-MM-dd').format(selectedDate);
+                            });
+                          }
                         },
-                        validator:  (String? val){
-                          return null;
-                        },
-                      ),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(40, 30),
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ), child: Text(item?.SSD_5BV_DAY ?? initDate),
+                      )
                     ),
                     const SizedBox(width: 5,),
                     SizedBox(
-                      width: 60, // 원하는 너비 설정
+                      width: 70, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
-                        isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        initialValue: item?.SSD_5BV_HM,
+                        isTime: true,
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_5BV_HM = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
@@ -127,9 +211,10 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        initialValue: item?.SSD_CRG_NM,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          //이필드는 값만 보여주기때문에 저장하는 부분 없음
                         },
                         validator:  (String? val){
                           return null;
@@ -141,12 +226,15 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     const Text('세관/정박항'),
                     const SizedBox( height: 30, width: 10,),
                     SizedBox(
-                      width: 50, // 원하는 너비 설정
+                      width: 55, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        controller: txtSSD_SE,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_SE = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
@@ -155,19 +243,30 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     ),
                     const SizedBox(width: 5,),
                     SizedBox(
-                      width: 80, // 원하는 너비 설정
+                      width: 75, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        controller: txtSSD_JUNGBAK_COD,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_JUNGBAK_COD = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
                         },
                       ),
                     ),
-                    const CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
+                    CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회",
+                      onSelected:(result) {
+                      setState(() {
+                        txtSSD_SE.text = result['SSD_SE'] ?? "";
+                        txtSSD_JUNGBAK_COD.text = result['SSD_JUNGBAK_COD'] ?? "";
+                        txtTMPPORT_CD.text = result['TMPPORT_CD'] ?? "";
+                        });
+                      },
+                      ),
                   ]),
                   Row (children: [
                     const SizedBox( height: 30, width: 80,),
@@ -175,9 +274,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        controller: txtTMPPORT_CD,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.TMPPORT_CD = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
@@ -193,9 +295,10 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        initialValue: item?.SSD_BWH_NM,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          //이필드는 값만 보여주기때문에 저장하는 부분 없음
                         },
                         validator:  (String? val){
                           return null;
@@ -209,13 +312,21 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     const SizedBox( height: 30, width: 20,),
                     SizedBox(
                       height: 35,
-                      child: Radio<String>(value: '신고인', groupValue: '신고인', onChanged: (String? value) {  },),
+                      child: Radio<String>(value: '1', groupValue: item?.SSD_ROLE_DIV, onChanged: (val) {
+                        setState(() {
+                          item?.SSD_ROLE_DIV = '1';
+                        });
+                      },),
                     ),
                     const Text('신고인'),
                     SizedBox(
                       width: 50, // 원하는 너비 설정
                       height: 35,
-                      child: Radio<String>(value: '대리인', groupValue: '', onChanged: (String? value) {  },),
+                      child: Radio<String>(value: '2', groupValue: item?.SSD_ROLE_DIV, onChanged: (val) {
+                        setState(() {
+                          item?.SSD_ROLE_DIV = '2';
+                        });
+                      },),
                     ),
                     const Text('대리인'),
                   ]),
@@ -225,23 +336,36 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       width: 50, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        controller: txtSSD_AGNT_CD,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_AGNT_CD = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
                         },
                       ),
                     ),
-                    const CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회"),
+                    CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회" ,
+                      onSelected:(result) {
+                        setState(() {
+                          txtSSD_AGNT_CD.text = result['SSD_AGNT_CD'] ?? "";
+                          txtSSD_AGNT_MK.text = result['SSD_AGNT_MK'] ?? "";
+                          txtSSD_AGNT_NM.text = result['SSD_AGNT_NM'] ?? "";
+                        });
+                      },),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        controller: txtSSD_AGNT_MK,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_AGNT_MK = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
@@ -257,9 +381,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       width: 200, // 원하는 너비 설정
                       height: 35,
                       child: CustomTextField(
+                        controller: txtSSD_AGNT_NM,
                         isTime: false,
-                        onSaved: (String? val){
-                          //startTime = int.parse(val!);
+                        onSaved: (val){
+                          setState(() {
+                            item?.SSD_AGNT_NM = val;
+                          });
                         },
                         validator:  (String? val){
                           return null;
@@ -270,7 +397,16 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                   Row (
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    ElevatedButton(onPressed: () {  }, child: const Text('저장'),),
+                    ElevatedButton(onPressed: () async {
+
+                      formKey.currentState!.save();
+                      var ret = await _govcbr5jiRepository.updateConents(widget.docNo, item!);
+
+                      if(ret.toString() == "OK") {
+                         showCustomAlertPopup(context, "저장완료", "정보가 저장 되었습니다.");
+                      }
+
+                    }, child: const Text('저장'),),
                     const SizedBox(width: 10,),
                     ElevatedButton(onPressed: () {  }, child: const Text('송신'),),
                     const SizedBox(width: 10,),
@@ -279,11 +415,63 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                     }, child: const Text('목록'),),
                   ]),
                 ],
+              )
               ),
-            )
+        ),
         ),
       ),
     );
+  }
+
+  void _getContents() async {
+
+    final results = await _govcbr5jiRepository.getContents(
+      CORP_ID: CORP_ID,
+      SSD_KEY: widget.docNo,
+      WORK_DIV: WORK_DIV,
+      PLATFORM: PLATFORM,
+    );
+
+    setState(()
+    {
+      _contentsModel = results;
+
+      if (_contentsModel.isNotEmpty) {
+
+        item = _contentsModel[0];
+        if (item != null)
+        {
+          if(item?.SSD_SE != null) {
+            txtSSD_SE.text = item!.SSD_SE ?? '';
+          }
+
+          if(item?.SSD_JUNGBAK_COD != null) {
+            txtSSD_JUNGBAK_COD.text = item!.SSD_JUNGBAK_COD ?? '';
+          }
+
+          if(item?.TMPPORT_CD != null) {
+            txtTMPPORT_CD.text = item!.TMPPORT_CD ?? '';
+          }
+
+          if(item?.SSD_AGNT_CD != null) {
+            txtSSD_AGNT_CD.text = item!.SSD_AGNT_CD ?? '';
+          }
+
+          if(item?.SSD_AGNT_MK != null) {
+            txtSSD_AGNT_MK.text = item!.SSD_AGNT_MK ?? '';
+          }
+
+          if(item?.SSD_AGNT_NM != null) {
+            txtSSD_AGNT_NM.text = item!.SSD_AGNT_NM ?? '';
+          }
+
+        }
+
+      } else {
+        Navigator.pop(context);
+      }
+    });
+
   }
 
 }
