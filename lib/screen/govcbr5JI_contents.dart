@@ -9,6 +9,7 @@ import 'package:ship_5bv_app/screen/anchorage_screen.dart';
 import 'package:ship_5bv_app/globals.dart';
 import 'package:intl/intl.dart';
 import 'package:ship_5bv_app/util.dart';
+import 'package:ship_5bv_app/screen/freight_list.dart';
 
 class Govcbr5jiContents extends StatefulWidget{
 
@@ -407,12 +408,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
 
                       if(ret.toString() == "OK") {
                          ret = await _sendCheckRepository.checkDoEnd(widget.docNo, "2", false);
-
-                         if(ret != "OK"){
-                           showCustomAlertPopup(context, "오류", ret);
-                         }
-                         else
-                          showCustomAlertPopup(context, "저장완료", "정보가 저장 되었습니다.");
+                         showCustomAlertPopup(context, "", ret);
                       }
                       else {
                         showCustomAlertPopup(context, "", "정보를 저장할 수 없습니다.");
@@ -426,10 +422,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       Navigator.pop(context);
                     }, child: const Text('목록'),),
                   ]),
-                  //Expanded(child: child)
+                  Expanded(child:
+                   FreightList(docno: widget.docNo, docdiv:"GOVCBR5JIFreightList",)
+                  )
                 ],
               )
-              ),
+          ),
         ),
         ),
       ),
