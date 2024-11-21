@@ -3,6 +3,7 @@ import 'package:ship_5bv_app/component/custom_popup_buttons.dart';
 import 'package:ship_5bv_app/component/custom_text_field.dart';
 import 'package:ship_5bv_app/model/govcbr5JI_contents_model.dart';
 import 'package:ship_5bv_app/repository/govcbr5JI_repository.dart';
+import 'package:ship_5bv_app/repository/send_check_repository.dart';
 import 'package:ship_5bv_app/screen/stmst_screen.dart';
 import 'package:ship_5bv_app/screen/anchorage_screen.dart';
 import 'package:ship_5bv_app/globals.dart';
@@ -22,6 +23,8 @@ class Govcbr5jiContents extends StatefulWidget{
 class _Govcbr5jiContents extends State<Govcbr5jiContents>{
 
   final Govcbr5jiRepository _govcbr5jiRepository = Govcbr5jiRepository();
+  final SendCheckRepository _sendCheckRepository = SendCheckRepository();
+
   List<Govcbr5jiContentsModel> _contentsModel = [];
   Govcbr5jiContentsModel? item;
   String initDate = '${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}';
@@ -403,7 +406,16 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       var ret = await _govcbr5jiRepository.updateConents(widget.docNo, item!);
 
                       if(ret.toString() == "OK") {
-                         showCustomAlertPopup(context, "저장완료", "정보가 저장 되었습니다.");
+                         ret = await _sendCheckRepository.checkDoEnd(widget.docNo, "2", false);
+
+                         if(ret != "OK"){
+                           showCustomAlertPopup(context, "오류", ret);
+                         }
+                         else
+                          showCustomAlertPopup(context, "저장완료", "정보가 저장 되었습니다.");
+                      }
+                      else {
+                        showCustomAlertPopup(context, "", "정보를 저장할 수 없습니다.");
                       }
 
                     }, child: const Text('저장'),),
@@ -414,6 +426,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                       Navigator.pop(context);
                     }, child: const Text('목록'),),
                   ]),
+                  //Expanded(child: child)
                 ],
               )
               ),
