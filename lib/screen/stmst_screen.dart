@@ -18,69 +18,91 @@ class _StmstScreenState extends State<StmstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('대리인업체'),
-      ),
-      body: Column(
+        appBar: AppBar(
+          toolbarHeight: 40,
+          title: const Text(
+            '대리인 업체',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        body: Column(
           children: [
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: "상호를 입력하세요",
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white54,
+            SizedBox(
+              height: 40,
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: "상호를 입력하세요",
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white54,
+                ),
               ),
             ),
             SizedBox(
+                height: 40,
                 width: double.infinity,
-                child: ElevatedButton(onPressed: () {
-                  _performSearch();
-                },
-             child: const Text("   검 색   "),)),
-            const SizedBox(height: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _performSearch();
+                  },
+                  child: const Text("   검 색   "),
+                )),
+            const SizedBox(height: 5),
             Expanded(
-              child: _isLoading ? Center(child: CircularProgressIndicator())
-              : ListView.separated(
-                padding: const EdgeInsets.all(8),
-                itemCount: _searchResults.length,  // 카드뷰 갯수
-                itemBuilder: (context, index) {
-                  final item = _searchResults[index];
-                  return Card(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ListTile(
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('코드: ${item.CUST_CD}'),
-                              Text('사업자 번호: ${item.ETPR_NO}'),
+              child: _isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView.separated(
+                      padding: const EdgeInsets.all(8),
+                      itemCount: _searchResults.length, // 카드뷰 갯수
+                      itemBuilder: (context, index) {
+                        final item = _searchResults[index];
+                        return Card(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ListTile(
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '사업자 번호: ${item.ETPR_NO}',
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('상호: ${item.CUST_NM}'),
+                                    Text('대표자: ${item.RPST_NM}'),
+                                  ],
+                                ),
+                                onTap: () {
+                                  Navigator.pop(context, {
+                                    'SSD_AGNT_CD': item.CUST_CD,
+                                    'SSD_AGNT_MK': item.SUPL_CD,
+                                    'SSD_AGNT_NM': item.CUST_NM
+                                  });
+                                },
+                              ),
                             ],
                           ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('상호: ${item.CUST_NM}'),
-                              Text('대표자: ${item.RPST_NM}'),
-                            ],
-                          ),
-                          onTap: () {
-                            Navigator.pop(context,{'SSD_AGNT_CD': item.CUST_CD,'SSD_AGNT_MK' : item.SUPL_CD,'SSD_AGNT_NM':item.CUST_NM});
-                          } ,
-                        ),
-                      ],
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return const Divider();
+                      },
                     ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider();
-                },
-              ),
             )
           ],
-        )
-    );
+        ));
   }
 
   void _performSearch() async {
@@ -98,7 +120,5 @@ class _StmstScreenState extends State<StmstScreen> {
       _searchResults = results;
       _isLoading = false;
     });
-
   }
-
 }
