@@ -8,26 +8,31 @@ class CustomTextField extends StatelessWidget {
 
   final FormFieldSetter<String> onSaved;
   final FormFieldValidator<String> validator;
+  final TextEditingController? controller;
+  final String? initialValue;
 
-  const CustomTextField({super.key, required this.isTime, required this.onSaved, required this.validator});
+  const CustomTextField({super.key, required this.isTime, required this.onSaved, required this.validator, this.initialValue, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: TextFormField(
+              controller: controller,
+              initialValue: controller == null ? initialValue : null, // controller가 없을 때만 initialValue 사용
               onSaved: onSaved,
               validator: validator,
               cursorColor: Colors.grey,
-              maxLines: isTime ? 1:null,
-              expands: !isTime,
-              keyboardType: isTime? TextInputType.number:TextInputType.multiline,
+              maxLines: 1,
+              keyboardType: isTime? TextInputType.number:null,
               inputFormatters: isTime?
-              [FilteringTextInputFormatter.digitsOnly,]:[],
+              [
+               FilteringTextInputFormatter.digitsOnly,  // 숫자만 허용
+               LengthLimitingTextInputFormatter(4),   // 4자리로 제한
+              ]:[],
               decoration: InputDecoration(
                 border: InputBorder.none,
                 filled: true,
                 fillColor: TEXT_FIELD_FILL_COLOR,
-                suffixText: isTime ? "시":null,
               ),
             )
         );

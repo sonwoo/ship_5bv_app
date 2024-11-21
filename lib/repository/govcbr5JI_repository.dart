@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:ship_5bv_app/globals.dart';
 import 'package:ship_5bv_app/model/govcbr5JI_contents_model.dart';
 
 
@@ -28,6 +29,26 @@ class Govcbr5jiRepository {
 
     return jsonData.map((item) => Govcbr5jiContentsModel.fromJson(item)).toList();
 
+  }
+  
+  Future<String> updateConents(String SSD_KEY, Govcbr5jiContentsModel model)
+  async {
+
+    final modelString = model.toJson();
+
+    final requestData = {
+      "CORP_ID": CORP_ID,
+      "WORK_DIV": WORK_DIV,
+      "PLATFORM": PLATFORM,
+      "SSD_KEY": SSD_KEY,
+      "json": modelString, // JSON 데이터를 포함
+    };
+
+    final  jsonString = jsonEncode(requestData);
+
+    final resp = await _dio.put('${_targetUrl}GOVCBR5JIContent', data: jsonString);
+
+    return resp.data.toString();
   }
 
 

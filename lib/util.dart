@@ -5,7 +5,7 @@ void showCustomAlertPopup(BuildContext context, String title, String message) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return CustomAlertPopup(title: title, message: message);
+      return CustomAelrtPopup(title: title, message: message);
     },
   );
 }

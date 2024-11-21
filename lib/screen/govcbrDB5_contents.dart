@@ -167,7 +167,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents>{
                         },
                       ),
                     ),
-                    const CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
+                    //const CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회"),
                   ]),
                   Row (children: [
                     const SizedBox( height: 30, width: 80,),
@@ -216,7 +216,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents>{
                         },
                       ),
                     ),
-                    const CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회"),
+                    //const CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회"),
                     SizedBox(
                       width: 80, // 원하는 너비 설정
                       height: 35,
