@@ -19,28 +19,57 @@ class _AnchorageState extends State<Anchorage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('정 박 항'),
+          toolbarHeight: 40,
+          title: const Text(
+            '정 박 항',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: Column(
           children: [
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: "정박항을 입력하세요",
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white54,
+            SizedBox(
+              height: 40,
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: "정박항을 입력하세요",
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white54,
+                ),
               ),
             ),
             SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+                height: 40,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     _performSearch();
                   },
-                  child: const Text("   검 색   "),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(10.0), // 버튼 모서리 둥글게 만들기
+                    ),
+                  ),
+                  child: const Text(
+                    "   검      색   ",
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      //overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 )),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             Expanded(
               child: _isLoading
                   ? Center(child: CircularProgressIndicator())
@@ -59,72 +88,50 @@ class _AnchorageState extends State<Anchorage> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        showDialog(
-                                          context: context, // 빌드 컨텍스트를 전달
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: const Text(
-                                                '정박항',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
+                                        if ('${item.ANCH_NM}'.length >= 15) {
+                                          // 임의의 너비 값
+
+                                          showDialog(
+                                            context: context, // 빌드 컨텍스트를 전달
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: const Text(
+                                                  '정박항',
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                              content: Text(
-                                                '${item.ANCH_NM}',
-                                                style: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
+                                                content: Text(
+                                                  '${item.ANCH_NM}',
+                                                  style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          Navigator.pop(context, {
+                                            'SSD_SE': item.CUSTOMS_CD,
+                                            'SSD_JUNGBAK_COD': item.ANCH_CD,
+                                            'TMPPORT_CD': item.PORT_CD
+                                          });
+                                        }
+                                        ;
                                       },
                                       child: Text(
                                         '${item.ANCH_NM}', //'정박항:
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
-                                          overflow: TextOverflow.ellipsis,
+                                          //overflow: TextOverflow.ellipsis,
                                         ),
+
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-
-                                    // TextButton(
-                                    //   onPressed: () {
-                                    //     AlertDialog(
-                                    //       title: Text('알림'),
-                                    //       content: Text('삭제하시겠습니까?'),
-                                    //       actions: [
-                                    //         TextButton(
-                                    //           onPressed: () {
-                                    //             Navigator.pop(context);
-                                    //           },
-                                    //           child: Text('취소'),
-                                    //         ),
-                                    //         TextButton(
-                                    //           onPressed: () {
-                                    //             // 실제 삭제 로직 구현
-                                    //             print('삭제되었습니다.');
-                                    //             Navigator.pop(context);
-                                    //           },
-                                    //           child: Text('확인'),
-                                    //         ),
-                                    //       ],
-
-                                    //     );
-                                    //     //Navigator.pop(context);
-                                    //   },
-                                    //   child: Text(
-                                    //     '${item.ANCH_NM}', //'정박항:
-                                    //     style: const TextStyle(
-                                    //       fontSize: 15,
-                                    //       fontWeight: FontWeight.bold,
-                                    //       overflow: TextOverflow.ellipsis,
-                                    //     ),
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                                 subtitle: Column(

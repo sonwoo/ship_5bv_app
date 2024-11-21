@@ -161,7 +161,8 @@ class _AuthScreenState extends State<AuthScreen> {
               const SizedBox(
                 height: 20,
               ),
-               const Icon(Icons.directions_boat_filled,color: Colors.white, size: 40.0),
+              const Icon(Icons.directions_boat_filled,
+                  color: Colors.white, size: 40.0),
               const Text(
                 '선박용품 이행착수(완료)',
                 style: TextStyle(
@@ -259,7 +260,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(
                       MediaQuery.of(context).size.width * 0.7, 50), // 버튼 높이 설정
-
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // 모서리 둥글기를 조절
                   ),

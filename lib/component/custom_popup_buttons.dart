@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ship_5bv_app/screen/anchorage_screen.dart';
 import 'package:ship_5bv_app/screen/stmst_screen.dart';
 
@@ -9,20 +10,29 @@ class CustomPopupButtons extends StatelessWidget {
   final ValueChanged<Map<String, String>> onSelected;
 
   const CustomPopupButtons(
-      {super.key, required this.title, required this.type, required this.name , required this.onSelected});
+      {super.key,
+      required this.title,
+      required this.type,
+      required this.name,
+      required this.onSelected});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
         final result = await showDialog(
-            barrierDismissible: true,
+            barrierDismissible: false,
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                insetPadding: EdgeInsets.fromLTRB(0, 80, 0, 80),
+                //content: ProductPreviewScreen(),
+                // shape: RoundedRectangleBorder(
+                // insetPadding: const EdgeInsets.all(0.0), //길이
+                //insetPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.9, vertical: MediaQuery.of(context).size.height * 0.8),
+                //insetPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 //title: Text(title),
                 content: type,
+
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -30,20 +40,36 @@ class CustomPopupButtons extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         foregroundColor:
-                            WidgetStateProperty.all(Colors.black), // 글자 색상
+                            WidgetStateProperty.all(Colors.white), // 글자 색상
+
+                        backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                          (states) {
+                            if (states.contains(WidgetState.pressed)) {
+                              return  const Color.fromRGBO(53, 80, 161, 1.0); //눌렀을때.. 색
+                            }
+                            return  const Color.fromRGBO(53, 80, 161, 1.0);
+                          },
+                        ),
                         shape: WidgetStateProperty.all(
                           RoundedRectangleBorder(
-                            side: BorderSide(
-                                color: Colors.black, width: 1), // 테두리 설정
+                            // side: BorderSide(
+                            //     color: Colors.black, width: 1), // 테두리 설정
                             borderRadius: BorderRadius.circular(10), // 모서리 둥글게
                           ),
                         ),
                       ),
-                      child: Text("닫기"))
+                      child: Text(
+                        "닫기",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ))
                 ],
               );
             });
-        if(result != null) {
+        if (result != null) {
           onSelected(result);
         }
       },

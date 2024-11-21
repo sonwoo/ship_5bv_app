@@ -43,13 +43,31 @@ class _StmstScreenState extends State<StmstScreen> {
               ),
             ),
             SizedBox(
+              height: 5,
+            ),
+            SizedBox(
                 height: 40,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     _performSearch();
                   },
-                  child: const Text("   검 색   "),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(10.0), // 버튼 모서리 둥글게 만들기
+                    ),
+                  ),
+                  child: const Text(
+                    "   검      색   ",
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      //overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 )),
             const SizedBox(height: 5),
             Expanded(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ship_5bv_app/globals.dart';
 import 'package:ship_5bv_app/model/document_list_model.dart';
 import 'package:ship_5bv_app/repository/document_list_repository.dart';
@@ -6,21 +7,19 @@ import 'package:ship_5bv_app/screen/govcbr5JI_contents.dart';
 import 'package:ship_5bv_app/screen/govcbrDB5_contents.dart';
 import 'package:ship_5bv_app/screen/govcbrDB6_contents.dart';
 
-class DocumentList extends StatefulWidget{
-
+class DocumentList extends StatefulWidget {
   final String docdiv;
 
-  const DocumentList({super.key , required this.docdiv});
+  const DocumentList({super.key, required this.docdiv});
 
   @override
-  State<StatefulWidget> createState()  => _DocumentList();
-
+  State<StatefulWidget> createState() => _DocumentList();
 }
 
-class _DocumentList extends State<DocumentList>{
-
+class _DocumentList extends State<DocumentList> {
   final TextEditingController _searchController1 = TextEditingController();
-  final DocumentListRepository _documentListRepository = DocumentListRepository();
+  final DocumentListRepository _documentListRepository =
+      DocumentListRepository();
   List<DocumentListModel> _searchResults = [];
 
   bool _isLoading = false;
@@ -29,8 +28,7 @@ class _DocumentList extends State<DocumentList>{
   DateTime end_date = DateTime.now();
 
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
     _performSearch();
   }
@@ -47,7 +45,15 @@ class _DocumentList extends State<DocumentList>{
               children: [
                 Row(
                   children: [
-                    const Text('신고일자'),
+                    const Text(
+                      '  신고일자',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Arial',
+                      ),
+                    ),
+                    //const Icon(Icons.calendar_month_outlined),
                     const SizedBox(
                       height: 30,
                       width: 30,
@@ -71,7 +77,14 @@ class _DocumentList extends State<DocumentList>{
                       child: Text(
                           "${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
                     ),
-                    const Icon(Icons.accessibility_new),
+                    const Text(
+                      ' ~ ',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Arial',
+                      ),
+                    ),
                     ElevatedButton(
                       onPressed: () async {
                         final selectedDate = await showDatePicker(
@@ -94,11 +107,18 @@ class _DocumentList extends State<DocumentList>{
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Row(
                   children: [
-                    const Text('선박이름'),
+                    const Text(
+                      '  선박이름',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Arial',
+                      ),
+                    ),
                     const SizedBox(
                       height: 30,
                       width: 30,
@@ -118,7 +138,7 @@ class _DocumentList extends State<DocumentList>{
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 SizedBox(
                     width: double.infinity,
@@ -126,78 +146,111 @@ class _DocumentList extends State<DocumentList>{
                       onPressed: () {
                         _performSearch();
                       },
-                      child: const Text("   검 색   "),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(10.0), // 버튼 모서리 둥글게 만들기
+                        ),
+                      ),
+                      child: const Text(
+                        "검    색",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                          //color: Color.fromRGBO(53, 80, 161, 1.0),
+                        ),
+                      ),
                     )),
               ],
             ),
           ),
-
           Expanded(
-            child: _isLoading ? Center(child: CircularProgressIndicator())
-              : ListView.separated(
-              padding: EdgeInsets.all(8),
-              itemCount: _searchResults.length,
-              itemBuilder: (context, index) {
-                final item = _searchResults[index];
-                return Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('제출번호: ${item.TMPSSD_KEY}'),
-                            Text('구분: ${item.TMPSSD_FD_GBN}'),
+            child: _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : ListView.separated(
+                    padding: EdgeInsets.all(8),
+                    itemCount: _searchResults.length,
+                    itemBuilder: (context, index) {
+                      final item = _searchResults[index];
+                      return Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('제출번호: ${item.TMPSSD_KEY}'),
+                                  Text('구분: ${item.TMPSSD_FD_GBN}'),
+                                ],
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('선명: ${item.SSD_SUN_NAME}'),
+                                  Text('신고일자: ${item.SSD_SIN_DAY}'),
+                                  Text('상태: ${item.TMPSSD_SND_GBN}'),
+                                  Text('이행: ${item.TMPSSD_SND_GBN2}'),
+                                  Text('완료: ${item.TMPSSD_SND_GBN3}'),
+                                ],
+                              ),
+                              onTap: () {
+                                switch (widget.docdiv) {
+                                  case "GOVCBR5JIList":
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Govcbr5jiContents(
+                                                  docNo: item.TMPSSD_KEY,
+                                                )));
+                                    break;
+                                  case "GOVCBRDB5List":
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Govcbrdb5Contents(
+                                                  docNo: item.TMPSSD_KEY,
+                                                )));
+                                    break;
+                                  case "GOVCBRDB6List":
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Govcbrdb6Contents(
+                                                  docNo: item.TMPSSD_KEY,
+                                                )));
+                                    break;
+                                }
+                              },
+                            ),
                           ],
                         ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('선명: ${item.SSD_SUN_NAME}'),
-                            Text('신고일자: ${item.SSD_SIN_DAY}'),
-                            Text('상태: ${item.TMPSSD_SND_GBN}'),
-                            Text('이행: ${item.TMPSSD_SND_GBN2}'),
-                            Text('완료: ${item.TMPSSD_SND_GBN3}'),
-                          ],
-                        ),
-                        onTap: (){
-                          switch(widget.docdiv)
-                          {
-                            case "GOVCBR5JIList":
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => Govcbr5jiContents(
-                                  docNo: item.TMPSSD_KEY,
-                                )
-                              ));
-                              break;
-                            case "GOVCBRDB5List":
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => Govcbrdb5Contents(
-                                    docNo: item.TMPSSD_KEY,
-                                  )
-                              ));
-                              break;
-                            case "GOVCBRDB6List":
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => Govcbrdb6Contents(
-                                    docNo: item.TMPSSD_KEY,
-                                  )
-                              ));
-                              break;
-                          }
-                        },
-                      ),
-                    ],
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider();
+                    },
                   ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider();
-              },
-            ),
           ),
         ],
+      ),bottomNavigationBar: Container(
+        color: Colors.grey[300],
+        height: 50,
+        child: const Center(
+          child: Text(
+            '부산시 동구 중앙대로 240(초량동)현대해상빌딩 6층\nTel.051-966-7000 Fax.051-966-8000',
+            style: TextStyle(
+              fontSize: 13, // 글자 크기를 24로 설정
+              fontWeight: FontWeight.bold, // 글자 굵게
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -208,21 +261,18 @@ class _DocumentList extends State<DocumentList>{
     });
 
     final results = await _documentListRepository.getDocumentList(
-        CORP_ID: CORP_ID,
-        START_SIN_DAY : start_date.toString(),
-        END_SIN_DAY: end_date.toString(),
-        SELECT_VALUE: 2,
-        SEARCH_WORDS: _searchController1.text,
-        PLATFORM: PLATFORM,
-        docdiv: widget.docdiv,
+      CORP_ID: CORP_ID,
+      START_SIN_DAY: start_date.toString(),
+      END_SIN_DAY: end_date.toString(),
+      SELECT_VALUE: 2,
+      SEARCH_WORDS: _searchController1.text,
+      PLATFORM: PLATFORM,
+      docdiv: widget.docdiv,
     );
 
     setState(() {
       _searchResults = results;
       _isLoading = false;
     });
-
-
   }
-
 }
