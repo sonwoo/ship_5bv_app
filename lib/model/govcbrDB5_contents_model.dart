@@ -1,4 +1,4 @@
-class Govcbr5dbContentsModel {
+class Govcbrdb5ContentsModel {
 
   String USER_ERP_ID;
   String? SSD_F_GBN;
@@ -17,7 +17,7 @@ class Govcbr5dbContentsModel {
   String? SSD_AGNT_MK;
   String? SSD_AGNT_NM;
 
-  Govcbr5dbContentsModel({
+  Govcbrdb5ContentsModel({
     required this.USER_ERP_ID,
     required this.SSD_F_GBN,
     required this.SSD_MSG_GI2,
@@ -35,8 +35,8 @@ class Govcbr5dbContentsModel {
     required this.SSD_AGNT_NM ,
     required this.SSD_SE});
 
-  factory Govcbr5dbContentsModel.fromJson(Map<String, dynamic> json) {
-    return Govcbr5dbContentsModel(
+  factory Govcbrdb5ContentsModel.fromJson(Map<String, dynamic> json) {
+    return Govcbrdb5ContentsModel(
       USER_ERP_ID :  json['USER_ERP_ID'] ?? "",
       SSD_F_GBN : json['SSD_F_GBN'] ?? "",
       SSD_MSG_GI2 : json['SSD_MSG_GI2'] ?? "",
