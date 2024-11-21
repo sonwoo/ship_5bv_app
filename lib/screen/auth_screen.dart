@@ -159,8 +159,9 @@ class _AuthScreenState extends State<AuthScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
+               const Icon(Icons.directions_boat_filled,color: Colors.white, size: 40.0),
               const Text(
                 '선박용품 이행착수(완료)',
                 style: TextStyle(
@@ -171,7 +172,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
               const Text(
-                '보고서 Application1',
+                '보고서 Application',
                 style: TextStyle(
                   fontSize: 24.0,
                   color: Colors.white,
