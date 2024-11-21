@@ -26,7 +26,7 @@ class SendCheckRepository {
           if(Send) {
             ret = jsonData[0]["RESULT"];
           } else {
-            ret = "OK";
+            ret = "정보가 저장 되었습니다.";
           }
         }
     }
