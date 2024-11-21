@@ -19,7 +19,7 @@ class SendCheckRepository {
       'SSD_KEY': SSD_KEY
     });
 
-    var resp = await _dio.get(_targetUrl, data: data);
+    var resp = await _dio.get('${_targetUrl}CheckDoEnd', data: data);
 
     return resp.data.toString();
 
