@@ -18,7 +18,7 @@ class FreightList  extends StatefulWidget{
 class _FreightListState extends State<FreightList> {
 
   final FreightListRepository _freightListRepository = FreightListRepository();
-  bool _isLoading = false;
+
   List<FreightListModel> _searchResults = [];
 
   @override
@@ -68,9 +68,6 @@ class _FreightListState extends State<FreightList> {
   }
 
   void _performSearch() async {
-    setState(() {
-      _isLoading = true;
-    });
 
     final results = await _freightListRepository.getFreightList(
         CORP_ID: CORP_ID,
@@ -81,7 +78,6 @@ class _FreightListState extends State<FreightList> {
 
     setState(() {
       _searchResults = results;
-      _isLoading = false;
     });
 
   }
