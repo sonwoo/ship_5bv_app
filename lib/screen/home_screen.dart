@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ship_5bv_app/screen/document_list.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -9,8 +8,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>{
-
+class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _tabs = [
     const DocumentList(docdiv: 'GOVCBR5JIList'),
     const DocumentList(docdiv: 'GOVCBRDB5List'),
@@ -20,29 +18,70 @@ class _HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
-      child: Scaffold(
+        length: 3,
+        child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-          backgroundColor: Colors.amber,
-          title: const Text('선용품 이행 완료 보고'),
-          centerTitle: true,
-          bottom: const TabBar(
-             tabs: [
-               Tab(text: '적재'),
-               Tab(text: '하선'),
-               Tab(text: '환적'),
-             ],
+            //backgroundColor: Colors.amber,
+
+            backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
+            title: const Text(
+              '선박용품 이행착수(완료) 보고',
+              style: const TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            centerTitle: true,
+            bottom: TabBar(
+              splashFactory: NoSplash.splashFactory,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                border: Border.all(color: Colors.white, width: 3.0),
+                gradient: const LinearGradient(
+                  //배경 그라데이션 적용
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Colors.white,
+                    Colors.white,
+                  ],
+                ),
+              ),
+              labelColor: Color.fromRGBO(53, 80, 161, 1.0),
+              unselectedLabelColor: Colors.grey,
+              labelStyle: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+              indicatorColor: Color.fromRGBO(53, 80, 161, 1.0),
+              indicatorWeight: 3.0,
+              tabs: const <Widget>[
+                Tab(
+                    child: Text('적   재',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ))),
+                Tab(
+                    child: Text('하   선',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ))),
+                Tab(
+                    child: Text('환   적',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ))),
+              ],
+            ),
           ),
-        ),
-        body: TabBarView(
-          physics: const NeverScrollableScrollPhysics(),
-          children: _tabs,
-        ),
-      )
-    );
-
+          body: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: _tabs,
+          ),
+        ));
   }
-
-
 }
