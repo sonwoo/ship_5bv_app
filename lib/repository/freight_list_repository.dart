@@ -8,7 +8,7 @@ class FreightListRepository {
   final _dio = Dio();
   final _targetUrl = "http://192.168.200.38:3000/api/";
 
-  Future<List<FreightListModel>> getDocumentList({
+  Future<List<FreightListModel>> getFreightList({
     required String CORP_ID,
     required String SSD_KEY,
     required String PLATFORM,
