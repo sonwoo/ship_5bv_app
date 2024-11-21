@@ -6,15 +6,16 @@ class CustomPopupButtons extends StatelessWidget {
   final String title;
   final String name;
   final Widget type;
+  final ValueChanged<Map<String, String>> onSelected;
 
   const CustomPopupButtons(
-      {super.key, required this.title, required this.type, required this.name});
+      {super.key, required this.title, required this.type, required this.name , required this.onSelected});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        showDialog(
+      onPressed: () async {
+        final result = await showDialog(
             barrierDismissible: true,
             context: context,
             builder: (BuildContext context) {
@@ -42,6 +43,9 @@ class CustomPopupButtons extends StatelessWidget {
                 ],
               );
             });
+        if(result != null) {
+          onSelected(result);
+        }
       },
       child: Text(name),
     );
