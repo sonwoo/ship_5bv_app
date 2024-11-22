@@ -120,23 +120,24 @@ class _DocumentList extends State<DocumentList> {
                 ),
                 Row(
                   children: [
-                    const FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        '  선박이름',
-                        style: TextStyle(
-                          // fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Arial',
+                    SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width * 0.25, // 원하는 너비 설정
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          '선박이름',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Arial',
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                      width: 30,
-                    ),
                     SizedBox(
-                      width: 250, // 원하는 너비 설정
+                      width:
+                          MediaQuery.of(context).size.width * 0.7, // 원하는 너비 설정
                       height: 35,
                       child: TextField(
                         controller: _searchController1,
