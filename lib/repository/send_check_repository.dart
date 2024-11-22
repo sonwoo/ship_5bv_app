@@ -19,7 +19,7 @@ class SendCheckRepository {
 
     if (jsonData.isNotEmpty)
     {
-        if(jsonData[0]["MSG_ERR"] != null) {
+        if(jsonData[0]["MSG_ERR"] != null && jsonData[0]["MSG_ERR"].toString() != "") {
           ret = jsonData[0]["MSG_ERR"];
         }else {
           if(Send) {
@@ -37,5 +37,28 @@ class SendCheckRepository {
 
   }
 
+
+  Future<String> Send(String ssdKey, String ssdBizGbn , String ssdBizGbn2) async  {
+
+    String ret = "";
+    String Table = "";
+    if(ssdBizGbn == "2") {
+      Table = "CUSSSD5JI_2_M";
+    } else if (ssdBizGbn == "3") {
+      Table = "CUSSSD5JI_3_M";
+    } else {
+      Table = "CUSSSD5JI_4_M";
+    }
+
+    var resp = await _dio.get('${_targetUrl}Send', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'SSD_KEY': ssdKey, 'SSD_BIZ_GBN2': ssdBizGbn2 ,'TABLE_M': Table,'WORK_DIV':WORK_DIV, 'PLATFORM': PLATFORM } );
+    List<dynamic> jsonData = jsonDecode(resp.toString());
+
+    if (jsonData.isNotEmpty)
+    {
+
+    }
+
+    return ret;
+  }
 
 }
