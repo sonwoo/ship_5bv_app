@@ -45,12 +45,15 @@ class _DocumentList extends State<DocumentList> {
               children: [
                 Row(
                   children: [
-                    const Text(
-                      '  신고일자',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Arial',
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '  신고일자',
+                        style: TextStyle(
+                          //fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                        ),
                       ),
                     ),
                     //const Icon(Icons.calendar_month_outlined),
@@ -58,51 +61,57 @@ class _DocumentList extends State<DocumentList> {
                       height: 30,
                       width: 30,
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final selectedDate = await showDatePicker(
-                          context: context,
-                          initialDate: start_date,
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime.now(),
-                          initialEntryMode: DatePickerEntryMode.calendarOnly,
-                          locale: const Locale('ko', 'KR'),
-                        );
-                        if (selectedDate != null) {
-                          setState(() {
-                            start_date = selectedDate;
-                          });
-                        }
-                      },
-                      child: Text(
-                          "${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: start_date,
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime.now(),
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
+                            locale: const Locale('ko', 'KR'),
+                          );
+                          if (selectedDate != null) {
+                            setState(() {
+                              start_date = selectedDate;
+                            });
+                          }
+                        },
+                        child: Text(
+                            "${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
+                      ),
                     ),
                     const Text(
                       ' ~ ',
                       style: TextStyle(
-                        fontSize: 24.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Arial',
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final selectedDate = await showDatePicker(
-                          context: context,
-                          initialDate: end_date,
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime.now(),
-                          initialEntryMode: DatePickerEntryMode.calendarOnly,
-                          locale: const Locale('ko', 'KR'),
-                        );
-                        if (selectedDate != null) {
-                          setState(() {
-                            end_date = selectedDate;
-                          });
-                        }
-                      },
-                      child: Text(
-                          "${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}"),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: end_date,
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime.now(),
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
+                            locale: const Locale('ko', 'KR'),
+                          );
+                          if (selectedDate != null) {
+                            setState(() {
+                              end_date = selectedDate;
+                            });
+                          }
+                        },
+                        child: Text(
+                            "${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}"),
+                      ),
                     ),
                   ],
                 ),
@@ -111,12 +120,15 @@ class _DocumentList extends State<DocumentList> {
                 ),
                 Row(
                   children: [
-                    const Text(
-                      '  선박이름',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Arial',
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '  선박이름',
+                        style: TextStyle(
+                          // fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -148,7 +160,8 @@ class _DocumentList extends State<DocumentList> {
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                        backgroundColor:
+                            Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(10.0), // 버튼 모서리 둥글게 만들기
@@ -239,7 +252,8 @@ class _DocumentList extends State<DocumentList> {
                   ),
           ),
         ],
-      ),bottomNavigationBar: Container(
+      ),
+      bottomNavigationBar: Container(
         color: Colors.grey[300],
         height: 50,
         child: const Center(
