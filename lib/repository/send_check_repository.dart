@@ -2,19 +2,18 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:ship_5bv_app/globals.dart';
-import 'package:ship_5bv_app/globals.dart';
 
 class SendCheckRepository {
 
   final _dio = Dio();
   final _targetUrl = "http://192.168.200.38:3000/api/";
 
-  Future<String> checkDoEnd(String SSD_KEY, String SSD_BIZ_GBN , bool Send)
+  Future<String> checkDoEnd(String ssdKey, String ssdBizGbn , bool Send)
   async {
 
     String ret = "";
 
-    var resp = await _dio.get('${_targetUrl}CheckDoEnd', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': SSD_BIZ_GBN,'PLATFORM': PLATFORM,'SSD_KEY': SSD_KEY  } );
+    var resp = await _dio.get('${_targetUrl}CheckDoEnd', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'PLATFORM': PLATFORM,'SSD_KEY': ssdKey  } );
 
     List<dynamic> jsonData = jsonDecode(resp.toString());
 
