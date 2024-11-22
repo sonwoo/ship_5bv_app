@@ -31,7 +31,7 @@ class Govcbrdb5Repository {
 
   }
   
-  Future<String> updateConents(String SSD_KEY, Govcbrdb5ContentsModel model)
+  Future<String> updateConents(String ssdKey, Govcbrdb5ContentsModel model)
   async {
 
     final modelString = model.toJson();
@@ -40,7 +40,7 @@ class Govcbrdb5Repository {
       "CORP_ID": CORP_ID,
       "WORK_DIV": WORK_DIV,
       "PLATFORM": PLATFORM,
-      "SSD_KEY": SSD_KEY,
+      "SSD_KEY": ssdKey,
       "json": modelString, // JSON 데이터를 포함
     };
 
