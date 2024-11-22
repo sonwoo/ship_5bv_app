@@ -25,12 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
             //backgroundColor: Colors.amber,
 
             backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
-            title: const Text(
-              '선박용품 이행착수(완료) 보고',
-              style: const TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            title: const FittedBox(
+              child: Text(
+                '선박용품 이행착수(완료) 보고',
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
             centerTitle: true,
