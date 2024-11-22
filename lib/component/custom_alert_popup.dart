@@ -13,7 +13,7 @@ class CustomAelrtPopup extends StatelessWidget {
              title: Text(title),
              content: Text(message),
              actions: [
-               TextButton(onPressed: () => Navigator.of(context).pop(),child: Text("닫기"))
+               TextButton(onPressed: () => Navigator.of(context).pop(),child: const Text("닫기"))
              ],
            );
   }

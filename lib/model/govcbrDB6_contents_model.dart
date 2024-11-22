@@ -1,4 +1,4 @@
-class Govcbr6dbContentsModel {
+class Govcbrdb6ContentsModel {
 
   String USER_ERP_ID;
   String? SSD_F_GBN;
@@ -8,7 +8,9 @@ class Govcbr6dbContentsModel {
   String? SSD_5BV_HM;
   String? SSD_HA_DAY;
   String? SSD_HA_HM;
+  String? SSD_VEHICLE_NO;
   String? SSD_CRG_NM;
+  String? SSD_BWH_NM;
   String? SSD_SE;
   String? SSD_JUNGBAK_COD;
   String? TMPPORT_CD;
@@ -19,7 +21,7 @@ class Govcbr6dbContentsModel {
   String? SSD_AGNT_MK;
   String? SSD_AGNT_NM;
 
-  Govcbr6dbContentsModel({
+  Govcbrdb6ContentsModel({
     required this.USER_ERP_ID,
     required this.SSD_F_GBN,
     required this.SSD_MSG_GI2,
@@ -28,7 +30,9 @@ class Govcbr6dbContentsModel {
     required this.SSD_5BV_HM,
     required this.SSD_HA_DAY,
     required this.SSD_HA_HM,
+    required this.SSD_VEHICLE_NO,
     required this.SSD_CRG_NM,
+    required this.SSD_BWH_NM,
     required this.SSD_JUNGBAK_COD,
     required this.TMPPORT_CD,
     required this.WORK_DIV,
@@ -39,8 +43,8 @@ class Govcbr6dbContentsModel {
     required this.SSD_AGNT_NM ,
     required this.SSD_SE});
 
-  factory Govcbr6dbContentsModel.fromJson(Map<String, dynamic> json) {
-    return Govcbr6dbContentsModel(
+  factory Govcbrdb6ContentsModel.fromJson(Map<String, dynamic> json) {
+    return Govcbrdb6ContentsModel(
       USER_ERP_ID :  json['USER_ERP_ID'] ?? "",
       SSD_F_GBN : json['SSD_F_GBN'] ?? "",
       SSD_MSG_GI2 : json['SSD_MSG_GI2'] ?? "",
@@ -49,7 +53,9 @@ class Govcbr6dbContentsModel {
       SSD_5BV_HM : json['SSD_5BV_HM'] ?? "",
       SSD_HA_DAY : json['SSD_HA_DAY'] ?? "",
       SSD_HA_HM : json['SSD_HA_HM'] ?? "",
+      SSD_VEHICLE_NO : json['SSD_VEHICLE_NO'] ?? "",
       SSD_CRG_NM : json['SSD_CRG_NM'] ?? "",
+      SSD_BWH_NM : json['SSD_BWH_NM'] ?? "",
       SSD_SE : json['SSD_SE'] ?? "",
       SSD_JUNGBAK_COD : json['SSD_JUNGBAK_COD'] ?? "",
       TMPPORT_CD : json['TMPPORT_CD'] ?? "",
@@ -76,6 +82,8 @@ class Govcbr6dbContentsModel {
       'SSD_JUNGBAK_COD': SSD_JUNGBAK_COD,
       'TMPPORT_CD': TMPPORT_CD,
       'SSD_CRG_NM': SSD_CRG_NM,
+      'SSD_BWH_NM': SSD_BWH_NM,
+      'SSD_VEHICLE_NO': SSD_VEHICLE_NO,
       'SSD_ROLE_DIV': SSD_ROLE_DIV,
       'SSD_AGNT_CD': SSD_AGNT_CD,
       'SSD_AGNT_MK': SSD_AGNT_MK,
