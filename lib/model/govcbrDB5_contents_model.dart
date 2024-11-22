@@ -6,7 +6,6 @@ class Govcbrdb5ContentsModel {
   String? SSD_RPT_DAY;
   String? SSD_DB7_DAY;
   String? SSD_DB7_HM;
-  String? SSD_CRG_NM;
   String? SSD_SE;
   String? SSD_JUNGBAK_COD;
   String? TMPPORT_CD;
@@ -24,7 +23,6 @@ class Govcbrdb5ContentsModel {
     required this.SSD_RPT_DAY,
     required this.SSD_DB7_DAY,
     required this.SSD_DB7_HM,
-    required this.SSD_CRG_NM,
     required this.SSD_JUNGBAK_COD,
     required this.TMPPORT_CD,
     required this.WORK_DIV,
@@ -43,7 +41,6 @@ class Govcbrdb5ContentsModel {
       SSD_RPT_DAY : json['SSD_RPT_DAY'] ?? "",
       SSD_DB7_DAY : json['SSD_DB7_DAY'] ?? "",
       SSD_DB7_HM : json['SSD_DB7_HM'] ?? "",
-      SSD_CRG_NM : json['SSD_CRG_NM'] ?? "",
       SSD_SE : json['SSD_SE'] ?? "",
       SSD_JUNGBAK_COD : json['SSD_JUNGBAK_COD'] ?? "",
       TMPPORT_CD : json['TMPPORT_CD'] ?? "",
@@ -67,7 +64,6 @@ class Govcbrdb5ContentsModel {
       'SSD_SE': SSD_SE,
       'SSD_JUNGBAK_COD': SSD_JUNGBAK_COD,
       'TMPPORT_CD': TMPPORT_CD,
-      'SSD_CRG_NM': SSD_CRG_NM,
       'SSD_ROLE_DIV': SSD_ROLE_DIV,
       'SSD_AGNT_CD': SSD_AGNT_CD,
       'SSD_AGNT_MK': SSD_AGNT_MK,
