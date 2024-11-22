@@ -256,7 +256,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
               ElevatedButton(
                 onPressed: _login,
-                child: const Text('로그인'),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(
                       MediaQuery.of(context).size.width * 0.7, 50), // 버튼 높이 설정
@@ -271,6 +270,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     fontWeight: FontWeight.bold, // 글자 굵게
                   ),
                 ),
+                child: const Text('로그인'),
               ),
             ],
           ),

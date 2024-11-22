@@ -262,7 +262,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                         },
                       ),
                     ),
-                    CustomPopupButtons(title: "정박항", type: Anchorage() , name: "조회",
+                    CustomPopupButtons(title: "정박항", type: const Anchorage() , name: "조회",
                       onSelected:(result) {
                       setState(() {
                         txtSSD_SE.text = result['SSD_SE'] ?? "";
@@ -352,7 +352,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents>{
                         },
                       ),
                     ),
-                    CustomPopupButtons(title: "거래처", type: StmstScreen() , name: "조회" ,
+                    CustomPopupButtons(title: "거래처", type: const StmstScreen() , name: "조회" ,
                       onSelected:(result) {
                         setState(() {
                           txtSSD_AGNT_CD.text = result['SSD_AGNT_CD'] ?? "";
