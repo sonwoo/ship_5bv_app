@@ -10,6 +10,7 @@ class Govcbrdb6ContentsModel {
   String? SSD_HA_HM;
   String? SSD_VEHICLE_NO;
   String? SSD_CRG_NM;
+  String? SSD_BWH_NM;
   String? SSD_SE;
   String? SSD_JUNGBAK_COD;
   String? TMPPORT_CD;
@@ -31,6 +32,7 @@ class Govcbrdb6ContentsModel {
     required this.SSD_HA_HM,
     required this.SSD_VEHICLE_NO,
     required this.SSD_CRG_NM,
+    required this.SSD_BWH_NM,
     required this.SSD_JUNGBAK_COD,
     required this.TMPPORT_CD,
     required this.WORK_DIV,
@@ -53,6 +55,7 @@ class Govcbrdb6ContentsModel {
       SSD_HA_HM : json['SSD_HA_HM'] ?? "",
       SSD_VEHICLE_NO : json['SSD_VEHICLE_NO'] ?? "",
       SSD_CRG_NM : json['SSD_CRG_NM'] ?? "",
+      SSD_BWH_NM : json['SSD_BWH_NM'] ?? "",
       SSD_SE : json['SSD_SE'] ?? "",
       SSD_JUNGBAK_COD : json['SSD_JUNGBAK_COD'] ?? "",
       TMPPORT_CD : json['TMPPORT_CD'] ?? "",
@@ -79,6 +82,7 @@ class Govcbrdb6ContentsModel {
       'SSD_JUNGBAK_COD': SSD_JUNGBAK_COD,
       'TMPPORT_CD': TMPPORT_CD,
       'SSD_CRG_NM': SSD_CRG_NM,
+      'SSD_BWH_NM': SSD_BWH_NM,
       'SSD_VEHICLE_NO': SSD_VEHICLE_NO,
       'SSD_ROLE_DIV': SSD_ROLE_DIV,
       'SSD_AGNT_CD': SSD_AGNT_CD,
