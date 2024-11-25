@@ -45,22 +45,26 @@ class _DocumentList extends State<DocumentList> {
               children: [
                 Row(
                   children: [
-                    const FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        '  신고일자',
-                        style: TextStyle(
-                          //fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Arial',
+                    SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          '신고일자',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Arial',
+                          ),
                         ),
                       ),
                     ),
                     //const Icon(Icons.calendar_month_outlined),
-                    const SizedBox(
-                      height: 30,
-                      width: 30,
-                    ),
+                    // const SizedBox(
+                    //   height: 30,
+                    //   width: 30,
+                    // ),
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: ElevatedButton(
@@ -122,7 +126,7 @@ class _DocumentList extends State<DocumentList> {
                   children: [
                     SizedBox(
                       width:
-                          MediaQuery.of(context).size.width * 0.25, // 원하는 너비 설정
+                          MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
                       child: const Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -191,24 +195,109 @@ class _DocumentList extends State<DocumentList> {
                       final item = _searchResults[index];
                       return Card(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             ListTile(
                               title: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('제출번호: ${item.TMPSSD_KEY}'),
-                                  Text('구분: ${item.TMPSSD_FD_GBN}'),
+                                  Text(
+                                    '제출번호: ${item.TMPSSD_KEY}',
+                                  ),
                                 ],
                               ),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('선명: ${item.SSD_SUN_NAME}'),
-                                  Text('신고일자: ${item.SSD_SIN_DAY}'),
-                                  Text('상태: ${item.TMPSSD_SND_GBN}'),
-                                  Text('이행: ${item.TMPSSD_SND_GBN2}'),
-                                  Text('완료: ${item.TMPSSD_SND_GBN3}'),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child:
+                                              Text('구분: ${item.TMPSSD_FD_GBN}'),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        child: Align(
+                                            //alignment: Alignment.centerRight,
+                                            child: Text('상태:')),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        child: Align(
+                                            //alignment: Alignment.centerRight,
+                                            child:
+                                                Text('${item.TMPSSD_SND_GBN}')),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child:
+                                              Text('선명: ${item.SSD_SUN_NAME}'),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        child: Align(child: Text('이행:')),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                                '${item.TMPSSD_SND_GBN2}')),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child:
+                                              Text('신고일자: ${item.SSD_SIN_DAY}'),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        child: Align(child: Text('완료:')),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        child: Align(
+                                            child: Text(
+                                                '${item.TMPSSD_SND_GBN3}')),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                               onTap: () {
