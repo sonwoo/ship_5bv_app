@@ -101,6 +101,7 @@ class _AuthScreenState extends State<AuthScreen> {
           WORK_DIV = ret.split('/')[1];
           CORP_ID = ret.split('/')[2];
           PLATFORM = ret.split('/')[3];
+          COMPANY_NO = businessNumber;
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (_) => const HomeScreen()));
         } else {
