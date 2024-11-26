@@ -300,34 +300,53 @@ class _DocumentList extends State<DocumentList> {
                                   ),
                                 ],
                               ),
-                              onTap: () {
+                              onTap: () async {
                                 switch (widget.docdiv) {
                                   case "GOVCBR5JIList":
-                                    Navigator.push(
+                                   final result = await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 Govcbr5jiContents(
                                                   docNo: item.TMPSSD_KEY,
                                                 )));
+
+                                    if (result != null) {
+                                      setState(() {
+                                        _performSearch();
+                                      });
+                                    }
                                     break;
                                   case "GOVCBRDB5List":
-                                    Navigator.push(
+                                    final result = await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 Govcbrdb5Contents(
                                                   docNo: item.TMPSSD_KEY,
                                                 )));
+
+                                    if (result != null) {
+                                      setState(() {
+                                        _performSearch();
+                                      });
+                                    }
                                     break;
                                   case "GOVCBRDB6List":
-                                    Navigator.push(
+                                    final result = await Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 Govcbrdb6Contents(
                                                   docNo: item.TMPSSD_KEY,
                                                 )));
+
+                                    if (result != null) {
+                                      setState(() {
+                                        _performSearch();
+                                      });
+                                    }
+
                                     break;
                                 }
                               },
