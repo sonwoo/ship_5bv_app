@@ -380,10 +380,29 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents>{
 
                       }, child: const Text('저장'),),
                     const SizedBox(width: 10,),
-                    ElevatedButton(onPressed: () {  }, child: const Text('송신'),),
+                    ElevatedButton(onPressed: () async {
+
+                      formKey.currentState!.save();
+                      var ret = await _govcbrdb5Repository.updateConents(widget.docNo, item!);
+
+                      if(ret.toString() == "OK") {
+                        ret = await _sendCheckRepository.checkDoEnd(widget.docNo, "2", true);
+
+                        if(ret.contains("송신")) {
+                          showYesNoDialog(ret);
+                        }
+                        else {
+                          showCustomAlertPopup(context, "", ret);
+                        }
+                      }
+                      else {
+                        showCustomAlertPopup(context, "", "송신할 수 없습니다.");
+                      }
+
+                    }, child: const Text('송신'),),
                     const SizedBox(width: 10,),
                     ElevatedButton(onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context, true);
                     }, child: const Text('목록'),),
                   ]),
                   Expanded(child:
@@ -447,6 +466,44 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents>{
         Navigator.pop(context);
       }
     });
+
+  }
+
+
+  Future<void> showYesNoDialog(String ret) async {
+    final bool? result = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("송신"),
+          content: Text(ret),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true), // 아니오 선택
+              child: const Text("예"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false), // 예 선택
+              child: const Text("아니오"),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (result == true) {
+      var  ret = await _sendCheckRepository.Send(widget.docNo, "3" , item?.SSD_F_GBN ?? "1" );
+      setState(()   {
+        if (ret == "OK" ) {
+          showCustomAlertPopup(context, "", "송신하였습니다.");
+        }
+        else {
+          showCustomAlertPopup(context, "", ret);
+        }
+      });
+
+    }
+
 
   }
 
