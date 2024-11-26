@@ -38,7 +38,8 @@ class SendCheckRepository {
   }
 
 
-  Future<String> Send(String ssdKey, String ssdBizGbn , String ssdBizGbn2) async  {
+  Future<String> Send(String ssdKey, String ssdBizGbn , String ssdBizGbn2)
+  async  {
 
     String ret = "";
     String Table = "";
@@ -50,12 +51,14 @@ class SendCheckRepository {
       Table = "CUSSSD5JI_4_M";
     }
 
-    var resp = await _dio.get('${_targetUrl}Send', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'SSD_KEY': ssdKey, 'SSD_BIZ_GBN2': ssdBizGbn2 ,'TABLE_M': Table,'WORK_DIV':WORK_DIV, 'PLATFORM': PLATFORM } );
+    var resp = await _dio.get('${_targetUrl}Send',
+        queryParameters:{'CORP_ID': CORP_ID,'SSD_BIZ_GBN': ssdBizGbn, 'SSD_KEY': ssdKey,  'SSD_F_GBN2': ssdBizGbn2 ,'TABLE_M': Table,'WORK_DIV':WORK_DIV , 'PLATFORM': PLATFORM} );
+
     List<dynamic> jsonData = jsonDecode(resp.toString());
 
     if (jsonData.isNotEmpty)
     {
-
+      ret = jsonData[0]["RESULT"];
     }
 
     return ret;
