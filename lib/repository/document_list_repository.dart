@@ -25,7 +25,7 @@ class DocumentListRepository {
           "END_SIN_DAY" : END_SIN_DAY,
           "SELECT_VALUE" : SELECT_VALUE,
           "SEARCH_WORDS" : SEARCH_WORDS,
-          "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : PLATFORM,
+          "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
           },);
 
         List<dynamic> jsonData = jsonDecode(resp.toString());

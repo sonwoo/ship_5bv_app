@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:ship_5bv_app/globals.dart';
 import 'package:ship_5bv_app/model/freight_list_model.dart';
 
 class FreightListRepository {
@@ -18,7 +19,7 @@ class FreightListRepository {
       _targetUrl + docdiv, queryParameters: {
       "CORP_ID" : CORP_ID,
       "SSD_KEY" : SSD_KEY,
-      "PLATFORM" : PLATFORM,
+      "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
     },);
 
     List<dynamic> jsonData = jsonDecode(resp.toString());

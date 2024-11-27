@@ -22,7 +22,7 @@ class Govcbr5jiRepository {
       "CORP_ID" : CORP_ID,
       "SSD_KEY" : SSD_KEY,
       "WORK_DIV" : WORK_DIV,
-      "PLATFORM" : PLATFORM,
+      "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
     },);
 
     List<dynamic> jsonData = jsonDecode(resp.toString());
@@ -39,7 +39,7 @@ class Govcbr5jiRepository {
     final requestData = {
       "CORP_ID": CORP_ID,
       "WORK_DIV": WORK_DIV,
-      "PLATFORM": PLATFORM,
+      "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
       "SSD_KEY": ssdKey,
       "json": modelString, // JSON 데이터를 포함
     };

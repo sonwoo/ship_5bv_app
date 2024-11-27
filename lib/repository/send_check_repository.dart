@@ -13,7 +13,7 @@ class SendCheckRepository {
 
     String ret = "";
 
-    var resp = await _dio.get('${_targetUrl}CheckDoEnd', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'PLATFORM': PLATFORM,'SSD_KEY': ssdKey  } );
+    var resp = await _dio.get('${_targetUrl}CheckDoEnd', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'PLATFORM': PLATFORM == "CS" ? COMPANY_NO : "EDI",'SSD_KEY': ssdKey  } );
 
     List<dynamic> jsonData = jsonDecode(resp.toString());
 
@@ -52,7 +52,7 @@ class SendCheckRepository {
     }
 
     var resp = await _dio.get('${_targetUrl}Send',
-        queryParameters:{'CORP_ID': CORP_ID,'SSD_BIZ_GBN': ssdBizGbn, 'SSD_KEY': ssdKey,  'SSD_F_GBN2': ssdBizGbn2 ,'TABLE_M': Table,'WORK_DIV':WORK_DIV , 'PLATFORM': PLATFORM} );
+        queryParameters:{'CORP_ID': CORP_ID,'SSD_BIZ_GBN': ssdBizGbn, 'SSD_KEY': ssdKey,  'SSD_F_GBN2': ssdBizGbn2 ,'TABLE_M': Table,'WORK_DIV':WORK_DIV , 'PLATFORM': PLATFORM == "CS" ? COMPANY_NO : "EDI"} );
 
     List<dynamic> jsonData = jsonDecode(resp.toString());
 
