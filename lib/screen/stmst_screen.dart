@@ -34,7 +34,7 @@ class _StmstScreenState extends State<StmstScreen> {
               height: 40,
               child: TextField(
                 controller: _searchController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "상호를 입력하세요",
                   border: OutlineInputBorder(),
                   filled: true,
@@ -42,7 +42,7 @@ class _StmstScreenState extends State<StmstScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             SizedBox(
@@ -54,7 +54,7 @@ class _StmstScreenState extends State<StmstScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                    backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(10.0), // 버튼 모서리 둥글게 만들기
@@ -62,7 +62,7 @@ class _StmstScreenState extends State<StmstScreen> {
                   ),
                   child: const Text(
                     "   검      색   ",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       //overflow: TextOverflow.ellipsis,
@@ -72,7 +72,7 @@ class _StmstScreenState extends State<StmstScreen> {
             const SizedBox(height: 5),
             Expanded(
               child: _isLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   : ListView.separated(
                       padding: const EdgeInsets.all(8),
                       itemCount: _searchResults.length, // 카드뷰 갯수

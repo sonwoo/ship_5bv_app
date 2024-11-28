@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             //backgroundColor: Colors.amber,
 
-            backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
+            backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0),
             title: const FittedBox(
               child: Text(
                 '선박용품 이행착수(완료) 보고',
@@ -53,13 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              labelColor: Color.fromRGBO(53, 80, 161, 1.0),
+              labelColor: const Color.fromRGBO(53, 80, 161, 1.0),
               unselectedLabelColor: Colors.grey,
               labelStyle: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
-              indicatorColor: Color.fromRGBO(53, 80, 161, 1.0),
+              indicatorColor: const Color.fromRGBO(53, 80, 161, 1.0),
               indicatorWeight: 3.0,
               tabs: const <Widget>[
                 Tab(
