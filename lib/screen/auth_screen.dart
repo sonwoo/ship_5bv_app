@@ -261,7 +261,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   minimumSize: Size(
                       MediaQuery.of(context).size.width * 0.7, 50), // 버튼 높이 설정
                   foregroundColor: Colors.white,
-                  backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                  backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // 모서리 둥글기를 조절
                   ),
