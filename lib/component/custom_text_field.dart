@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _mLength = mLength ?? 0;
+    bool _hasText = false;
     return Expanded(
         child: TextFormField(
       controller: controller,
@@ -31,9 +32,9 @@ class CustomTextField extends StatelessWidget {
           ? initialValue
           : null, // controller가 없을 때만 initialValue 사용
       onSaved: onSaved,
-      validator: validator,
-      cursorColor: Colors.grey,
-      
+      //validator: validator,
+      //cursorColor: Colors.grey,
+
       keyboardType: isTime ? TextInputType.number : null,
       inputFormatters: isTime
           ? [
@@ -43,11 +44,17 @@ class CustomTextField extends StatelessWidget {
           : _mLength > 0
               ? [LengthLimitingTextInputFormatter(mLength)]
               : [],
+      // textAlign: TextAlign.center,
+      textAlignVertical: TextAlignVertical.top,
 
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        filled: true,
-        fillColor: TEXT_FIELD_FILL_COLOR,
+      //textAlignVertical: TextAlignVertical.center,
+      decoration: const InputDecoration(
+        prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+        prefixIcon: Icon(Icons.edit, size: 15), // 검색 아이콘 추가
+        hintText: '',
+        // border: InputBorder.none,
+        //filled: true,
+        //fillColor: TEXT_FIELD_FILL_COLOR,
       ),
     ));
   }
