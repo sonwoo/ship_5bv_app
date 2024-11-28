@@ -65,11 +65,11 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
       appBar: AppBar(
         //backgroundColor: Colors.amber,
 
-        backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
+        backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0),
         title: FittedBox(
           child: Text(
             '적재 ${widget.docNo} ',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -95,11 +95,11 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                             
                             SizedBox(
                               width: MediaQuery.of(context).size.width *0.45,
-                              child: Text('문서기능'),
+                              child: const Text('문서기능'),
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width *0.45,
-                              child: Text('문서구분'),
+                              child: const Text('문서구분'),
                               // width: 30,
                             ),
                             
