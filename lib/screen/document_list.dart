@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:ship_5bv_app/globals.dart';
 import 'package:ship_5bv_app/model/document_list_model.dart';
 import 'package:ship_5bv_app/repository/document_list_repository.dart';
@@ -145,7 +144,7 @@ class _DocumentList extends State<DocumentList> {
                       height: 35,
                       child: TextField(
                         controller: _searchController1,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           filled: true,
                           fillColor: Colors.white54,
@@ -166,7 +165,7 @@ class _DocumentList extends State<DocumentList> {
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor:
-                            Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                            const Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(10.0), // 버튼 모서리 둥글게 만들기
@@ -187,9 +186,9 @@ class _DocumentList extends State<DocumentList> {
           ),
           Expanded(
             child: _isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : ListView.separated(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     itemCount: _searchResults.length,
                     itemBuilder: (context, index) {
                       final item = _searchResults[index];
@@ -226,7 +225,7 @@ class _DocumentList extends State<DocumentList> {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.1,
-                                        child: Align(
+                                        child: const Align(
                                             //alignment: Alignment.centerRight,
                                             child: Text('상태:')),
                                       ),
@@ -237,7 +236,7 @@ class _DocumentList extends State<DocumentList> {
                                         child: Align(
                                             //alignment: Alignment.centerRight,
                                             child:
-                                                Text('${item.TMPSSD_SND_GBN}')),
+                                                Text(item.TMPSSD_SND_GBN)),
                                       ),
                                     ],
                                   ),
@@ -257,7 +256,7 @@ class _DocumentList extends State<DocumentList> {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.1,
-                                        child: Align(child: Text('이행:')),
+                                        child: const Align(child: Text('이행:')),
                                       ),
                                       SizedBox(
                                         width:
@@ -266,7 +265,7 @@ class _DocumentList extends State<DocumentList> {
                                         child: Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                                '${item.TMPSSD_SND_GBN2}')),
+                                                item.TMPSSD_SND_GBN2)),
                                       ),
                                     ],
                                   ),
@@ -286,7 +285,7 @@ class _DocumentList extends State<DocumentList> {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.1,
-                                        child: Align(child: Text('완료:')),
+                                        child: const Align(child: Text('완료:')),
                                       ),
                                       SizedBox(
                                         width:
@@ -294,7 +293,7 @@ class _DocumentList extends State<DocumentList> {
                                                 0.1,
                                         child: Align(
                                             child: Text(
-                                                '${item.TMPSSD_SND_GBN3}')),
+                                                item.TMPSSD_SND_GBN3)),
                                       ),
                                     ],
                                   ),
@@ -356,7 +355,7 @@ class _DocumentList extends State<DocumentList> {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return Divider();
+                      return const Divider();
                     },
                   ),
           ),
