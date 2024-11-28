@@ -25,7 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _saveLoginInfo = false;
 
-  final _targetUrl = "http://192.168.200.38:3000/api/mobileUserAuth";
+  final _targetUrl = '${API_URL}mobileUserAuth';
 
   @override
   void initState() {

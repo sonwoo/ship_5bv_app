@@ -7,7 +7,6 @@ import 'package:ship_5bv_app/model/freight_list_model.dart';
 class FreightListRepository {
 
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/";
 
   Future<List<FreightListModel>> getFreightList({
     required String CORP_ID,
@@ -16,7 +15,7 @@ class FreightListRepository {
     required String docdiv,
   }) async {
     final resp = await _dio.get(
-      _targetUrl + docdiv, queryParameters: {
+      API_URL + docdiv, queryParameters: {
       "CORP_ID" : CORP_ID,
       "SSD_KEY" : SSD_KEY,
       "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",

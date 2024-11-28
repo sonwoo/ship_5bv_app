@@ -8,8 +8,6 @@ import 'package:ship_5bv_app/model/govcbr5JI_contents_model.dart';
 class Govcbr5jiRepository {
 
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/";
-
 
   Future<List<Govcbr5jiContentsModel>> getContents({
     required String CORP_ID,
@@ -18,7 +16,7 @@ class Govcbr5jiRepository {
     required String PLATFORM,
   }) async {
     final resp = await _dio.get(
-      '${_targetUrl}GOVCBR5JIContent', queryParameters: {
+      '${API_URL}GOVCBR5JIContent', queryParameters: {
       "CORP_ID" : CORP_ID,
       "SSD_KEY" : SSD_KEY,
       "WORK_DIV" : WORK_DIV,
@@ -46,7 +44,7 @@ class Govcbr5jiRepository {
 
     final  jsonString = jsonEncode(requestData);
 
-    final resp = await _dio.put('${_targetUrl}GOVCBR5JIContent', data: jsonString);
+    final resp = await _dio.put('${API_URL}GOVCBR5JIContent', data: jsonString);
 
     return resp.data.toString();
   }

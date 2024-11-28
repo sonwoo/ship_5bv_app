@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 class StmstRepository {
 
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/AgentCompanyList";
+  final _targetUrl = "${API_URL}AgentCompanyList";
 
   Future<List<StmstModel>> getStmstList({
     required String CORP_ID,

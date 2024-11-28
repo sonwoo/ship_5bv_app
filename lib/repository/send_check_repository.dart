@@ -6,14 +6,13 @@ import 'package:ship_5bv_app/globals.dart';
 class SendCheckRepository {
 
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/";
 
   Future<String> checkDoEnd(String ssdKey, String ssdBizGbn , bool Send)
   async {
 
     String ret = "";
 
-    var resp = await _dio.get('${_targetUrl}CheckDoEnd', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'PLATFORM': PLATFORM == "CS" ? COMPANY_NO : "EDI",'SSD_KEY': ssdKey  } );
+    var resp = await _dio.get('${API_URL}CheckDoEnd', queryParameters:{'CORP_ID': CORP_ID, 'SSD_BIZ_GBN': ssdBizGbn,'PLATFORM': PLATFORM == "CS" ? COMPANY_NO : "EDI",'SSD_KEY': ssdKey  } );
 
     List<dynamic> jsonData = jsonDecode(resp.toString());
 
@@ -51,7 +50,7 @@ class SendCheckRepository {
       Table = "CUSSSD5JI_4_M";
     }
 
-    var resp = await _dio.get('${_targetUrl}Send',
+    var resp = await _dio.get('${API_URL}Send',
         queryParameters:{'CORP_ID': CORP_ID,'SSD_BIZ_GBN': ssdBizGbn, 'SSD_KEY': ssdKey,  'SSD_F_GBN2': ssdBizGbn2 ,'TABLE_M': Table,'WORK_DIV':WORK_DIV , 'PLATFORM': PLATFORM == "CS" ? COMPANY_NO : "EDI"} );
 
     List<dynamic> jsonData = jsonDecode(resp.toString());

@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class AnchorageRepository  {
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/AnchorList";
+  final _targetUrl = "${API_URL}AnchorList";
 
   Future<List<AnchorageModel>> getAnchorageList({
     required String CORP_ID,
