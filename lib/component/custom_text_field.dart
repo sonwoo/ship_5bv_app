@@ -54,7 +54,7 @@ class CustomTextField extends StatelessWidget {
           margin: const EdgeInsets.only(right: 5),
           child: const Icon(Icons.edit, size: 15),
         ), // 검색 아이콘 추가
-        contentPadding: const EdgeInsets.symmetric(vertical: 9),
+        contentPadding: const EdgeInsets.symmetric(vertical: 8),
         //contentPadding: EdgeInsets.only(left: 20),
         hintText: '',
         // border: InputBorder.none,

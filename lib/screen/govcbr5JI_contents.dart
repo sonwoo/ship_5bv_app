@@ -68,7 +68,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
         backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0),
         title: FittedBox(
           child: Text(
-            '적재 ${widget.docNo} ',
+            '적재 ${widget.docNo}',
             style: const TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                             const SizedBox(
                               width: 5,
                             ),
-                            const Text('9:원본,\n35:재전송'),
+                            const Text('[9:원본,35:재전송]'),
                           ]),
                           const SizedBox(height: 5),
                           Row(children: [
