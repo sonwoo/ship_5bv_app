@@ -75,7 +75,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
               IconButton(
                 //icon: Icon(Icons.assignment_outlined,
                 //icon: Icon(Icons.exit_to_app,
-                icon: Icon(Icons.output,
+                icon: const Icon(Icons.output,
                     color: Colors.white, size: 45),
                 onPressed: () {
                   Navigator.pop(context); // 버튼 클릭 시 실행될 코드
@@ -85,7 +85,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
           ),
         ],
 
-        backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
+        backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0),
         title: SizedBox(
           width: MediaQuery.of(context).size.width * 0.6,
           child: FittedBox(
@@ -118,11 +118,11 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.45,
-                              child: Text('문서기능'),
+                              child: const Text('문서기능'),
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.45,
-                              child: Text('문서구분'),
+                              child: const Text('문서구분'),
                               // width: 30,
                             ),
                           ]),
