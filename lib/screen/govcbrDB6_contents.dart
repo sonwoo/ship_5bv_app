@@ -73,8 +73,9 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
             alignment: Alignment.bottomCenter,
             children: [
               IconButton(
-                icon: Icon(Icons.assignment_outlined,
-                    color: Colors.white, size: 35),
+                //icon: Icon(Icons.assignment_outlined,
+                icon: Icon(Icons.exit_to_app,
+                    color: Colors.white, size: 45),
                 onPressed: () {
                   Navigator.pop(context); // 버튼 클릭 시 실행될 코드
                 },
@@ -84,13 +85,17 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
         ],
 
         backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
-        title: FittedBox(
-          child: Text(
-            '환적 ${widget.docNo} ',
-            style: const TextStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+        title: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.6,
+          child: FittedBox(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              '환적 ${widget.docNo} ',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -528,7 +533,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
-                              child: const Text('보고업체'),
+                              child: const Text('대행업체'),
                             ),
                             //   SizedBox(
                             //     height: 35,
@@ -643,13 +648,13 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               ),
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 15),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
-                                      0.45, // 원하는 너비 설정
+                                      0.30, // 원하는 너비 설정
                                   height: 35,
                                   child: CustomPopupButtons(
                                     title: "화물 목록",
@@ -666,20 +671,10 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                 const SizedBox(
                                   width: 10,
                                 ),
+
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
-                                      0.45, // 원하는 너비 설정
-                                ),
-                              ]),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.45, // 원하는 너비 설정
+                                      0.30, // 원하는 너비 설정
                                   height: 35,
                                   child: ElevatedButton(
                                     onPressed: () async {
@@ -723,7 +718,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                         ),
                                       ),
                                     ),
-                                    child: const Text('저장'),
+                                    child: const Text('저   장'),
                                   ),
                                 ),
                                 const SizedBox(
@@ -731,7 +726,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
-                                      0.45, // 원하는 너비 설정
+                                      0.30, // 원하는 너비 설정
                                   height: 35,
                                   child: ElevatedButton(
                                     onPressed: () {},
@@ -766,7 +761,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                         ),
                                       ),
                                     ),
-                                    child: const Text('송신'),
+                                    child: const Text('송   신'),
                                   ),
                                 ),
                                 // const SizedBox(
@@ -779,11 +774,11 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                 //   child: const Text('목록'),
                                 // ),
                               ]),
-                          Expanded(
-                              child: FreightList(
-                            docno: widget.docNo,
-                            docdiv: "GOVCBRDB6FreightList",
-                          ))
+                          // Expanded(
+                          //     child: FreightList(
+                          //   docno: widget.docNo,
+                          //   docdiv: "GOVCBRDB6FreightList",
+                          // ))
                         ],
                       ),
                     ),
