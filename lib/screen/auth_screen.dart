@@ -162,8 +162,8 @@ class _AuthScreenState extends State<AuthScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Icon(Icons.directions_boat_filled,
-                  color: Colors.white, size: 40.0),
+              // const Icon(Icons.directions_boat_filled,
+              //     color: Colors.white, size: 40.0),
               const Text(
                 '선박용품 이행착수(완료)',
                 style: TextStyle(
