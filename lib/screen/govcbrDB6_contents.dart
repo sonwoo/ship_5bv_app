@@ -66,11 +66,28 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
       appBar: AppBar(
         //backgroundColor: Colors.amber,
 
+        automaticallyImplyLeading: false, // 자동 생성되는 뒤로가기 버튼 비활성화
+
+        actions: [
+          Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              IconButton(
+                icon: Icon(Icons.assignment_outlined,
+                    color: Colors.white, size: 35),
+                onPressed: () {
+                  Navigator.pop(context); // 버튼 클릭 시 실행될 코드
+                },
+              ),
+            ],
+          ),
+        ],
+
         backgroundColor: Color.fromRGBO(53, 80, 161, 1.0),
-        title: const FittedBox(
+        title: FittedBox(
           child: Text(
-            '선박용품 이행착수(완료) 보고',
-            style: TextStyle(
+            '환적 ${widget.docNo} ',
+            style: const TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -293,7 +310,13 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               height: 30,
                               width: 5,
                             ),
-                            const Text('(HHMM)'),
+                            const Text(
+                              '(HHMM)',
+                              style: TextStyle(
+                                fontSize: 12, // 글자 크기를 24로 설정
+                                color: Colors.grey,
+                              ),
+                            ),
                           ]),
                           const SizedBox(height: 5),
                           Row(children: [
@@ -362,7 +385,13 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               height: 30,
                               width: 5,
                             ),
-                            const Text('(HHMM)'),
+                            const Text(
+                              '(HHMM)',
+                              style: TextStyle(
+                                fontSize: 12, // 글자 크기를 24로 설정
+                                color: Colors.grey,
+                              ),
+                            ),
                           ]),
                           const SizedBox(height: 5),
                           Row(children: [
@@ -419,7 +448,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               child: const Text('세관/정박항'),
                             ),
                             SizedBox(
-                              width: 50, // 원하는 너비 설정
+                              width: 60, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_SE,
@@ -438,7 +467,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 80, // 원하는 너비 설정
+                              width: 100, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_JUNGBAK_COD,
@@ -615,6 +644,36 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                             ),
                           ]),
                           const SizedBox(height: 5),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      0.45, // 원하는 너비 설정
+                                  height: 35,
+                                  child: CustomPopupButtons(
+                                    title: "화물 목록",
+                                    type: FreightList(
+                                      docno: widget.docNo,
+                                      docdiv: "GOVCBRDB6FreightList",
+                                    ),
+                                    name: "화물 목록",
+                                    onSelected: (result) {
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      0.45, // 원하는 너비 설정
+                                ),
+                              ]),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
