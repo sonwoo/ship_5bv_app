@@ -74,7 +74,8 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
             children: [
               IconButton(
                 //icon: Icon(Icons.assignment_outlined,
-                icon: Icon(Icons.exit_to_app,
+                //icon: Icon(Icons.exit_to_app,
+                icon: Icon(Icons.output,
                     color: Colors.white, size: 45),
                 onPressed: () {
                   Navigator.pop(context); // 버튼 클릭 시 실행될 코드
