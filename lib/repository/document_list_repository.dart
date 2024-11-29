@@ -7,7 +7,6 @@ import 'package:ship_5bv_app/globals.dart';
 class DocumentListRepository {
 
   final _dio = Dio();
-  final _targetUrl = "http://192.168.200.38:3000/api/";
 
   Future<List<DocumentListModel>> getDocumentList({
     required String CORP_ID,
@@ -19,7 +18,7 @@ class DocumentListRepository {
     required String docdiv,
   }) async {
         final resp = await _dio.get(
-          _targetUrl + docdiv, queryParameters: {
+          API_URL + docdiv, queryParameters: {
           "CORP_ID" : CORP_ID,
           "START_SIN_DAY" : START_SIN_DAY,
           "END_SIN_DAY" : END_SIN_DAY,

@@ -25,7 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _saveLoginInfo = false;
 
-  final _targetUrl = "http://192.168.200.38:3000/api/mobileUserAuth";
+  final _targetUrl = '${API_URL}mobileUserAuth';
 
   @override
   void initState() {
@@ -261,7 +261,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   minimumSize: Size(
                       MediaQuery.of(context).size.width * 0.7, 50), // 버튼 높이 설정
                   foregroundColor: Colors.white,
-                  backgroundColor: Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
+                  backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0), // 버튼 글자색
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // 모서리 둥글기를 조절
                   ),

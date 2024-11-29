@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:ship_5bv_app/screen/anchorage_screen.dart';
-import 'package:ship_5bv_app/screen/stmst_screen.dart';
 
 class CustomPopupButtons extends StatelessWidget {
   final String title;
@@ -59,9 +56,9 @@ class CustomPopupButtons extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         "닫기",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           //overflow: TextOverflow.ellipsis,
