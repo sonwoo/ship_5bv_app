@@ -45,9 +45,10 @@ class CustomPopupButtons extends StatelessWidget {
                         backgroundColor: WidgetStateProperty.resolveWith<Color>(
                           (states) {
                             if (states.contains(WidgetState.pressed)) {
-                              return  const Color.fromRGBO(53, 80, 161, 1.0); //눌렀을때.. 색
+                              return const Color.fromRGBO(
+                                  53, 80, 161, 1.0); //눌렀을때.. 색
                             }
-                            return  const Color.fromRGBO(53, 80, 161, 1.0);
+                            return const Color.fromRGBO(53, 80, 161, 1.0);
                           },
                         ),
                         shape: WidgetStateProperty.all(
@@ -73,6 +74,28 @@ class CustomPopupButtons extends StatelessWidget {
           onSelected(result);
         }
       },
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all<EdgeInsets>(
+          const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+        ),
+        backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            side: const BorderSide(
+              color: Color.fromRGBO(53, 80, 161, 1.0), // 테두리 색상 변경
+              width: 1.0, // 테두리 두께
+            ),
+            borderRadius: BorderRadius.circular(10.0), // 모서리 둥글게 만들기
+          ),
+        ),
+        textStyle: WidgetStateProperty.all<TextStyle>(
+          const TextStyle(
+            color: Color.fromRGBO(53, 80, 161, 1.0), // 글자 색상
+            fontWeight: FontWeight.w100, // 굵기
+            fontSize: 15, // 글자 크기
+          ),
+        ),
+      ),
       child: Text(name),
     );
   }

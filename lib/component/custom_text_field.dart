@@ -48,9 +48,14 @@ class CustomTextField extends StatelessWidget {
       textAlignVertical: TextAlignVertical.top,
 
       //textAlignVertical: TextAlignVertical.center,
-      decoration: const InputDecoration(
-        prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-        prefixIcon: Icon(Icons.edit, size: 15), // 검색 아이콘 추가
+      decoration: InputDecoration(
+        prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+        prefixIcon: Container(
+          margin: const EdgeInsets.only(right: 5),
+          child: const Icon(Icons.edit, size: 15),
+        ), // 검색 아이콘 추가
+        contentPadding: const EdgeInsets.symmetric(vertical: 9),
+        //contentPadding: EdgeInsets.only(left: 20),
         hintText: '',
         // border: InputBorder.none,
         //filled: true,
