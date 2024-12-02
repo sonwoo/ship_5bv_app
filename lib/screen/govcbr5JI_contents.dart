@@ -378,7 +378,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                 initialValue: item?.SSD_BWH_NM,
                                 isTime: false,
                                 onSaved: (val) {
-                                  //이필드는 값만 보여주기때문에 저장하는 부분 없음
+                                  item?.SSD_BWH_NM = val;
                                 },
                                 validator: (String? val) {
                                   return null;
