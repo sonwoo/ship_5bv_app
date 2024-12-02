@@ -684,10 +684,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                           .updateConents(widget.docNo, item!);
 
                                       if (ret.toString() == "OK") {
-                                        ret = await _sendCheckRepository
-                                            .checkDoEnd(
-                                                widget.docNo, "4", false);
-                                        showCustomAlertPopup(context, "", ret);
+                                        showCustomAlertPopup(context, "", "저장 되었습니다.");
                                       } else {
                                         showCustomAlertPopup(
                                             context, "", "정보를 저장할 수 없습니다.");
