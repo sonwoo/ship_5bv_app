@@ -173,12 +173,12 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                       width: 50, // 원하는 너비 설정0
                                       height: 35,
                                       child: CustomTextField(
-                                        initialValue: item?.SSD_MSG_GI2,
+                                        initialValue: item?.SSD_F_GBN,
                                         isTime: false,
                                         mLength: 1,
                                         onSaved: (val) {
                                           setState(() {
-                                            item?.SSD_MSG_GI2 = val;
+                                            item?.SSD_F_GBN = val;
                                           });
                                         },
                                         validator: (String? val) {
@@ -730,7 +730,26 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                       0.30, // 원하는 너비 설정
                                   height: 35,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () async {
+
+                                      formKey.currentState!.save();
+                                      var ret = await _govcbrdb6Repository.updateConents(widget.docNo, item!);
+
+                                      if(ret.toString() == "OK") {
+                                        ret = await _sendCheckRepository.checkDoEnd(widget.docNo, "2", true);
+
+                                        if(ret.contains("송신")) {
+                                          showYesNoDialog(ret);
+                                        }
+                                        else {
+                                          showCustomAlertPopup(context, "", ret);
+                                        }
+                                      }
+                                      else {
+                                        showCustomAlertPopup(context, "", "송신할 수 없습니다.");
+                                      }
+
+                                    },
                                     style: ButtonStyle(
                                       padding:
                                           WidgetStateProperty.all<EdgeInsets>(
@@ -831,4 +850,44 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
       }
     });
   }
+
+  Future<void> showYesNoDialog(String ret) async {
+    final bool? result = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("송신"),
+          content: Text(ret),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true), // 아니오 선택
+              child: const Text("예"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false), // 예 선택
+              child: const Text("아니오"),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (result == true) {
+      var  ret = await _sendCheckRepository.Send(widget.docNo, "4" , item?.SSD_F_GBN ?? "1" );
+      setState(()   {
+        if (ret == "OK" ) {
+          showCustomAlertPopup(context, "", "송신하였습니다.");
+        }
+        else {
+          showCustomAlertPopup(context, "", ret);
+        }
+      });
+
+    }
+
+
+  }
+
+
+
 }

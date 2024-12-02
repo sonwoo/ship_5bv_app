@@ -172,12 +172,12 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                       width: 50, // 원하는 너비 설정0
                                       height: 35,
                                       child: CustomTextField(
-                                        initialValue: item?.SSD_MSG_GI2,
+                                        initialValue: item?.SSD_F_GBN,
                                         isTime: false,
                                         mLength: 1,
                                         onSaved: (val) {
                                           setState(() {
-                                            item?.SSD_MSG_GI2 = val;
+                                            item?.SSD_F_GBN = val;
                                           });
                                         },
                                         validator: (String? val) {
@@ -519,7 +519,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                       if (ret.toString() == "OK") {
                                         ret = await _sendCheckRepository
                                             .checkDoEnd(
-                                                widget.docNo, "4", false);
+                                                widget.docNo, "3", false);
                                         showCustomAlertPopup(context, "", ret);
                                       } else {
                                         showCustomAlertPopup(
@@ -563,7 +563,25 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                       0.30, // 원하는 너비 설정
                                   height: 35,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () async {
+
+                                      formKey.currentState!.save();
+                                      var ret = await _govcbrdb5Repository.updateConents(widget.docNo, item!);
+
+                                      if(ret.toString() == "OK") {
+                                        ret = await _sendCheckRepository.checkDoEnd(widget.docNo, "3", true);
+
+                                        if(ret.contains("송신")) {
+                                          showYesNoDialog(ret);
+                                        }
+                                        else {
+                                          showCustomAlertPopup(context, "", ret);
+                                        }
+                                      }
+                                      else {
+                                        showCustomAlertPopup(context, "", "송신할 수 없습니다.");
+                                      }
+                                    },
                                     style: ButtonStyle(
                                       padding:
                                           WidgetStateProperty.all<EdgeInsets>(
