@@ -314,11 +314,13 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               height: 30,
                               width: 5,
                             ),
-                            const Text('(HHMM)',
+                            const Text(
+                              '(HHMM)',
                               style: TextStyle(
                                 fontSize: 12, // 글자 크기를 24로 설정
                                 color: Colors.grey,
-                              ),),
+                              ),
+                            ),
                           ]),
                           const SizedBox(height: 5),
                           Row(children: [
@@ -445,20 +447,24 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                 },
                               ),
                             ),
-                            CustomPopupButtons(
-                              title: "거래처",
-                              type: const StmstScreen(),
-                              name: "조회",
-                              onSelected: (result) {
-                                setState(() {
-                                  txtSSD_AGNT_CD.text =
-                                      result['SSD_AGNT_CD'] ?? "";
-                                  txtSSD_AGNT_MK.text =
-                                      result['SSD_AGNT_MK'] ?? "";
-                                  txtSSD_AGNT_NM.text =
-                                      result['SSD_AGNT_NM'] ?? "";
-                                });
-                              },
+                            SizedBox(
+                              width: 70, // 원하는 너비 설정
+                              height: 35,
+                              child: CustomPopupButtons(
+                                title: "거래처",
+                                type: const StmstScreen(),
+                                name: "조회",
+                                onSelected: (result) {
+                                  setState(() {
+                                    txtSSD_AGNT_CD.text =
+                                        result['SSD_AGNT_CD'] ?? "";
+                                    txtSSD_AGNT_MK.text =
+                                        result['SSD_AGNT_MK'] ?? "";
+                                    txtSSD_AGNT_NM.text =
+                                        result['SSD_AGNT_NM'] ?? "";
+                                  });
+                                },
+                              ),
                             ),
                           ]),
                           Row(children: [
@@ -517,7 +523,8 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                           .updateConents(widget.docNo, item!);
 
                                       if (ret.toString() == "OK") {
-                                        showCustomAlertPopup(context, "", "저장 되었습니다.");
+                                        showCustomAlertPopup(
+                                            context, "", "저장 되었습니다.");
                                       } else {
                                         showCustomAlertPopup(
                                             context, "", "정보를 저장할 수 없습니다.");
@@ -561,22 +568,24 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                   height: 35,
                                   child: ElevatedButton(
                                     onPressed: () async {
-
                                       formKey.currentState!.save();
-                                      var ret = await _govcbrdb5Repository.updateConents(widget.docNo, item!);
+                                      var ret = await _govcbrdb5Repository
+                                          .updateConents(widget.docNo, item!);
 
-                                      if(ret.toString() == "OK") {
-                                        ret = await _sendCheckRepository.checkDoEnd(widget.docNo, "3", true);
+                                      if (ret.toString() == "OK") {
+                                        ret = await _sendCheckRepository
+                                            .checkDoEnd(
+                                                widget.docNo, "3", true);
 
-                                        if(ret.contains("송신")) {
+                                        if (ret.contains("송신")) {
                                           showYesNoDialog(ret);
+                                        } else {
+                                          showCustomAlertPopup(
+                                              context, "", ret);
                                         }
-                                        else {
-                                          showCustomAlertPopup(context, "", ret);
-                                        }
-                                      }
-                                      else {
-                                        showCustomAlertPopup(context, "", "송신할 수 없습니다.");
+                                      } else {
+                                        showCustomAlertPopup(
+                                            context, "", "송신할 수 없습니다.");
                                       }
                                     },
                                     style: ButtonStyle(
