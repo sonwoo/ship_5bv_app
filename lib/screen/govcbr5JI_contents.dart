@@ -354,7 +354,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               child: const Text('세관/정박항'),
                             ),
                             SizedBox(
-                              width: 60, // 원하는 너비 설정
+                              width: 70, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_SE,
@@ -373,7 +373,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 100, // 원하는 너비 설정
+                              width: 120, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_JUNGBAK_COD,
@@ -459,7 +459,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               child: const Text('대행업체'),
                             ),
                             SizedBox(
-                              width: 60, // 원하는 너비 설정
+                              width: 70, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_CD,
@@ -478,7 +478,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 100, // 원하는 너비 설정
+                              width: 120, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_MK,
@@ -516,7 +516,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                           Row(children: [
                             const SizedBox(
                               height: 30,
-                              width: 80,
+                              width: 70,
                             ),
                             SizedBox(
                               width: 200, // 원하는 너비 설정
@@ -621,7 +621,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                       if (ret.toString() == "OK") {
                                         ret = await _sendCheckRepository
                                             .checkDoEnd(
-                                                widget.docNo, "3", true);
+                                                widget.docNo, "2", true);
 
                                         if (ret.contains("송신")) {
                                           showYesNoDialog(ret);

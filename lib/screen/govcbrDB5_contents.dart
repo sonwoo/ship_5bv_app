@@ -330,7 +330,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               child: const Text('세관/정박항'),
                             ),
                             SizedBox(
-                              width: 60, // 원하는 너비 설정
+                              width: 70, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_SE,
@@ -349,7 +349,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 100, // 원하는 너비 설정
+                              width: 120, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_JUNGBAK_COD,
@@ -386,7 +386,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                           Row(children: [
                             const SizedBox(
                               height: 30,
-                              width: 80,
+                              width: 70,
                             ),
                             SizedBox(
                               width: 200, // 원하는 너비 설정
@@ -413,7 +413,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               child: const Text('대행업체'),
                             ),
                             SizedBox(
-                              width: 60, // 원하는 너비 설정
+                              width: 70, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_CD,
@@ -432,7 +432,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 100, // 원하는 너비 설정
+                              width: 120, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_MK,
@@ -470,7 +470,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                           Row(children: [
                             const SizedBox(
                               height: 30,
-                              width: 80,
+                              width: 70,
                             ),
                             SizedBox(
                               width: 200, // 원하는 너비 설정

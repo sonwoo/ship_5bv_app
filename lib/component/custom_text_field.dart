@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ship_5bv_app/const/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final bool isTime;
-
   final FormFieldSetter<String> onSaved;
   final FormFieldValidator<String> validator;
   final TextEditingController? controller;
@@ -23,44 +21,32 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _mLength = mLength ?? 0;
-    bool _hasText = false;
-    return Expanded(
-        child: TextFormField(
-      controller: controller,
-      initialValue: controller == null
-          ? initialValue
-          : null, // controller가 없을 때만 initialValue 사용
-      onSaved: onSaved,
-      //validator: validator,
-      //cursorColor: Colors.grey,
+    final _controller = controller ?? TextEditingController(text: initialValue);
 
+    return TextFormField(
+      controller: _controller,
+      onSaved: onSaved,
+      validator: validator,
       keyboardType: isTime ? TextInputType.number : null,
       inputFormatters: isTime
           ? [
-              FilteringTextInputFormatter.digitsOnly, // 숫자만 허용
-              LengthLimitingTextInputFormatter(4), // 4자리로 제한
-            ]
-          : _mLength > 0
-              ? [LengthLimitingTextInputFormatter(mLength)]
-              : [],
-      // textAlign: TextAlign.center,
+        FilteringTextInputFormatter.digitsOnly,
+        LengthLimitingTextInputFormatter(4),
+      ]
+          : (mLength != null && mLength! > 0)
+          ? [LengthLimitingTextInputFormatter(mLength)]
+          : [],
       textAlignVertical: TextAlignVertical.top,
 
-      //textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
-        prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+        prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 30),
         prefixIcon: Container(
           margin: const EdgeInsets.only(right: 5),
-          child: const Icon(Icons.edit, size: 15),
-        ), // 검색 아이콘 추가
-        contentPadding: const EdgeInsets.symmetric(vertical: 8),
-        //contentPadding: EdgeInsets.only(left: 20),
+          child: const Icon(Icons.edit, size: 20),
+        ),
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         hintText: '',
-        // border: InputBorder.none,
-        //filled: true,
-        //fillColor: TEXT_FIELD_FILL_COLOR,
       ),
-    ));
+    );
   }
 }
