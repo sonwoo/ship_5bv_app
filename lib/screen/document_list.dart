@@ -234,7 +234,7 @@ class _DocumentList extends State<DocumentList> {
                                             MediaQuery.of(context).size.width *
                                                 0.1,
                                         child: Align(
-                                            //alignment: Alignment.centerRight,
+                                            alignment: Alignment.centerLeft,
                                             child:
                                                 Text(item.TMPSSD_SND_GBN)),
                                       ),
@@ -265,7 +265,7 @@ class _DocumentList extends State<DocumentList> {
                                         child: Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                                item.TMPSSD_SND_GBN2)),
+                                                item.TMPSSD_SND_GBN3)),
                                       ),
                                     ],
                                   ),
@@ -292,8 +292,9 @@ class _DocumentList extends State<DocumentList> {
                                             MediaQuery.of(context).size.width *
                                                 0.1,
                                         child: Align(
+                                            alignment: Alignment.centerLeft,
                                             child: Text(
-                                                item.TMPSSD_SND_GBN3)),
+                                                item.TMPSSD_SND_GBN2)),
                                       ),
                                     ],
                                   ),
