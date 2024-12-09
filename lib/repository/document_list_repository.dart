@@ -14,6 +14,7 @@ class DocumentListRepository {
     required String END_SIN_DAY,
     required int SELECT_VALUE,
     required String SEARCH_WORDS,
+    required bool STATUS,
     required String PLATFORM,
     required String docdiv,
   }) async {
@@ -24,6 +25,7 @@ class DocumentListRepository {
           "END_SIN_DAY" : END_SIN_DAY,
           "SELECT_VALUE" : SELECT_VALUE,
           "SEARCH_WORDS" : SEARCH_WORDS,
+          "STATUS": STATUS,
           "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
           },);
 

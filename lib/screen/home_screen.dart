@@ -22,21 +22,23 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
+            toolbarHeight: 45,
             //backgroundColor: Colors.amber,
-
             backgroundColor: const Color.fromRGBO(53, 80, 161, 1.0),
             title: const FittedBox(
               child: Text(
                 '선박용품 이행착수(완료) 보고',
                 style: TextStyle(
-                  fontSize: 23,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
             ),
             centerTitle: true,
-            bottom: TabBar(
+            bottom: PreferredSize (
+            preferredSize: const Size.fromHeight(40.0),
+             child:  TabBar(
               splashFactory: NoSplash.splashFactory,
               indicatorSize: TabBarIndicatorSize.tab,
               indicator: BoxDecoration(
@@ -56,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
               labelColor: const Color.fromRGBO(53, 80, 161, 1.0),
               unselectedLabelColor: Colors.grey,
               labelStyle: const TextStyle(
-                fontSize: 20.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
               indicatorColor: const Color.fromRGBO(53, 80, 161, 1.0),
@@ -79,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))),
               ],
             ),
+           ),
           ),
           body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),

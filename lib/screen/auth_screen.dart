@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
@@ -27,10 +28,33 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _targetUrl = '${API_URL}mobileUserAuth';
 
+  AppUpdateInfo? _updateInfo;
+  bool _isUpdateAvailable = false;
+
+
   @override
   void initState() {
     super.initState();
+    _checkForUpdate();
     _loadSavedLoginInfo(); // 앱 실행 시 저장된 로그인 정보 불러오기
+  }
+
+  //업데이트 유무 알람
+  Future<void> _checkForUpdate() async {
+    try {
+      AppUpdateInfo updateInfo = await InAppUpdate.checkForUpdate();
+      setState(() {
+        _updateInfo = updateInfo;
+        _isUpdateAvailable = updateInfo.updateAvailability ==
+            UpdateAvailability.updateAvailable;
+      });
+
+      if (_isUpdateAvailable) {
+        _showUpdateDialog();
+      }
+    } catch (e) {
+      print('Failed to check for update: $e');
+    }
   }
 
   // SharedPreferences에 저장된 데이터를 로드하는 메서드
@@ -117,32 +141,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(80),
-      //   child: AppBar(
-      //     backgroundColor: Colors.blueAccent,
-
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(20),
-      //     ),
-
-      //     title: Padding(
-      //         padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-      //         child: Text(
-      //           '선박용품 이행착수(완료) 보고서 App',
-      //           style: TextStyle(
-      //             fontSize: 24.0,
-      //             color: Colors.red[200],
-      //             fontWeight: FontWeight.bold,
-      //             fontFamily: 'Arial',
-      //           ),
-      //         )),
-      //     centerTitle: true, //title center 정렬
-      //     elevation: 0, //appbar 그림자 없애기
-
-      //     //appbar 배경 이미지 삽입
-      //   ),
-      // ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -150,20 +148,14 @@ class _AuthScreenState extends State<AuthScreen> {
             fit: BoxFit.fill, //
           ),
         ),
-
-        //color: Colors.green[50],
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
                 height: 20,
               ),
-              // const Icon(Icons.directions_boat_filled,
-              //     color: Colors.white, size: 40.0),
               const Text(
                 '선박용품 이행착수(완료)',
                 style: TextStyle(
@@ -182,7 +174,6 @@ class _AuthScreenState extends State<AuthScreen> {
                   fontFamily: 'Arial',
                 ),
               ),
-
               const SizedBox(
                 height: 70,
               ),
@@ -314,4 +305,37 @@ class _AuthScreenState extends State<AuthScreen> {
 
     return regExp.hasMatch(value);
   }
+
+  void _showUpdateDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('업데이트가 가능합니다.'),
+          content: Text('새로운 버전으로 앱을 업데이트 할 수 있습니다.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('나중에'),
+            ),
+            TextButton(
+              onPressed: _startFlexibleUpdate,
+              child: Text('업데이트'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _startFlexibleUpdate() async {
+    Navigator.of(context).pop(); // Close the dialog
+    try {
+      await InAppUpdate.startFlexibleUpdate();
+    } catch (e) {
+      print('Error performing update: $e');
+    }
+  }
+
+
 }

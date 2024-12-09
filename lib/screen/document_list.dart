@@ -20,7 +20,9 @@ class _DocumentList extends State<DocumentList> {
   final DocumentListRepository _documentListRepository =
       DocumentListRepository();
   List<DocumentListModel> _searchResults = [];
-
+  final List<Item> items = [Item('선박이름', 2), Item('대행업체', 1), Item('제출번호', 0) ];
+  Item? selectedItem;
+  bool _isStatusH = false;
   bool _isLoading = false;
 
   DateTime start_date = DateTime.now().subtract(const Duration(days: 6));
@@ -34,6 +36,9 @@ class _DocumentList extends State<DocumentList> {
 
   @override
   Widget build(BuildContext context) {
+
+    selectedItem ??= items.first;
+
     return Scaffold(
       body: Column(
         children: [
@@ -123,11 +128,35 @@ class _DocumentList extends State<DocumentList> {
                 ),
                 Row(
                   children: [
+                    const SizedBox(
+                      width: 5,
+                    ),
                     SizedBox(
                       width:
-                          MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
-                      child: const Align(
-                        alignment: Alignment.center,
+                          MediaQuery.of(context).size.width * 0.3, // 원하는 너비 설정
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: DropdownButton<Item>(
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Arial',
+                          ), // 텍스트 스타일
+                          value: selectedItem,
+                          items: items.map((Item item) {
+                            return DropdownMenuItem<Item>(
+                              value: item,
+                              child: Text(item.name),
+                            );
+                          }).toList(),
+                          onChanged: (Item? newValue) {
+                            setState(() {
+                              selectedItem = newValue;
+                            });
+                          },
+                        ),
+                        /*
                         child: Text(
                           '선박이름',
                           style: TextStyle(
@@ -136,11 +165,12 @@ class _DocumentList extends State<DocumentList> {
                             fontFamily: 'Arial',
                           ),
                         ),
+                        */
                       ),
                     ),
                     SizedBox(
                       width:
-                          MediaQuery.of(context).size.width * 0.7, // 원하는 너비 설정
+                          MediaQuery.of(context).size.width * 0.4, // 원하는 너비 설정
                       height: 35,
                       child: TextField(
                         controller: _searchController1,
@@ -150,7 +180,21 @@ class _DocumentList extends State<DocumentList> {
                           fillColor: Colors.white54,
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      width:
+                      MediaQuery.of(context).size.width * 0.1, // 원하는 너비 설정
+                      height: 35,
+                      child: Checkbox(
+                        value: _isStatusH,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isStatusH = value!;
+                          });
+                        },
+                      ),
+                    ),
+                    Text('허가건'),
                   ],
                 ),
                 const SizedBox(
@@ -217,8 +261,7 @@ class _DocumentList extends State<DocumentList> {
                                                 0.6,
                                         child: Align(
                                           alignment: Alignment.centerLeft,
-                                          child:
-                                              Text('구분: ${item.TMPSSD_FD_GBN}'),
+                                          child: Text('선명: ${item.SSD_SUN_NAME}'),
                                         ),
                                       ),
                                       SizedBox(
@@ -235,8 +278,7 @@ class _DocumentList extends State<DocumentList> {
                                                 0.1,
                                         child: Align(
                                             alignment: Alignment.centerLeft,
-                                            child:
-                                                Text(item.TMPSSD_SND_GBN)),
+                                            child: Text(item.TMPSSD_SND_GBN)),
                                       ),
                                     ],
                                   ),
@@ -248,8 +290,7 @@ class _DocumentList extends State<DocumentList> {
                                                 0.6,
                                         child: Align(
                                           alignment: Alignment.centerLeft,
-                                          child:
-                                              Text('선명: ${item.SSD_SUN_NAME}'),
+                                          child: Text('신고일자: ${item.SSD_SIN_DAY}'),
                                         ),
                                       ),
                                       SizedBox(
@@ -277,8 +318,7 @@ class _DocumentList extends State<DocumentList> {
                                                 0.6,
                                         child: Align(
                                           alignment: Alignment.centerLeft,
-                                          child:
-                                              Text('신고일자: ${item.SSD_SIN_DAY}'),
+                                          child: Text('대행업체: ${item.SSD_BO_SANGHO}'),
                                         ),
                                       ),
                                       SizedBox(
@@ -362,6 +402,7 @@ class _DocumentList extends State<DocumentList> {
           ),
         ],
       ),
+      /*
       bottomNavigationBar: Container(
         color: Colors.grey[300],
         height: 50,
@@ -375,6 +416,7 @@ class _DocumentList extends State<DocumentList> {
           ),
         ),
       ),
+      */
     );
   }
 
@@ -387,8 +429,9 @@ class _DocumentList extends State<DocumentList> {
       CORP_ID: CORP_ID,
       START_SIN_DAY: start_date.toString(),
       END_SIN_DAY: end_date.toString(),
-      SELECT_VALUE: 2,
+      SELECT_VALUE: selectedItem == null ? 2 : selectedItem!.id,
       SEARCH_WORDS: _searchController1.text,
+      STATUS : _isStatusH!,
       PLATFORM: PLATFORM,
       docdiv: widget.docdiv,
     );
@@ -398,4 +441,11 @@ class _DocumentList extends State<DocumentList> {
       _isLoading = false;
     });
   }
+}
+
+
+class Item {
+  final String name;
+  final int id;
+  Item(this.name, this.id);
 }
