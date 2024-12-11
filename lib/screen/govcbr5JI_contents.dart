@@ -43,7 +43,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
   void initState() {
     super.initState();
     _getContents();
-  }
+   }
 
   @override
   void dispose() {
@@ -330,20 +330,47 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               child: const Text('작업선명'),
                             ),
                             SizedBox(
-                              width: 200, // 원하는 너비 설정
-                              height: 35,
-                              child: CustomTextField(
-                                initialValue: item?.SSD_CRG_NM,
-                                isTime: false,
-                                onSaved: (val) {
-                                  setState(() {
-                                    //이필드는 값만 보여주기때문에 저장하는 부분 없음
-                                  });
-                                },
-                                validator: (String? val) {
-                                  return null;
-                                },
-                              ),
+                                height: 25,
+                                child: Text(
+                                  '${item?.SSD_CRG_NM}',
+                                  style: const TextStyle(
+                                    fontSize: 16, // 글자 크기를 24로 설정
+                                    color: Colors.grey,
+                                  ),)
+                            ),
+                          ]),
+                          const SizedBox(height: 5),
+                          Row(children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
+                              child: const Text('선내장치장소'),
+                            ),
+                            SizedBox(
+                              height: 25,
+                              child: Text(
+                                '${item?.SSD_BWH_NM}',
+                                style: const TextStyle(
+                                fontSize: 16, // 글자 크기를 24로 설정
+                                color: Colors.grey,
+                              ),)
+                            ),
+                          ]),
+                          const SizedBox(height: 5),
+                          Row(children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
+                              child: const Text('차량번호'),
+                            ),
+                            SizedBox(
+                                height: 25,
+                                child: Text(
+                                  '${item?.SSD_VEHICLE_NO}',
+                                  style: const TextStyle(
+                                    fontSize: 16, // 글자 크기를 24로 설정
+                                    color: Colors.grey,
+                                  ),)
                             ),
                           ]),
                           const SizedBox(height: 5),
@@ -422,28 +449,6 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                   setState(() {
                                     item?.TMPPORT_CD = val;
                                   });
-                                },
-                                validator: (String? val) {
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ]),
-                          const SizedBox(height: 5),
-                          Row(children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              height: 25,
-                              child: const Text('선내장치장소'),
-                            ),
-                            SizedBox(
-                              width: 200, // 원하는 너비 설정
-                              height: 35,
-                              child: CustomTextField(
-                                initialValue: item?.SSD_BWH_NM,
-                                isTime: false,
-                                onSaved: (val) {
-                                  item?.SSD_BWH_NM = val;
                                 },
                                 validator: (String? val) {
                                   return null;
@@ -719,6 +724,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
           if (item?.SSD_AGNT_NM != null) {
             txtSSD_AGNT_NM.text = item!.SSD_AGNT_NM ?? '';
           }
+
         }
       } else {
         Navigator.pop(context);

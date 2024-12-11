@@ -407,20 +407,13 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               child: const Text('선내장치장소'),
                             ),
                             SizedBox(
-                              width: 200, // 원하는 너비 설정
-                              height: 35,
-                              child: CustomTextField(
-                                initialValue: item?.SSD_BWH_NM,
-                                isTime: false,
-                                onSaved: (val) {
-                                  setState(() {
-                                    //이필드는 값만 보여주기때문에 저장하는 부분 없음
-                                  });
-                                },
-                                validator: (String? val) {
-                                  return null;
-                                },
-                              ),
+                                height: 25,
+                                child: Text(
+                                  '${item?.SSD_BWH_NM}',
+                                  style: const TextStyle(
+                                    fontSize: 16, // 글자 크기를 24로 설정
+                                    color: Colors.grey,
+                                  ),)
                             ),
                           ]),
                           const SizedBox(height: 5),
@@ -431,22 +424,16 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               child: const Text('차량번호'),
                             ),
                             SizedBox(
-                              width: 100, // 원하는 너비 설정
-                              height: 35,
-                              child: CustomTextField(
-                                initialValue: item?.SSD_VEHICLE_NO,
-                                isTime: false,
-                                onSaved: (val) {
-                                  setState(() {
-                                    //이필드는 값만 보여주기때문에 저장하는 부분 없음
-                                  });
-                                },
-                                validator: (String? val) {
-                                  return null;
-                                },
-                              ),
+                                height: 25,
+                                child: Text(
+                                  '${item?.SSD_VEHICLE_NO}',
+                                  style: const TextStyle(
+                                    fontSize: 16, // 글자 크기를 24로 설정
+                                    color: Colors.grey,
+                                  ),)
                             ),
                           ]),
+                          const SizedBox(height: 5),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,

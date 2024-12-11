@@ -64,11 +64,6 @@ class _DocumentList extends State<DocumentList> {
                         ),
                       ),
                     ),
-                    //const Icon(Icons.calendar_month_outlined),
-                    // const SizedBox(
-                    //   height: 30,
-                    //   width: 30,
-                    // ),
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: ElevatedButton(
@@ -423,6 +418,16 @@ class _DocumentList extends State<DocumentList> {
   void _performSearch() async {
     setState(() {
       _isLoading = true;
+
+      /*
+      var searchItem = _getSearch();
+      searchItem?.start_date = start_date;
+      searchItem?.end_date = end_date;
+      searchItem?.searchValue = selectedItem!.name;
+      searchItem?.selectedIndex = selectedItem!.id;
+      searchItem?.statusH = _isStatusH;
+      */
+
     });
 
     final results = await _documentListRepository.getDocumentList(
@@ -431,7 +436,7 @@ class _DocumentList extends State<DocumentList> {
       END_SIN_DAY: end_date.toString(),
       SELECT_VALUE: selectedItem == null ? 2 : selectedItem!.id,
       SEARCH_WORDS: _searchController1.text,
-      STATUS : _isStatusH!,
+      STATUS : _isStatusH,
       PLATFORM: PLATFORM,
       docdiv: widget.docdiv,
     );
@@ -441,6 +446,16 @@ class _DocumentList extends State<DocumentList> {
       _isLoading = false;
     });
   }
+
+  selectedSearch? _getSearch()
+  {
+    for (var search in selectedSearches) {
+      if (search.name == widget.docdiv) {
+        return search;
+      }
+    }
+  }
+
 }
 
 

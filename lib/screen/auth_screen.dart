@@ -30,7 +30,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   AppUpdateInfo? _updateInfo;
   bool _isUpdateAvailable = false;
-
+  String msg = '';
 
   @override
   void initState() {
@@ -74,6 +74,7 @@ class _AuthScreenState extends State<AuthScreen> {
     String businessNumber = _businessNumberController.text.trim();
     String userId = _userIdController.text.trim();
     String password = _passwordController.text.trim();
+
 
     if (businessNumber.isEmpty || userId.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -177,31 +178,6 @@ class _AuthScreenState extends State<AuthScreen> {
               const SizedBox(
                 height: 70,
               ),
-              // Row(
-              //   children: [
-              //     const Text('사용구분'),
-              //     Radio<String>(
-              //       value: 'EDI',
-              //       groupValue: _userType,
-              //       onChanged: (value) {
-              //         setState(() {
-              //           _userType = value!;
-              //         });
-              //       },
-              //     ),
-              //     const Text('조건부 신고'),
-              //     Radio<String>(
-              //       value: 'CS',
-              //       groupValue: _userType,
-              //       onChanged: (value) {
-              //         setState(() {
-              //           _userType = value!;
-              //         });
-              //       },
-              //     ),
-              //     const Text('EDI 선용품'),
-              //   ],
-              // ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: TextField(
@@ -264,6 +240,11 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 child: const Text('로그인'),
               ),
+              const SizedBox(height: 10),
+              Text(msg, style: TextStyle(
+                fontSize: 18,
+                color: Colors.red[500],
+              ))
             ],
           ),
         ),
@@ -319,7 +300,7 @@ class _AuthScreenState extends State<AuthScreen> {
               child: Text('나중에'),
             ),
             TextButton(
-              onPressed: _startFlexibleUpdate,
+              onPressed: _startImmediateUpdate,
               child: Text('업데이트'),
             ),
           ],
@@ -328,12 +309,12 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Future<void> _startFlexibleUpdate() async {
+  Future<void> _startImmediateUpdate() async {
     Navigator.of(context).pop(); // Close the dialog
     try {
-      await InAppUpdate.startFlexibleUpdate();
+      await InAppUpdate.performImmediateUpdate();
     } catch (e) {
-      print('Error performing update: $e');
+      msg = '$e \r\n자동 업데이트에 문제가 있습니다. Play 스토어에서 업데이트 하시기 바랍니다.';
     }
   }
 
