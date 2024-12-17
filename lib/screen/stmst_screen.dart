@@ -17,7 +17,11 @@ class _StmstScreenState extends State<StmstScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus(); // 키보드 닫기
+      },
+    child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 40,
           title: const Text(
@@ -120,7 +124,9 @@ class _StmstScreenState extends State<StmstScreen> {
                     ),
             )
           ],
-        ));
+        ),
+    ),
+    );
   }
 
   void _performSearch() async {

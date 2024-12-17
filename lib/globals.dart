@@ -7,18 +7,18 @@ String COMPANY_NO = "";
 const String API_URL = "http://192.168.200.38:3000/api/";
 
 List<selectedSearch> selectedSearches =
-[ selectedSearch('GOVCBR5JIList', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(), 2,'',false),
-  selectedSearch('GOVCBRDB5List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(), 2,'',false),
-  selectedSearch('GOVCBRDB6List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(), 2,'',false) ];
+[ selectedSearch('GOVCBR5JIList', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(), '','',true),
+  selectedSearch('GOVCBRDB5List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(), '','',true),
+  selectedSearch('GOVCBRDB6List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(), '','',true) ];
 
 class selectedSearch
 {
   String name;
   DateTime start_date;
   DateTime end_date;
-  int selectedIndex;
-  String searchValue;
+  String searchValue1;
+  String searchValue2;
   bool statusH;
 
-  selectedSearch(this.name, this.start_date, this.end_date, this.selectedIndex, this.searchValue, this.statusH);
+  selectedSearch(this.name, this.start_date, this.end_date, this.searchValue1, this.searchValue2, this.statusH);
 }

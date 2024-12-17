@@ -20,6 +20,9 @@ class Govcbrdb6ContentsModel {
   String? SSD_AGNT_CD;
   String? SSD_AGNT_MK;
   String? SSD_AGNT_NM;
+  String? SSD_DAE_CD;
+  String? SSD_DAE_MK;
+  String? SSD_DAE_NM;
 
   Govcbrdb6ContentsModel({
     required this.USER_ERP_ID,
@@ -40,7 +43,10 @@ class Govcbrdb6ContentsModel {
     required this.SSD_ROLE_DIV,
     required this.SSD_AGNT_CD,
     required this.SSD_AGNT_MK,
-    required this.SSD_AGNT_NM ,
+    required this.SSD_AGNT_NM,
+    required this.SSD_DAE_CD,
+    required this.SSD_DAE_MK,
+    required this.SSD_DAE_NM,
     required this.SSD_SE});
 
   factory Govcbrdb6ContentsModel.fromJson(Map<String, dynamic> json) {
@@ -65,6 +71,9 @@ class Govcbrdb6ContentsModel {
       SSD_AGNT_CD : json['SSD_AGNT_CD'] ?? "",
       SSD_AGNT_MK : json['SSD_AGNT_MK'] ?? "",
       SSD_AGNT_NM : json['SSD_AGNT_NM'] ?? "",
+      SSD_DAE_CD : json['SSD_DAE_CD'] ?? "",
+      SSD_DAE_MK : json['SSD_DAE_MK'] ?? "",
+      SSD_DAE_NM : json['SSD_DAE_NM'] ?? "",
     );
 
   }
@@ -88,6 +97,9 @@ class Govcbrdb6ContentsModel {
       'SSD_AGNT_CD': SSD_AGNT_CD,
       'SSD_AGNT_MK': SSD_AGNT_MK,
       'SSD_AGNT_NM': SSD_AGNT_NM,
+      'SSD_DAE_CD': SSD_DAE_CD,
+      'SSD_DAE_MK': SSD_DAE_MK,
+      'SSD_DAE_NM': SSD_DAE_NM,
     };
   }
 

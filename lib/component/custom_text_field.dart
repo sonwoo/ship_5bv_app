@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? initialValue;
   final int? mLength;
+  final bool? isEnable;
 
   const CustomTextField({
     super.key,
@@ -17,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     this.initialValue,
     this.controller,
     this.mLength,
+    this.isEnable
   });
 
   @override
@@ -37,7 +39,7 @@ class CustomTextField extends StatelessWidget {
           ? [LengthLimitingTextInputFormatter(mLength)]
           : [],
       textAlignVertical: TextAlignVertical.top,
-
+  /*
       decoration: InputDecoration(
         prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 30),
         prefixIcon: Container(
@@ -47,6 +49,7 @@ class CustomTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         hintText: '',
       ),
+  */
     );
   }
 }

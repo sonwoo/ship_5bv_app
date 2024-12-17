@@ -4,7 +4,10 @@ import 'package:ship_5bv_app/model/anchorage_model.dart';
 import 'package:ship_5bv_app/repository/anchorage_repository.dart';
 
 class Anchorage extends StatefulWidget {
-  const Anchorage({super.key});
+
+  final String custom;
+
+  const Anchorage({super.key, required this.custom});
   @override
   _AnchorageState createState() => _AnchorageState();
 }
@@ -12,12 +15,17 @@ class Anchorage extends StatefulWidget {
 class _AnchorageState extends State<Anchorage> {
   final AnchorageRepository _anchoragerepository = AnchorageRepository();
   final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController2 = TextEditingController();
   bool _isLoading = false;
   List<AnchorageModel> _searchResults = [];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus(); // 키보드 닫기
+      },
+     child:  Scaffold(
         appBar: AppBar(
           toolbarHeight: 40,
           title: const Text(
@@ -35,10 +43,25 @@ class _AnchorageState extends State<Anchorage> {
               child: TextField(
                 controller: _searchController,
                 decoration: const InputDecoration(
-                  hintText: "정박항을 입력하세요",
                   border: OutlineInputBorder(),
                   filled: true,
                   fillColor: Colors.white54,
+                  hintText: '정박항명'
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+              height: 40,
+              child: TextField(
+                controller: _searchController2,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Colors.white54,
+                    hintText: '항구부호'
                 ),
               ),
             ),
@@ -136,8 +159,7 @@ class _AnchorageState extends State<Anchorage> {
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('항구부호: ${item.PORT_CD}'),
-                                    Text('세관: ${item.CUSTOMS_CD}'),
+                                    Text('항구부호: ${item.PORT_CD}세관: ${item.CUSTOMS_CD}'),
                                   ],
                                 ),
                                 onTap: () {
@@ -158,7 +180,9 @@ class _AnchorageState extends State<Anchorage> {
                     ),
             )
           ],
-        ));
+        ),
+    ),
+    );
   }
 
   void _performSearch() async {
@@ -168,9 +192,9 @@ class _AnchorageState extends State<Anchorage> {
 
     final results = await _anchoragerepository.getAnchorageList(
         CORP_ID: CORP_ID,
-        CUSTOMS_CD: '',
-        SELECT_VALUE: 1,
+        CUSTOMS_CD: widget.custom,
         SEARCH_WORDS: _searchController.text,
+        SEARCH_WORDS2: _searchController2.text,
         PLATFORM: PLATFORM);
 
     setState(() {

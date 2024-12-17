@@ -19,8 +19,11 @@ class Govcbr5jiContentsModel {
   String? SSD_AGNT_CD;
   String? SSD_AGNT_MK;
   String? SSD_AGNT_NM;
+  String? SSD_DAE_CD;
+  String? SSD_DAE_MK;
+  String? SSD_DAE_NM;
 
-  Govcbr5jiContentsModel({required this.USER_ERP_ID, required this.SSD_F_GBN, required this.SSD_MSG_GI2, required this.SSD_RPT_DAY, required this.SSD_5BV_DAY, required this.SSD_5BV_HM, required this.SSD_CRG_NM, required this.SSD_JUNGBAK_COD, required this.TMPPORT_CD, required this.SSD_VEHICLE_NO, required this.SSD_CRG_NM2, required this.SSD_BWH_NM, required this.WORK_DIV, required this.END_SND_CHK, required this.SSD_ROLE_DIV, required this.SSD_AGNT_CD, required this.SSD_AGNT_MK, required this.SSD_AGNT_NM , required this.SSD_SE});
+  Govcbr5jiContentsModel({required this.USER_ERP_ID, required this.SSD_F_GBN, required this.SSD_MSG_GI2, required this.SSD_RPT_DAY, required this.SSD_5BV_DAY, required this.SSD_5BV_HM, required this.SSD_CRG_NM, required this.SSD_JUNGBAK_COD, required this.TMPPORT_CD, required this.SSD_VEHICLE_NO, required this.SSD_CRG_NM2, required this.SSD_BWH_NM, required this.WORK_DIV, required this.END_SND_CHK, required this.SSD_ROLE_DIV, required this.SSD_AGNT_CD, required this.SSD_AGNT_MK, required this.SSD_AGNT_NM , required this.SSD_SE, required this.SSD_DAE_CD, required this.SSD_DAE_MK, required this.SSD_DAE_NM});
 
   factory Govcbr5jiContentsModel.fromJson(Map<String, dynamic> json) {
     return Govcbr5jiContentsModel(
@@ -43,6 +46,9 @@ class Govcbr5jiContentsModel {
       SSD_AGNT_CD : json['SSD_AGNT_CD'] ?? "",
       SSD_AGNT_MK : json['SSD_AGNT_MK'] ?? "",
       SSD_AGNT_NM : json['SSD_AGNT_NM'] ?? "",
+      SSD_DAE_CD : json['SSD_DAE_CD'] ?? "",
+      SSD_DAE_MK : json['SSD_DAE_MK'] ?? "",
+      SSD_DAE_NM : json['SSD_DAE_NM'] ?? "",
     );
 
   }
@@ -63,6 +69,9 @@ class Govcbr5jiContentsModel {
       'SSD_AGNT_CD': SSD_AGNT_CD,
       'SSD_AGNT_MK': SSD_AGNT_MK,
       'SSD_AGNT_NM': SSD_AGNT_NM,
+      'SSD_DAE_CD': SSD_DAE_CD,
+      'SSD_DAE_MK': SSD_DAE_MK,
+      'SSD_DAE_NM': SSD_DAE_NM,
     };
   }
 

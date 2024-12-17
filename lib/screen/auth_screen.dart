@@ -292,16 +292,16 @@ class _AuthScreenState extends State<AuthScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('업데이트가 가능합니다.'),
-          content: Text('새로운 버전으로 앱을 업데이트 할 수 있습니다.'),
+          title: const Text('업데이트가 가능합니다.'),
+          content: const Text('새로운 버전으로 앱을 업데이트 할 수 있습니다.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('나중에'),
+              child: const Text('나중에'),
             ),
             TextButton(
               onPressed: _startImmediateUpdate,
-              child: Text('업데이트'),
+              child: const Text('업데이트'),
             ),
           ],
         );

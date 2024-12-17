@@ -12,15 +12,15 @@ class AnchorageRepository  {
   Future<List<AnchorageModel>> getAnchorageList({
     required String CORP_ID,
     required String CUSTOMS_CD,
-    required int SELECT_VALUE,
     required String SEARCH_WORDS,
+    required String SEARCH_WORDS2,
     required String PLATFORM,
   }) async {
     final resp = await _dio.get(_targetUrl, queryParameters: {
       "CORP_ID": CORP_ID,
       "CUSTOMS_CD": CUSTOMS_CD,
-      "SELECT_VALUE": SELECT_VALUE,
       "SEARCH_WORDS": SEARCH_WORDS,
+      "SEARCH_WORDS2": SEARCH_WORDS2,
       "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
     },);
 

@@ -17,11 +17,12 @@ class DocumentList extends StatefulWidget {
 
 class _DocumentList extends State<DocumentList> {
   final TextEditingController _searchController1 = TextEditingController();
+  final TextEditingController _searchController2 = TextEditingController();
+
   final DocumentListRepository _documentListRepository =
       DocumentListRepository();
   List<DocumentListModel> _searchResults = [];
-  final List<Item> items = [Item('선박이름', 2), Item('대행업체', 1), Item('제출번호', 0) ];
-  Item? selectedItem;
+
   bool _isStatusH = false;
   bool _isLoading = false;
 
@@ -31,15 +32,24 @@ class _DocumentList extends State<DocumentList> {
   @override
   void initState() {
     super.initState();
+
+    var search = _getSearch();
+    start_date = search!.start_date;
+    end_date = search.end_date;
+    _isStatusH = search.statusH;
+    _searchController1.text = search.searchValue1;
+    _searchController2.text = search.searchValue2;
+
     _performSearch();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    selectedItem ??= items.first;
-
-    return Scaffold(
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus(); // 키보드 닫기
+      },
+    child:  Scaffold(
       body: Column(
         children: [
           Container(
@@ -82,8 +92,12 @@ class _DocumentList extends State<DocumentList> {
                             });
                           }
                         },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        ),
                         child: Text(
-                            "${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}"),
+                            "${start_date.year.toString()}-${start_date.month.toString().padLeft(2, '0')}-${start_date.day.toString().padLeft(2, '0')}",
+                        ),
                       ),
                     ),
                     const Text(
@@ -112,67 +126,11 @@ class _DocumentList extends State<DocumentList> {
                             });
                           }
                         },
-                        child: Text(
-                            "${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}"),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    SizedBox(
-                      width:
-                          MediaQuery.of(context).size.width * 0.3, // 원하는 너비 설정
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: DropdownButton<Item>(
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Arial',
-                          ), // 텍스트 스타일
-                          value: selectedItem,
-                          items: items.map((Item item) {
-                            return DropdownMenuItem<Item>(
-                              value: item,
-                              child: Text(item.name),
-                            );
-                          }).toList(),
-                          onChanged: (Item? newValue) {
-                            setState(() {
-                              selectedItem = newValue;
-                            });
-                          },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         ),
-                        /*
                         child: Text(
-                          '선박이름',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Arial',
-                          ),
-                        ),
-                        */
-                      ),
-                    ),
-                    SizedBox(
-                      width:
-                          MediaQuery.of(context).size.width * 0.4, // 원하는 너비 설정
-                      height: 35,
-                      child: TextField(
-                        controller: _searchController1,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          filled: true,
-                          fillColor: Colors.white54,
+                            "${end_date.year.toString()}-${end_date.month.toString().padLeft(2, '0')}-${end_date.day.toString().padLeft(2, '0')}",
                         ),
                       ),
                     ),
@@ -189,7 +147,82 @@ class _DocumentList extends State<DocumentList> {
                         },
                       ),
                     ),
-                    Text('허가건'),
+                    const Text('허가'),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
+                      child: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '선박이름',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Arial',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width * 0.27, // 원하는 너비 설정
+                      height: 35,
+                      child: TextField(
+                        controller: _searchController1,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white54,
+                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        ),
+                        style: const TextStyle(fontSize: 16), // 텍스트 크기 설정
+                        cursorHeight: 18, // 커서 높이를 텍스트 크기와 동일하게 설정
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    SizedBox(
+                      width:
+                      MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
+                      child: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '신청업체',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Arial',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:
+                      MediaQuery.of(context).size.width * 0.27, // 원하는 너비 설정
+                      height: 35,
+                      child: TextField(
+                        controller: _searchController2,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white54,
+                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        ),
+                        style: const TextStyle(fontSize: 16), // 텍스트 크기 설정
+                        cursorHeight: 18, // 커서 높이를 텍스트 크기와 동일하게 설정
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -199,6 +232,14 @@ class _DocumentList extends State<DocumentList> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+
+                        var searchItem = _getSearch();
+                        searchItem?.start_date = start_date;
+                        searchItem?.end_date = end_date;
+                        searchItem?.searchValue1 = _searchController1.text;
+                        searchItem?.searchValue2 = _searchController2.text;
+                        searchItem?.statusH = _isStatusH;
+
                         _performSearch();
                       },
                       style: ElevatedButton.styleFrom(
@@ -412,30 +453,21 @@ class _DocumentList extends State<DocumentList> {
         ),
       ),
       */
+    ),
     );
   }
 
   void _performSearch() async {
     setState(() {
       _isLoading = true;
-
-      /*
-      var searchItem = _getSearch();
-      searchItem?.start_date = start_date;
-      searchItem?.end_date = end_date;
-      searchItem?.searchValue = selectedItem!.name;
-      searchItem?.selectedIndex = selectedItem!.id;
-      searchItem?.statusH = _isStatusH;
-      */
-
     });
 
     final results = await _documentListRepository.getDocumentList(
       CORP_ID: CORP_ID,
       START_SIN_DAY: start_date.toString(),
       END_SIN_DAY: end_date.toString(),
-      SELECT_VALUE: selectedItem == null ? 2 : selectedItem!.id,
       SEARCH_WORDS: _searchController1.text,
+      SEARCH_WORDS2:_searchController2.text,
       STATUS : _isStatusH,
       PLATFORM: PLATFORM,
       docdiv: widget.docdiv,
@@ -454,13 +486,9 @@ class _DocumentList extends State<DocumentList> {
         return search;
       }
     }
+    return null;
   }
 
 }
 
 
-class Item {
-  final String name;
-  final int id;
-  Item(this.name, this.id);
-}
