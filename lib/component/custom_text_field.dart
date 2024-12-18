@@ -39,17 +39,13 @@ class CustomTextField extends StatelessWidget {
           ? [LengthLimitingTextInputFormatter(mLength)]
           : [],
       textAlignVertical: TextAlignVertical.top,
-  /*
-      decoration: InputDecoration(
-        prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 30),
-        prefixIcon: Container(
-          margin: const EdgeInsets.only(right: 5),
-          child: const Icon(Icons.edit, size: 20),
-        ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         hintText: '',
       ),
-  */
+
     );
   }
 }

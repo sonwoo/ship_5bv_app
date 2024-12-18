@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'package:ship_5bv_app/util.dart';
 import 'package:ship_5bv_app/screen/home_screen.dart';
 import 'package:ship_5bv_app/globals.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 enum Type { edi, cs }
 
@@ -25,6 +26,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _userIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _saveLoginInfo = false;
+  String _appVersion = 'ver...';
 
   final _targetUrl = '${API_URL}mobileUserAuth';
 
@@ -36,6 +38,7 @@ class _AuthScreenState extends State<AuthScreen> {
   void initState() {
     super.initState();
     _checkForUpdate();
+    _getAppVersion();
     _loadSavedLoginInfo(); // 앱 실행 시 저장된 로그인 정보 불러오기
   }
 
@@ -119,7 +122,7 @@ class _AuthScreenState extends State<AuthScreen> {
       );
 
       if (response.statusMessage != 'OK') {
-        showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다.");
+        showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다. $API_URL");
       } else {
         String ret = response.data["Message"];
         if (ret.contains("인증이 성공하였습니다.")) {
@@ -134,7 +137,7 @@ class _AuthScreenState extends State<AuthScreen> {
         }
       }
     } catch (ex) {
-      showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다.");
+      showCustomAlertPopup(context, "알림", "서비스에 접속을 하지 못했습니다. ${ex.toString()}");
     }
   }
 
@@ -170,6 +173,15 @@ class _AuthScreenState extends State<AuthScreen> {
                 '보고서 Application',
                 style: TextStyle(
                   fontSize: 24.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Arial',
+                ),
+              ),
+               Text(
+                _appVersion,
+                style: const TextStyle(
+                  fontSize: 10.0,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Arial',
@@ -318,5 +330,12 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
+  Future<void> _getAppVersion() async {
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    setState(() {
+      _appVersion = 'Version: ${packageInfo.version} (Build: ${packageInfo.buildNumber})';
+    });
+  }
 
 }

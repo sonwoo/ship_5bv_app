@@ -104,6 +104,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
       body: item == null
           ? const Center(child: CircularProgressIndicator())
           : SafeArea(
+              child : SingleChildScrollView(
               child: Container(
                 color: Colors.white,
                 //width: MediaQuery.of(context).size.width,
@@ -117,7 +118,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                         children: [
                           Row(children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.45,
+                              width: MediaQuery.of(context).size.width * 0.2,
                               child: const Text('문서기능',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -125,54 +126,53 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                 ),),
                             ),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              child: const Text('문서구분',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: LABEL_COLOR,
-                                ),),
-                              // width: 30,
+                              width: 50, // 원하는 너비 설정
+                              height: 35,
+                              child: Align(
+                                alignment: Alignment.topCenter,
+                                child: CustomTextField(
+                                  initialValue: item?.SSD_MSG_GI2,
+                                  isTime: false,
+                                  mLength: 1,
+                                  onSaved: (val) {
+                                    setState(() {
+                                      item?.SSD_MSG_GI2 = val;
+                                    });
+                                  },
+                                  validator: (String? val) {
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Text(
+                              '9:원본,\n35:재전송',
+                              style: TextStyle(
+                                fontSize: 12, // 글자 크기를 24로 설정
+                                color: Colors.grey,
+                              ),
                             ),
                           ]),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Row(
                             children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.45,
-                                child: Row(
-                                  children: [
+                             Row(children: [
                                     SizedBox(
-                                      width: 50, // 원하는 너비 설정
-                                      height: 35,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: CustomTextField(
-                                          initialValue: item?.SSD_MSG_GI2,
-                                          isTime: false,
-                                          mLength: 1,
-                                          onSaved: (val) {
-                                            setState(() {
-                                              item?.SSD_MSG_GI2 = val;
-                                            });
-                                          },
-                                          validator: (String? val) {
-                                            return null;
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    const Text(
-                                      '9:원본,\n35:재전송',
-                                      style: TextStyle(
-                                        fontSize: 12, // 글자 크기를 24로 설정
-                                        color: Colors.grey,
-                                      ),
+                                      width: MediaQuery.of(context).size.width * 0.2,
+                                      child: const Text('문서구분',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: LABEL_COLOR,
+                                        ),),
+                                      // width: 30,
                                     ),
                                   ],
                                 ),
-                              ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.45,
                                 child: Row(
@@ -209,7 +209,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -259,7 +259,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                   child: Text(item?.SSD_RPT_DAY ?? initDate),
                                 )),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -340,7 +340,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -361,7 +361,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                   ),)
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -382,7 +382,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),)
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -403,12 +403,12 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                   ),)
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
-                              child: const Text('세관/정박항',
+                              child: const Text('세관정박항',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
@@ -449,6 +449,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                 },
                               ),
                             ),
+                            const SizedBox(width: 5),
                             SizedBox(
                               width: 70, // 원하는 너비 설정
                               height: 35,
@@ -468,6 +469,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),
                             ),
                           ]),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -490,7 +492,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.2,
@@ -575,6 +577,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                 },
                               ),
                             ),
+                            const SizedBox(width: 5),
                             SizedBox(
                               width: 70, // 원하는 너비 설정
                               height: 35,
@@ -595,6 +598,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),
                             ),
                           ]),
+                          const SizedBox(height: 10),
                           Row(children: [
                             const SizedBox(
                               height: 30,
@@ -617,7 +621,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               ),
                             ),
                           ]),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 20),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -759,6 +763,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                         ],
                       )),
                 ),
+              )
               ),
             ),
     ),
