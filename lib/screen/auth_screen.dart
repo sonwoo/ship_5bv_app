@@ -216,6 +216,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   obscureText: true,
                 ),
               ),
+              const Text('(패스워드는 주기적으로 변경해 주시기 바랍니다.)', style:
+                  TextStyle(
+                    color: Colors.red
+                  )),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

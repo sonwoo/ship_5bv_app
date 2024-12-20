@@ -2,7 +2,7 @@
     package="kr.co.ecis.ship5bvapp">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="ship_5bv_app"
+        android:label="선박용품 이행착수(완료) 보고"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -30,6 +30,10 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
   String initDate =
       '${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}';
 
+
+  final TextEditingController txtSSD_DB7_HM = TextEditingController();
+
+
   final TextEditingController txtSSD_JUNGBAK_COD = TextEditingController();
   final TextEditingController txtSSD_SE = TextEditingController();
   final TextEditingController txtTMPPORT_CD = TextEditingController();
@@ -49,6 +53,10 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
   @override
   void dispose() {
     // TextEditingController 해제
+
+    txtSSD_DB7_HM.dispose();
+
+
     txtSSD_SE.dispose();
     txtTMPPORT_CD.dispose();
     txtSSD_JUNGBAK_COD.dispose();
@@ -118,87 +126,84 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                         children: [
                           Row(children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.2,
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              height: 25,
                               child: const Text('문서기능',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
                             ),
                             SizedBox(
+                              height: 35,
+                              child: Radio<String>(
+                                value: '9',
+                                groupValue: item!.SSD_MSG_GI2,
+                                onChanged: (val) {
+                                  setState(() {
+                                    item?.SSD_MSG_GI2 = '9';
+                                  });
+                                },
+                              ),
+                            ),
+                            const Text('9:원본'),
+                            SizedBox(
                               width: 50, // 원하는 너비 설정
                               height: 35,
-                              child: Align(
-                                alignment: Alignment.topCenter,
-                                child: CustomTextField(
-                                  initialValue: item?.SSD_MSG_GI2,
-                                  isTime: false,
-                                  mLength: 1,
-                                  onSaved: (val) {
-                                    setState(() {
-                                      item?.SSD_MSG_GI2 = val;
-                                    });
-                                  },
-                                  validator: (String? val) {
-                                    return null;
-                                  },
-                                ),
+                              child: Radio<String>(
+                                value: '35',
+                                groupValue: item!.SSD_MSG_GI2,
+                                onChanged: (val) {
+                                  setState(() {
+                                    item?.SSD_MSG_GI2 = '35';
+                                  });
+                                },
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Text(
-                              '9:원본,\n35:재전송',
-                              style: TextStyle(
-                                fontSize: 12, // 글자 크기를 24로 설정
-                                color: Colors.grey,
-                              ),
-                            ),
+                            const Text('35:재전송'),
                           ]),
                           const SizedBox(height: 10),
                           Row(
                             children: [
                             Row(children: [
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width * 0.2,
-                                      child: const Text('문서구분',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: LABEL_COLOR,
-                                        ),),
-                                      // width: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 50, // 원하는 너비 설정0
-                                      height: 35,
-                                      child: CustomTextField(
-                                        initialValue: item?.SSD_F_GBN,
-                                        isTime: false,
-                                        mLength: 1,
-                                        onSaved: (val) {
-                                          setState(() {
-                                            item?.SSD_F_GBN = val;
-                                          });
-                                        },
-                                        validator: (String? val) {
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    const Text(
-                                      '1:이행확인,\n2:완료보고',
-                                      style: TextStyle(
-                                        fontSize: 12, // 글자 크기를 24로 설정
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.15,
+                                height: 25,
+                                child: const Text('문서구분',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: LABEL_COLOR,
+                                  ),),
+                              ),
+                              SizedBox(
+                                height: 35,
+                                child: Radio<String>(
+                                  value: '1',
+                                  groupValue: item!.SSD_F_GBN,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      item?.SSD_F_GBN = '1';
+                                    });
+                                  },
                                 ),
-
+                              ),
+                              const Text('1:이행확인'),
+                              SizedBox(
+                                width: 50, // 원하는 너비 설정
+                                height: 35,
+                                child: Radio<String>(
+                                  value: '2',
+                                  groupValue: item!.SSD_F_GBN,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      item?.SSD_F_GBN = '2';
+                                    });
+                                  },
+                                ),
+                              ),
+                              const Text('2:완료보고'),
+                              ],
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -245,7 +250,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                       side: const BorderSide(
                                         color: Color.fromRGBO(53, 80, 161, 1.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderRadius: BorderRadius.circular(5.0),
                                     ),
                                   ),
                                   child: Text(item?.SSD_RPT_DAY ?? initDate),
@@ -295,7 +300,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                       side: const BorderSide(
                                         color: Color.fromRGBO(53, 80, 161, 1.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderRadius: BorderRadius.circular(5.0),
                                     ),
                                   ),
                                   child: Text(item?.SSD_DB7_DAY ?? initDate),
@@ -307,7 +312,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: 80, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
-                                initialValue: item?.SSD_DB7_HM,
+                                controller: txtSSD_DB7_HM,
                                 isTime: true,
                                 onSaved: (val) {
                                   setState(() {
@@ -399,9 +404,9 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                           ]),
                           const SizedBox(height: 10),
                           Row(children: [
-                            const SizedBox(
-                              height: 30,
-                              width: 70,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
                             ),
                             SizedBox(
                               width: 200, // 원하는 너비 설정
@@ -423,7 +428,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                           const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.2,
+                              width: MediaQuery.of(context).size.width * 0.15,
                               height: 25,
                               child: const Text('보고업체',
                                 style: const TextStyle(
@@ -435,13 +440,15 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               height: 35,
                               child: Radio<String>(
                                 value: '1',
-                                groupValue: item?.SSD_ROLE_DIV,
+                                groupValue:  (item?.SSD_ROLE_DIV == null || item!.SSD_ROLE_DIV.toString() == " " || item!.SSD_ROLE_DIV.toString().trim() == "")
+                                    ? '1'
+                                    : item!.SSD_ROLE_DIV,
                                 onChanged: (val) {
                                   setState(() {
                                     item?.SSD_ROLE_DIV = '1';
-                                    txtSSD_AGNT_CD.text = '';
-                                    txtSSD_AGNT_MK.text = '';
-                                    txtSSD_AGNT_NM.text = '';
+                                    txtSSD_AGNT_CD.text = item!.SSD_SIN_CD.toString();
+                                    txtSSD_AGNT_MK.text = item!.SSD_SIN_MK.toString();
+                                    txtSSD_AGNT_NM.text = item!.SSD_SIN_NM.toString();
                                   });
                                 },
                               ),
@@ -452,7 +459,9 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               height: 35,
                               child: Radio<String>(
                                 value: '2',
-                                groupValue: item?.SSD_ROLE_DIV,
+                                groupValue:  (item?.SSD_ROLE_DIV == null || item!.SSD_ROLE_DIV.toString() == " " || item!.SSD_ROLE_DIV.toString().trim() == "")
+                                    ? '1'
+                                    : item!.SSD_ROLE_DIV,
                                 onChanged: (val) {
                                   setState(() {
                                     item?.SSD_ROLE_DIV = '2';
@@ -466,10 +475,10 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                             const Text('신고대리인')
                             ] ),
                             Row(children: [
-                              const SizedBox(
-                              height: 30,
-                              width: 70,
-                            ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height: 25,
+                              ),
                             SizedBox(
                               width: 70, // 원하는 너비 설정
                               height: 35,
@@ -528,9 +537,9 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                           ]),
                           const SizedBox(height: 10),
                           Row(children: [
-                            const SizedBox(
-                              height: 30,
-                              width: 70,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
                             ),
                             SizedBox(
                               width: 200, // 원하는 너비 설정
@@ -611,7 +620,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                         const TextStyle(
                                           color: Color.fromRGBO(
                                               53, 80, 161, 1.0), // 글자 색상
-                                          fontWeight: FontWeight.w100, // 굵기
+                                          fontWeight: FontWeight.bold, // 굵기
                                           fontSize: 15, // 글자 크기
                                         ),
                                       ),
@@ -674,7 +683,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                         const TextStyle(
                                           color: Color.fromRGBO(
                                               53, 80, 161, 1.0), // 글자 색상
-                                          fontWeight: FontWeight.w100, // 굵기
+                                          fontWeight: FontWeight.bold, // 굵기
                                           fontSize: 15, // 글자 크기
                                         ),
                                       ),
@@ -713,6 +722,13 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
       if (_contentsModel.isNotEmpty) {
         item = _contentsModel[0];
         if (item != null) {
+
+
+          if (item?.SSD_DB7_HM != null) {
+            txtSSD_DB7_HM.text = item!.SSD_DB7_HM ?? '';
+          }
+
+
           if (item?.SSD_SE != null) {
             txtSSD_SE.text = item!.SSD_SE ?? '';
           }

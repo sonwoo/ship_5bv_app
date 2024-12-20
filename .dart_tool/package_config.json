@@ -2,6 +2,18 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "archive",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/archive-3.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
@@ -26,6 +38,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "checked_yaml",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/checked_yaml-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "cli_util",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/cli_util-0.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "clock",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
@@ -40,6 +64,12 @@
     {
       "name": "convert",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/convert-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "crypto",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.6",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -86,6 +116,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "flutter_launcher_icons",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.13.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-3.0.2",
       "packageUri": "lib/",
@@ -116,10 +152,28 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "http",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "http_parser",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "image",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/image-4.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "in_app_update",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/in_app_update-4.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "intl",
@@ -132,6 +186,12 @@
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "leak_tracker",
@@ -182,6 +242,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "package_info_plus",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/package_info_plus-5.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "package_info_plus_platform_interface",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/package_info_plus_platform_interface-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.9.0",
       "packageUri": "lib/",
@@ -201,9 +273,9 @@
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.4.0",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.4.1",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.3"
     },
     {
       "name": "path_provider_linux",
@@ -220,6 +292,12 @@
     {
       "name": "path_provider_windows",
       "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "petitparser",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-6.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -243,9 +321,9 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.3.2",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.2.3",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.1"
     },
     {
       "name": "shared_preferences_android",
@@ -273,9 +351,9 @@
     },
     {
       "name": "shared_preferences_web",
-      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_web-2.4.2",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_web-2.2.2",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.2"
     },
     {
       "name": "shared_preferences_windows",
@@ -303,9 +381,9 @@
     },
     {
       "name": "sqlite3",
-      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/sqlite3-2.4.7",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/sqlite3-2.4.2",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.3"
     },
     {
       "name": "stack_trace",
@@ -363,7 +441,13 @@
     },
     {
       "name": "web",
-      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/web-1.1.0",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "win32",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.5.4",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -374,13 +458,25 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "xml",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "file:///C:/Users/sonwoo/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "ship_5bv_app",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-11-28T00:56:28.668771Z",
+  "generated": "2024-12-20T02:50:55.933706Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///E:/Android/flutter",

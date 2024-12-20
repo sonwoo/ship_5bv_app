@@ -354,7 +354,7 @@ class _DocumentList extends State<DocumentList> {
                                                 0.6,
                                         child: Align(
                                           alignment: Alignment.centerLeft,
-                                          child: Text('대행업체: ${item.SSD_BO_SANGHO}'),
+                                          child: Text('대행업체: ${item.SSD_DAE_NM}'),
                                         ),
                                       ),
                                       SizedBox(

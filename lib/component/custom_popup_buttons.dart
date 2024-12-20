@@ -17,19 +17,14 @@ class CustomPopupButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
+        FocusScope.of(context).unfocus();
+
         final result = await showDialog(
             barrierDismissible: false,
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                //content: ProductPreviewScreen(),
-                // shape: RoundedRectangleBorder(
-                // insetPadding: const EdgeInsets.all(0.0), //길이
-                //insetPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.9, vertical: MediaQuery.of(context).size.height * 0.8),
-                //insetPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                //title: Text(title),
                 content: type,
-
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -88,7 +83,7 @@ class CustomPopupButtons extends StatelessWidget {
         textStyle: WidgetStateProperty.all<TextStyle>(
           const TextStyle(
             color: Color.fromRGBO(53, 80, 161, 1.0), // 글자 색상
-            fontWeight: FontWeight.w100, // 굵기
+            fontWeight: FontWeight.bold, // 굵기
             fontSize: 15, // 글자 크기
           ),
         ),

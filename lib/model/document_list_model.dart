@@ -8,6 +8,7 @@ class DocumentListModel {
   final String SND_CHK;
   final String TMPSSD_FD_GBN;
   final String SSD_SIN_SANGHO;
+  final String SSD_DAE_NM;
   final String SSD_BO_SANGHO;
   final String SSD_SIN_DAY;
   final String TMPSSD_SND_GBN;
@@ -23,6 +24,7 @@ class DocumentListModel {
     required this.TMPSSD_FD_GBN,
     required this.SSD_SIN_SANGHO,
     required this.SSD_BO_SANGHO,
+    required this.SSD_DAE_NM,
     required this.SSD_SIN_DAY,
     required this.TMPSSD_SND_GBN,
     required this.TMPSSD_SND_GBN2,
@@ -38,6 +40,7 @@ class DocumentListModel {
         SND_CHK : json['SND_CHK'] ?? "",
         TMPSSD_FD_GBN : json['TMPSSD_FD_GBN'] ?? "",
         SSD_SIN_SANGHO : json['SSD_SIN_SANGHO'] ?? "",
+        SSD_DAE_NM : json['SSD_DAE_NM'] ?? "",
         SSD_BO_SANGHO : json['SSD_BO_SANGHO'] ?? "",
         SSD_SIN_DAY : json['SSD_SIN_DAY'] ?? "",
         TMPSSD_SND_GBN : json['TMPSSD_SND_GBN'] ?? "",
