@@ -252,7 +252,7 @@ class _DocumentList extends State<DocumentList> {
                         ),
                       ),
                       child: const Text(
-                        "검    색",
+                        "검    색   (새로고침)",
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
