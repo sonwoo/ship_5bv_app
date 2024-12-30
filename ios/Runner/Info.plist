@@ -7,6 +7,10 @@
         <key>NSAllowLocalNetworking</key>
         <true/>
     </dict>
+    <key>UIRequiresFullScreen</key>
+    <false/>
+    <key>MinimumOSVersion</key>
+    <string>14.0</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
