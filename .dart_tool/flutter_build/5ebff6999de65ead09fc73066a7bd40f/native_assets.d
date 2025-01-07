@@ -1,0 +1,1 @@
+ /Users/ecis/Projects/ship_5bv_app/ship_5bv_app/.dart_tool/flutter_build/5ebff6999de65ead09fc73066a7bd40f/native_assets.yaml: 
