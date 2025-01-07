@@ -69,6 +69,7 @@ class Govcbr5jiContentsModel {
       'SSD_SE': SSD_SE,
       'SSD_JUNGBAK_COD': SSD_JUNGBAK_COD,
       'TMPPORT_CD': TMPPORT_CD,
+      'SSD_VEHICLE_NO': SSD_VEHICLE_NO,
       'SSD_CRG_NM': SSD_CRG_NM,
       'SSD_BWH_NM': SSD_BWH_NM,
       'SSD_ROLE_DIV': SSD_ROLE_DIV,

@@ -367,7 +367,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 120, // 원하는 너비 설정
+                              width: 110, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_JUNGBAK_COD,
@@ -409,7 +409,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               height: 25,
                             ),
                             SizedBox(
-                              width: 200, // 원하는 너비 설정
+                              width: 185, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtTMPPORT_CD,
@@ -499,7 +499,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 120, // 원하는 너비 설정
+                              width: 110, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_MK,
@@ -542,7 +542,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               height: 25,
                             ),
                             SizedBox(
-                              width: 200, // 원하는 너비 설정
+                              width: 185, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_NM,

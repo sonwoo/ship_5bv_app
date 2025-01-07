@@ -34,6 +34,11 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
   final TextEditingController txtSSD_5BV_HM = TextEditingController();
   final TextEditingController txtSSD_HA_HM = TextEditingController();
 
+  final TextEditingController txtSSD_BWH_NM = TextEditingController();
+  final TextEditingController txtSSD_VEHICLE_NO = TextEditingController();
+  final TextEditingController txtSSD_CRG_NM = TextEditingController();
+
+
   final TextEditingController txtSSD_JUNGBAK_COD = TextEditingController();
   final TextEditingController txtSSD_SE = TextEditingController();
   final TextEditingController txtTMPPORT_CD = TextEditingController();
@@ -56,6 +61,10 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
 
     txtSSD_5BV_HM.dispose();
     txtSSD_HA_HM.dispose();
+
+    txtSSD_BWH_NM.dispose();
+    txtSSD_VEHICLE_NO.dispose();
+    txtSSD_CRG_NM.dispose();
 
     txtSSD_SE.dispose();
     txtTMPPORT_CD.dispose();
@@ -431,13 +440,20 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                 ),),
                             ),
                             SizedBox(
-                                height: 25,
-                                child: Text(
-                                  '${item?.SSD_BWH_NM}',
-                                  style: const TextStyle(
-                                    fontSize: 16, // 글자 크기를 24로 설정
-                                    color: Colors.grey,
-                                  ),)
+                              width: 185, // 원하는 너비 설정
+                              height: 35,
+                              child: CustomTextField(
+                                controller: txtSSD_BWH_NM,
+                                isTime: false,
+                                onSaved: (val) {
+                                  setState(() {
+                                    item?.SSD_BWH_NM = val;
+                                  });
+                                },
+                                validator: (String? val) {
+                                  return null;
+                                },
+                              ),
                             ),
                           ]),
                           const SizedBox(height: 10),
@@ -452,13 +468,48 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                 ),),
                             ),
                             SizedBox(
-                                height: 25,
-                                child: Text(
-                                  '${item?.SSD_VEHICLE_NO}',
-                                  style: const TextStyle(
-                                    fontSize: 16, // 글자 크기를 24로 설정
-                                    color: Colors.grey,
-                                  ),)
+                              width: 185, // 원하는 너비 설정
+                              height: 35,
+                              child: CustomTextField(
+                                controller: txtSSD_VEHICLE_NO,
+                                isTime: false,
+                                onSaved: (val) {
+                                  setState(() {
+                                    item?.SSD_VEHICLE_NO = val;
+                                  });
+                                },
+                                validator: (String? val) {
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ]),
+                          const SizedBox(height: 10),
+                          Row(children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
+                              child: const Text('작업선명',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: LABEL_COLOR,
+                                ),),
+                            ),
+                            SizedBox(
+                              width: 185, // 원하는 너비 설정
+                              height: 35,
+                              child: CustomTextField(
+                                controller: txtSSD_CRG_NM,
+                                isTime: false,
+                                onSaved: (val) {
+                                  setState(() {
+                                    item?.SSD_CRG_NM = val;
+                                  });
+                                },
+                                validator: (String? val) {
+                                  return null;
+                                },
+                              ),
                             ),
                           ]),
                           const SizedBox(height: 10),
@@ -492,7 +543,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 120, // 원하는 너비 설정
+                              width: 110, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_JUNGBAK_COD,
@@ -536,7 +587,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               height: 25,
                             ),
                             SizedBox(
-                              width: 200, // 원하는 너비 설정
+                              width: 185, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtTMPPORT_CD,
@@ -626,7 +677,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               width: 5,
                             ),
                             SizedBox(
-                              width: 120, // 원하는 너비 설정
+                              width: 110, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_MK,
@@ -671,7 +722,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                               height: 25,
                             ),
                             SizedBox(
-                              width: 200, // 원하는 너비 설정
+                              width: 185, // 원하는 너비 설정
                               height: 35,
                               child: CustomTextField(
                                 controller: txtSSD_AGNT_NM,
@@ -868,6 +919,17 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
             txtSSD_HA_HM.text = item!.SSD_HA_HM ?? '';
           }
 
+          if (item?.SSD_BWH_NM != null) {
+            txtSSD_BWH_NM.text = item!.SSD_BWH_NM ?? '';
+          }
+
+          if (item?.SSD_VEHICLE_NO != null) {
+            txtSSD_VEHICLE_NO.text = item!.SSD_VEHICLE_NO ?? '';
+          }
+
+          if (item?.SSD_CRG_NM != null) {
+            txtSSD_CRG_NM.text = item!.SSD_CRG_NM ?? '';
+          }
 
           if (item?.SSD_SE != null) {
             txtSSD_SE.text = item!.SSD_SE ?? '';
