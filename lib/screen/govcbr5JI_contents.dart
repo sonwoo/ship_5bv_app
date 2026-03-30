@@ -51,6 +51,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
   void initState() {
     super.initState();
     _getContents();
+
    }
 
   @override
@@ -179,7 +180,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                  width: MediaQuery.of(context).size.width * 0.15,
                                  height: 25,
                                  child: const Text('문서구분',
-                                   style: const TextStyle(
+                                   style: TextStyle(
                                      fontWeight: FontWeight.bold,
                                      color: LABEL_COLOR,
                                    ),),
@@ -221,7 +222,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('보고일자',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -271,7 +272,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('적재일시',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -352,7 +353,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('선내장치장소',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -380,7 +381,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('차량번호',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -408,7 +409,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('작업선명',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -436,7 +437,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('세관정박항',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -525,7 +526,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: MediaQuery.of(context).size.width * 0.15,
                               height: 25,
                               child: const Text('보고업체',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -899,7 +900,23 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
           widget.docNo, "2", item?.SSD_F_GBN ?? "1");
       setState(() {
         if (ret == "OK") {
-          showCustomAlertPopup(context, "", "송신하였습니다.");
+
+          showDialog(
+              context: context,
+              builder: (_) {
+                return AlertDialog(
+                  content:
+                  const Text('송신되었습니다.',),
+                  actions: [
+                    TextButton(onPressed: ()=> Navigator.of(context).pop<bool>(true), child: const Text('확인',))
+                  ],
+                );
+              }).then((value) {
+            if(value) {
+              Navigator.of(context).pop("OK");
+            }
+          });
+
         } else {
           showCustomAlertPopup(context, "", ret);
         }
