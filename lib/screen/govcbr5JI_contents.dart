@@ -11,7 +11,6 @@ import 'package:intl/intl.dart';
 import 'package:ship_5bv_app/util.dart';
 import 'package:ship_5bv_app/const/colors.dart';
 import 'package:ship_5bv_app/screen/freight_list.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Govcbr5jiContents extends StatefulWidget {
   final String docNo;

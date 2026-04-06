@@ -139,7 +139,8 @@ class _AnchorageState extends State<Anchorage> {
                                           Navigator.pop(context, {
                                             'SSD_SE': item.CUSTOMS_CD,
                                             'SSD_JUNGBAK_COD': item.ANCH_CD,
-                                            'TMPPORT_CD': item.PORT_CD
+                                            'TMPPORT_CD': item.PORT_CD,
+                                            'TMPPORT_NM' : item.ANCH_NM
                                           });
                                         }
                                       },
@@ -166,7 +167,8 @@ class _AnchorageState extends State<Anchorage> {
                                   Navigator.pop(context, {
                                     'SSD_SE': item.CUSTOMS_CD,
                                     'SSD_JUNGBAK_COD': item.ANCH_CD,
-                                    'TMPPORT_CD': item.PORT_CD
+                                    'TMPPORT_CD': item.PORT_CD,
+                                    'TMPPORT_NM' : item.ANCH_NM
                                   });
                                 },
                               ),
