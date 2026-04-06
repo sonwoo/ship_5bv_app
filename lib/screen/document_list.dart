@@ -29,6 +29,8 @@ class _DocumentList extends State<DocumentList> {
   DateTime start_date = DateTime.now().subtract(const Duration(days: 6));
   DateTime end_date = DateTime.now();
 
+  String work_div = '0';
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +41,7 @@ class _DocumentList extends State<DocumentList> {
     _isStatusH = search.statusH;
     _searchController1.text = search.searchValue1;
     _searchController2.text = search.searchValue2;
+    work_div = '0';
 
     _performSearch();
   }
@@ -225,6 +228,70 @@ class _DocumentList extends State<DocumentList> {
                     ),
                   ],
                 ),
+                Row(
+                    children: [
+                      const SizedBox(
+                          width: 5,
+                      ),
+                      SizedBox(
+                        width:
+                        MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
+                        child: const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            '내/외국',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Arial',
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Text('전체'),
+                      SizedBox(
+                        width: 50, // 원하는 너비 설정
+                        height: 35,
+                        child: Radio<String>(
+                          value: '0',
+                          groupValue: work_div,
+                          onChanged: (val) {
+                            setState(() {
+                              work_div = val!;
+                            });
+                          },
+                        ),
+                      ),
+                      const Text('내국'),
+                      SizedBox(
+                        width: 50, // 원하는 너비 설정
+                        height: 35,
+                        child: Radio<String>(
+                          value: '1',
+                          groupValue: work_div,
+                          onChanged: (val) {
+                            setState(() {
+                              work_div = val!;
+                            });
+                          },
+                        ),
+                      ),
+                      const Text('외국'),
+                      SizedBox(
+                        width: 50, // 원하는 너비 설정
+                        height: 35,
+                        child: Radio<String>(
+                          value: '2',
+                          groupValue: work_div,
+                          onChanged: (val) {
+                            setState(() {
+                              work_div = val!;
+                            });
+                          },
+                        ),
+                      ),
+                    ]
+                ),
                 const SizedBox(
                   height: 5,
                 ),
@@ -238,6 +305,7 @@ class _DocumentList extends State<DocumentList> {
                         searchItem?.end_date = end_date;
                         searchItem?.searchValue1 = _searchController1.text;
                         searchItem?.searchValue2 = _searchController2.text;
+                        searchItem?.workDiv = work_div;
                         searchItem?.statusH = _isStatusH;
 
                         _performSearch();
@@ -468,9 +536,10 @@ class _DocumentList extends State<DocumentList> {
       END_SIN_DAY: end_date.toString(),
       SEARCH_WORDS: _searchController1.text,
       SEARCH_WORDS2:_searchController2.text,
+      WORK_DIV: work_div,
       STATUS : _isStatusH,
       PLATFORM: PLATFORM,
-      docdiv: widget.docdiv,
+      docdiv: widget.docdiv
     );
 
     setState(() {

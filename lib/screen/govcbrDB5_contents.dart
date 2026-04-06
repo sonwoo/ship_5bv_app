@@ -37,6 +37,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
   final TextEditingController txtSSD_JUNGBAK_COD = TextEditingController();
   final TextEditingController txtSSD_SE = TextEditingController();
   final TextEditingController txtTMPPORT_CD = TextEditingController();
+  final TextEditingController txtTMPPORT_NM = TextEditingController();
 
   final TextEditingController txtSSD_AGNT_CD = TextEditingController();
   final TextEditingController txtSSD_AGNT_MK = TextEditingController();
@@ -59,6 +60,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
 
     txtSSD_SE.dispose();
     txtTMPPORT_CD.dispose();
+    txtTMPPORT_NM.dispose();
     txtSSD_JUNGBAK_COD.dispose();
     txtSSD_AGNT_CD.dispose();
     txtSSD_AGNT_MK.dispose();
@@ -115,8 +117,8 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
               child : SingleChildScrollView(
               child: Container(
                   color: Colors.white,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  //width: MediaQuery.of(context).size.width,
+                  //height: MediaQuery.of(context).size.height,
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 8, right: 8, top: 8, bottom: 8),
@@ -170,7 +172,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                 width: MediaQuery.of(context).size.width * 0.15,
                                 height: 25,
                                 child: const Text('문서구분',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: LABEL_COLOR,
                                   ),),
@@ -212,7 +214,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('보고일자',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -262,7 +264,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('하선일시',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -329,7 +331,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: 5,
                             ),
                             const Text(
-                              '(HHMM)',
+                              '(HH:MM)',
                               style: TextStyle(
                                 fontSize: 12, // 글자 크기를 24로 설정
                                 color: Colors.grey,
@@ -342,7 +344,7 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 25,
                               child: const Text('세관정박항',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -397,6 +399,8 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                                         result['SSD_JUNGBAK_COD'] ?? "";
                                     txtTMPPORT_CD.text =
                                         result['TMPPORT_CD'] ?? "";
+                                    txtTMPPORT_NM.text =
+                                        result['TMPPORT_NM'] ?? "";
                                   });
                                 },
                               ),
@@ -428,10 +432,33 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
                           const SizedBox(height: 10),
                           Row(children: [
                             SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
+                            ),
+                            SizedBox(
+                              width: 185, // 원하는 너비 설정
+                              height: 35,
+                              child: CustomTextField(
+                                controller: txtTMPPORT_NM,
+                                isTime: false,
+                                onSaved: (val) {
+                                  setState(() {
+                                    item?.TMPPORT_NM = val;
+                                  });
+                                },
+                                validator: (String? val) {
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ]),
+                          const SizedBox(height: 10),
+                          Row(children: [
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.15,
                               height: 25,
                               child: const Text('보고업체',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: LABEL_COLOR,
                                 ),),
@@ -725,7 +752,14 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
 
 
           if (item?.SSD_DB7_HM != null) {
-            txtSSD_DB7_HM.text = item!.SSD_DB7_HM ?? '';
+
+            //시간 중간에 : 넣어서 보여줌
+            var hm = item!.SSD_DB7_HM ?? '';
+            if(hm != '' && hm.length >= 4) {
+              hm = '${hm.substring(0, 2)}:${hm.substring(2, 4)}';
+            }
+
+            txtSSD_DB7_HM.text = hm;
           }
 
 
@@ -739,6 +773,10 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
 
           if (item?.TMPPORT_CD != null) {
             txtTMPPORT_CD.text = item!.TMPPORT_CD ?? '';
+          }
+
+          if (item?.TMPPORT_NM != null) {
+            txtTMPPORT_NM.text = item!.TMPPORT_NM ?? '';
           }
 
           if (item?.SSD_AGNT_CD != null) {
@@ -785,7 +823,21 @@ class _Govcbrdb5Contents extends State<Govcbrdb5Contents> {
           widget.docNo, "3", item?.SSD_F_GBN ?? "1");
       setState(() {
         if (ret == "OK") {
-          showCustomAlertPopup(context, "", "송신하였습니다.");
+          showDialog(
+              context: context,
+              builder: (_) {
+                return AlertDialog(
+                  content:
+                  const Text('송신되었습니다.',),
+                  actions: [
+                    TextButton(onPressed: ()=> Navigator.of(context).pop<bool>(true), child: const Text('확인',))
+                  ],
+                );
+              }).then((value) {
+            if(value) {
+              Navigator.of(context).pop("OK");
+            }
+          });
         } else {
           showCustomAlertPopup(context, "", ret);
         }

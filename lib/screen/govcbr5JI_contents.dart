@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:ship_5bv_app/util.dart';
 import 'package:ship_5bv_app/const/colors.dart';
 import 'package:ship_5bv_app/screen/freight_list.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Govcbr5jiContents extends StatefulWidget {
   final String docNo;
@@ -40,6 +41,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
   final TextEditingController txtSSD_JUNGBAK_COD = TextEditingController();
   final TextEditingController txtSSD_SE = TextEditingController();
   final TextEditingController txtTMPPORT_CD = TextEditingController();
+  final TextEditingController txtTMPPORT_NM = TextEditingController();
 
   final TextEditingController txtSSD_AGNT_CD = TextEditingController();
   final TextEditingController txtSSD_AGNT_MK = TextEditingController();
@@ -66,6 +68,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
 
     txtSSD_SE.dispose();
     txtTMPPORT_CD.dispose();
+    txtTMPPORT_NM.dispose();
     txtSSD_JUNGBAK_COD.dispose();
     txtSSD_AGNT_CD.dispose();
     txtSSD_AGNT_MK.dispose();
@@ -327,7 +330,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                 isTime: true,
                                 onSaved: (val) {
                                   setState(() {
-                                    item?.SSD_5BV_HM = val;
+                                    item?.SSD_5BV_HM = val?.replaceAll(':', '');
                                   });
                                 },
                                 validator: (String? val) {
@@ -340,7 +343,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: 5,
                             ),
                             const Text(
-                              '(HHMM)',
+                              '(HH:MM)',
                               style: TextStyle(
                                 fontSize: 12, // 글자 크기를 24로 설정
                                 color: Colors.grey,
@@ -492,6 +495,8 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                         result['SSD_JUNGBAK_COD'] ?? "";
                                     txtTMPPORT_CD.text =
                                         result['TMPPORT_CD'] ?? "";
+                                    txtTMPPORT_NM.text =
+                                        result['TMPPORT_NM'] ?? "";
                                   });
                                 },
                               ),
@@ -512,6 +517,29 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                 onSaved: (val) {
                                   setState(() {
                                     item?.TMPPORT_CD = val;
+                                  });
+                                },
+                                validator: (String? val) {
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ]),
+                          const SizedBox(height: 10),
+                          Row(children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: 25,
+                            ),
+                            SizedBox(
+                              width: 185, // 원하는 너비 설정
+                              height: 35,
+                              child: CustomTextField(
+                                controller: txtTMPPORT_NM,
+                                isTime: false,
+                                onSaved: (val) {
+                                  setState(() {
+                                    item?.TMPPORT_NM = val;
                                   });
                                 },
                                 validator: (String? val) {
@@ -823,7 +851,13 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
 
 
           if (item?.SSD_5BV_HM != null) {
-            txtSSD_5BV_HM.text = item!.SSD_5BV_HM ?? '';
+
+            var hm = item!.SSD_5BV_HM ?? '';
+            if(hm != '' && hm.length >= 4) {
+              hm = '${hm.substring(0, 2)}:${hm.substring(2, 4)}';
+            }
+
+            txtSSD_5BV_HM.text = hm;
           }
 
           if (item?.SSD_BWH_NM != null) {
@@ -850,6 +884,9 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
             txtTMPPORT_CD.text = item!.TMPPORT_CD ?? '';
           }
 
+          if (item?.TMPPORT_NM != null) {
+            txtTMPPORT_NM.text = item!.TMPPORT_NM ?? '';
+          }
 
           if (item?.SSD_ROLE_DIV == null || item?.SSD_ROLE_DIV == "") {
             item?.SSD_ROLE_DIV = '1';

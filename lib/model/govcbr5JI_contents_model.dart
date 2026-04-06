@@ -10,6 +10,7 @@ class Govcbr5jiContentsModel {
   String? SSD_SE;
   String? SSD_JUNGBAK_COD;
   String? TMPPORT_CD;
+  String? TMPPORT_NM;
   String? SSD_VEHICLE_NO;
   String? SSD_CRG_NM2;
   String? SSD_BWH_NM;
@@ -26,7 +27,7 @@ class Govcbr5jiContentsModel {
   String? SSD_SIN_MK;
   String? SSD_SIN_NM;
 
-  Govcbr5jiContentsModel({required this.USER_ERP_ID, required this.SSD_F_GBN, required this.SSD_MSG_GI2, required this.SSD_RPT_DAY, required this.SSD_5BV_DAY, required this.SSD_5BV_HM, required this.SSD_CRG_NM, required this.SSD_JUNGBAK_COD, required this.TMPPORT_CD, required this.SSD_VEHICLE_NO, required this.SSD_CRG_NM2, required this.SSD_BWH_NM, required this.WORK_DIV, required this.END_SND_CHK, required this.SSD_ROLE_DIV, required this.SSD_AGNT_CD, required this.SSD_AGNT_MK, required this.SSD_AGNT_NM , required this.SSD_SE, required this.SSD_DAE_CD, required this.SSD_DAE_MK, required this.SSD_DAE_NM, required this.SSD_SIN_CD, required this.SSD_SIN_MK, required this.SSD_SIN_NM});
+  Govcbr5jiContentsModel({required this.USER_ERP_ID, required this.SSD_F_GBN, required this.SSD_MSG_GI2, required this.SSD_RPT_DAY, required this.SSD_5BV_DAY, required this.SSD_5BV_HM, required this.SSD_CRG_NM, required this.SSD_JUNGBAK_COD, required this.TMPPORT_CD, required this.TMPPORT_NM, required this.SSD_VEHICLE_NO, required this.SSD_CRG_NM2, required this.SSD_BWH_NM, required this.WORK_DIV, required this.END_SND_CHK, required this.SSD_ROLE_DIV, required this.SSD_AGNT_CD, required this.SSD_AGNT_MK, required this.SSD_AGNT_NM , required this.SSD_SE, required this.SSD_DAE_CD, required this.SSD_DAE_MK, required this.SSD_DAE_NM, required this.SSD_SIN_CD, required this.SSD_SIN_MK, required this.SSD_SIN_NM});
 
   factory Govcbr5jiContentsModel.fromJson(Map<String, dynamic> json) {
     return Govcbr5jiContentsModel(
@@ -40,6 +41,7 @@ class Govcbr5jiContentsModel {
       SSD_SE : json['SSD_SE'] ?? "",
       SSD_JUNGBAK_COD : json['SSD_JUNGBAK_COD'] ?? "",
       TMPPORT_CD : json['TMPPORT_CD'] ?? "",
+      TMPPORT_NM : json['TMPPORT_NM'] ?? "",
       SSD_VEHICLE_NO : json['SSD_VEHICLE_NO'] ?? "",
       SSD_CRG_NM2 : json['SSD_CRG_NM2'] ?? "",
       SSD_BWH_NM : json['SSD_BWH_NM'] ?? "",
@@ -69,6 +71,7 @@ class Govcbr5jiContentsModel {
       'SSD_SE': SSD_SE,
       'SSD_JUNGBAK_COD': SSD_JUNGBAK_COD,
       'TMPPORT_CD': TMPPORT_CD,
+      'TMPPORT_NM': TMPPORT_NM,
       'SSD_VEHICLE_NO': SSD_VEHICLE_NO,
       'SSD_CRG_NM': SSD_CRG_NM,
       'SSD_BWH_NM': SSD_BWH_NM,

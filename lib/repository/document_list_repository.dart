@@ -17,6 +17,7 @@ class DocumentListRepository {
     required bool STATUS,
     required String PLATFORM,
     required String docdiv,
+    required String WORK_DIV,
   }) async {
         final resp = await _dio.get(
           API_URL + docdiv, queryParameters: {
@@ -27,6 +28,7 @@ class DocumentListRepository {
           "SEARCH_WORDS2" : SEARCH_WORDS2,
           "STATUS": STATUS,
           "PLATFORM" : PLATFORM == "CS" ? COMPANY_NO : "EDI",
+          "WORK_DIV" : WORK_DIV
           },);
 
         List<dynamic> jsonData = jsonDecode(resp.toString());
