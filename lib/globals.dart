@@ -9,7 +9,9 @@ const String API_URL = "http://192.168.200.38:3000/api/";
 List<selectedSearch> selectedSearches =
 [ selectedSearch('GOVCBR5JIList', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(),'', '','0',true),
   selectedSearch('GOVCBRDB5List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(),'', '','0',true),
-  selectedSearch('GOVCBRDB6List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(),'', '','0',true) ];
+  selectedSearch('GOVCBRDB6List', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(),'', '','0',true),
+  selectedSearch('GOVCBR5DQList', DateTime.now().subtract(const Duration(days: 6)), DateTime.now(),'', '','0',true)
+];
 
 class selectedSearch
 {

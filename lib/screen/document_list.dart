@@ -5,6 +5,7 @@ import 'package:ship_5bv_app/repository/document_list_repository.dart';
 import 'package:ship_5bv_app/screen/govcbr5JI_contents.dart';
 import 'package:ship_5bv_app/screen/govcbrDB5_contents.dart';
 import 'package:ship_5bv_app/screen/govcbrDB6_contents.dart';
+import 'package:ship_5bv_app/screen/govcbr5DQ_contents.dart';
 
 class DocumentList extends StatefulWidget {
   final String docdiv;
@@ -150,7 +151,10 @@ class _DocumentList extends State<DocumentList> {
                         },
                       ),
                     ),
-                    const Text('허가'),
+                    if(widget.docdiv != "GOVCBR5DQList")...[
+                     const Text('허가'),
+                    ]else...[
+                      const Text('수리'),]
                   ],
                 ),
                 const SizedBox(
@@ -228,6 +232,9 @@ class _DocumentList extends State<DocumentList> {
                     ),
                   ],
                 ),
+
+              //선용일때만
+              if(widget.docdiv != "GOVCBR5DQList")...[
                 Row(
                     children: [
                       const SizedBox(
@@ -291,7 +298,9 @@ class _DocumentList extends State<DocumentList> {
                         ),
                       ),
                     ]
-                ),
+                )],
+
+
                 const SizedBox(
                   height: 5,
                 ),
@@ -397,6 +406,8 @@ class _DocumentList extends State<DocumentList> {
                                           child: Text('신고일자: ${item.SSD_SIN_DAY}'),
                                         ),
                                       ),
+                                      //갈음은 이행이 없기 때문에 숨김
+                                      if(widget.docdiv != "GOVCBR5DQList")...[
                                       SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width *
@@ -411,7 +422,7 @@ class _DocumentList extends State<DocumentList> {
                                             alignment: Alignment.centerLeft,
                                             child: Text(
                                                 item.TMPSSD_SND_GBN3)),
-                                      ),
+                                      ),]
                                     ],
                                   ),
                                   Row(
@@ -492,6 +503,23 @@ class _DocumentList extends State<DocumentList> {
                                     }
 
                                     break;
+                                  case "GOVCBR5DQList":
+                                    final result = await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Govcbr5dqContents(
+                                                  docNo: item.TMPSSD_KEY,
+                                                )));
+
+                                    if (result != null) {
+                                      setState(() {
+                                        _performSearch();
+                                      });
+                                    }
+
+                                    break;
+
                                 }
                               },
                             ),

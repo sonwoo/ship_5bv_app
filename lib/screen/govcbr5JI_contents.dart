@@ -342,7 +342,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                               width: 5,
                             ),
                             const Text(
-                              '(HH:MM)',
+                              '(HHMM)',
                               style: TextStyle(
                                 fontSize: 12, // 글자 크기를 24로 설정
                                 color: Colors.grey,
@@ -496,6 +496,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
                                         result['TMPPORT_CD'] ?? "";
                                     txtTMPPORT_NM.text =
                                         result['TMPPORT_NM'] ?? "";
+
                                   });
                                 },
                               ),
@@ -851,12 +852,14 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
 
           if (item?.SSD_5BV_HM != null) {
 
+
             var hm = item!.SSD_5BV_HM ?? '';
             if(hm != '' && hm.length >= 4) {
               hm = '${hm.substring(0, 2)}:${hm.substring(2, 4)}';
             }
 
             txtSSD_5BV_HM.text = hm;
+
           }
 
           if (item?.SSD_BWH_NM != null) {
@@ -884,7 +887,7 @@ class _Govcbr5jiContents extends State<Govcbr5jiContents> {
           }
 
           if (item?.TMPPORT_NM != null) {
-            txtTMPPORT_NM.text = item!.TMPPORT_NM ?? '';
+              txtTMPPORT_NM.text = item!.TMPPORT_NM ?? '';
           }
 
           if (item?.SSD_ROLE_DIV == null || item?.SSD_ROLE_DIV == "") {

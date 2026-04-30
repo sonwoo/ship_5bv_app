@@ -44,8 +44,14 @@ class _FreightListState extends State<FreightList> {
                               title: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('화물관리 번호: ${item.SSD_CAR_NO}'),
-                                  Text('품목번호: ${item.SSD_PUM_NO}'),
+                                  //갈음일때는 항목이 좀 달라서
+                                  if(widget.docdiv == "GOVCBR5DQFreightList") ...[
+                                    Text('물품식별번호: ${item.SSD_CAR_NO}'),
+                                    Text('H.S부호: ${item.SSD_PUM_NO}'),
+                                  ] else...[
+                                    Text('화물관리 번호: ${item.SSD_CAR_NO}'),
+                                    Text('품목번호: ${item.SSD_PUM_NO}'),
+                                  ],
                                   Text('품명: ${item.SSD_PUM01}'),
                                 ],
                               ),

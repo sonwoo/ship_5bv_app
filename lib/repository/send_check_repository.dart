@@ -46,8 +46,10 @@ class SendCheckRepository {
       Table = "CUSSSD5JI_2_M";
     } else if (ssdBizGbn == "3") {
       Table = "CUSSSD5JI_3_M";
-    } else {
+    } else if (ssdBizGbn == "4") {
       Table = "CUSSSD5JI_4_M";
+    } else {
+      Table = "DUTYEXP_M";
     }
 
     var resp = await _dio.get('${API_URL}Send',

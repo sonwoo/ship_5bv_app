@@ -577,8 +577,11 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
                                         result['SSD_JUNGBAK_COD'] ?? "";
                                     txtTMPPORT_CD.text =
                                         result['TMPPORT_CD'] ?? "";
+                                    if(CORP_ID =="HAEDONG" || CORP_ID == "HAEDONGMAN")
+                                      {
                                     txtTMPPORT_NM.text =
                                         result['TMPPORT_NM'] ?? "";
+                                      }
                                   });
                                 },
                               ),
@@ -940,6 +943,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
 
           if (item?.SSD_5BV_HM != null) {
 
+
             //시간 중간에 : 넣어서 보여줌
             var hm = item!.SSD_5BV_HM ?? '';
             if(hm != '' && hm.length >= 4) {
@@ -947,6 +951,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
             }
 
             txtSSD_5BV_HM.text = hm;
+
           }
 
           if (item?.SSD_HA_HM != null) {
@@ -958,6 +963,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
             }
 
             txtSSD_HA_HM.text = hm;
+
           }
 
           if (item?.SSD_BWH_NM != null) {
@@ -985,7 +991,7 @@ class _Govcbrdb6Contents extends State<Govcbrdb6Contents> {
           }
 
           if (item?.TMPPORT_NM != null) {
-            txtTMPPORT_NM.text = item!.TMPPORT_NM ?? '';
+              txtTMPPORT_NM.text = item!.TMPPORT_NM ?? '';
           }
 
           if (item?.SSD_AGNT_CD != null) {

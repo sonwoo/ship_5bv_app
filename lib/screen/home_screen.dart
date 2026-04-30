@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ship_5bv_app/globals.dart';
 import 'package:ship_5bv_app/screen/document_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,16 +10,73 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  late List<Widget> _tabs;
+  late List<Tab> _tabHeaders;
+
+  @override
+   void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _setTabsByGrade();
+  }
+
+  void _setTabsByGrade() {
+
+    final allTabs = [
+      const DocumentList(docdiv: 'GOVCBR5JIList'),
+      const DocumentList(docdiv: 'GOVCBRDB5List'),
+      const DocumentList(docdiv: 'GOVCBRDB6List'),
+      const DocumentList(docdiv: 'GOVCBR5DQList'),
+    ];
+
+    const allHeaders = [
+      Tab(child: Text('적   재',
+        style: TextStyle(
+        fontWeight: FontWeight.w800,
+      ))),
+      Tab(child: Text('하   선',
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+          ))),
+      Tab(child: Text('환   적',
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+          ))),
+      Tab(child: Text('갈   음',
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+          ))),
+    ];
+
+    if (WORK_DIV == 'S' || PLATFORM == "EDI") {
+      _tabs = allTabs.sublist(0, 3);     // 선용
+      _tabHeaders = allHeaders.sublist(0, 3);
+    } else if (WORK_DIV == 'A') {
+      _tabs = allTabs;                   // 전체
+      _tabHeaders = allHeaders;
+    } else if (WORK_DIV == 'E') {
+      _tabs = [allTabs.last];           // 갈음
+      _tabHeaders = [allHeaders.last];
+    }
+
+
+  }
+
+  /*
   final List<Widget> _tabs = [
     const DocumentList(docdiv: 'GOVCBR5JIList'),
     const DocumentList(docdiv: 'GOVCBRDB5List'),
-    const DocumentList(docdiv: 'GOVCBRDB6List')
+    const DocumentList(docdiv: 'GOVCBRDB6List'),
+    const DocumentList(docdiv: 'GOVCBR5DQList')
   ];
+  */
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 3,
+        length: _tabs.length,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
@@ -63,6 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               indicatorColor: const Color.fromRGBO(53, 80, 161, 1.0),
               indicatorWeight: 3.0,
+              tabs: _tabHeaders,
+              /*
               tabs: const <Widget>[
                 Tab(
                     child: Text('적   재',
@@ -79,7 +139,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
                         ))),
+                Tab(
+                    child: Text('갈   음',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ))),
               ],
+               */
+
             ),
            ),
           ),
