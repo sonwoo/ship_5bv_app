@@ -44,11 +44,13 @@ class _DocumentList extends State<DocumentList> {
     _searchController2.text = search.searchValue2;
     work_div = '0';
 
+
     _performSearch();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: (){
         FocusScope.of(context).unfocus(); // 키보드 닫기
@@ -66,10 +68,10 @@ class _DocumentList extends State<DocumentList> {
                     SizedBox(
                       width:
                           MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
-                      child: const Align(
+                      child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          '신고일자',
+                          widget.docdiv != "GOVCBR5DQList" ? '신고일자' : '접수일자',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -151,10 +153,7 @@ class _DocumentList extends State<DocumentList> {
                         },
                       ),
                     ),
-                    if(widget.docdiv != "GOVCBR5DQList")...[
-                     const Text('허가'),
-                    ]else...[
-                      const Text('수리'),]
+                    Text(widget.docdiv != "GOVCBR5DQList" ? '허가' : '수리'),
                   ],
                 ),
                 const SizedBox(
@@ -202,10 +201,10 @@ class _DocumentList extends State<DocumentList> {
                     SizedBox(
                       width:
                       MediaQuery.of(context).size.width * 0.2, // 원하는 너비 설정
-                      child: const Align(
+                      child:  Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '신청업체',
+                          widget.docdiv != "GOVCBR5DQList" ? '신청업체' : '제출번호',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -298,9 +297,7 @@ class _DocumentList extends State<DocumentList> {
                         ),
                       ),
                     ]
-                )],
-
-
+                )] ,
                 const SizedBox(
                   height: 5,
                 ),
